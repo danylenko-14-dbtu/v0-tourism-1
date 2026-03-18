@@ -46,6 +46,28 @@
       }
     ]
   },
+  "learningProcess": {
+    "title": "Learning Process",
+    "subtitle": "From theoretical foundations to a professional career in tourism",
+    "stages": [
+      {
+        "title": "Theoretical Foundation",
+        "description": "Study of tourism fundamentals, geography, and tourism economics"
+      },
+      {
+        "title": "Practical Skills",
+        "description": "Workshops on tour organization, hotel services, and communications"
+      },
+      {
+        "title": "Professional Experience",
+        "description": "Internships at leading tourism companies and hotels"
+      },
+      {
+        "title": "Final Project",
+        "description": "Development of your own tourism product or business plan"
+      }
+    ]
+  },
   "about": {
     "title": "About Us",
     "description": "We are a team of professionals striving to create innovative solutions for our clients. Our mission is to help you succeed.",
