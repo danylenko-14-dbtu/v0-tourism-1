@@ -38,7 +38,7 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning data-scroll-behavior="smooth">
       <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"
