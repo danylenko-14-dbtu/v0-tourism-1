@@ -98,6 +98,32 @@
       }
     ]
   },
+  "programFacts": {
+    "title": "Program Facts",
+    "subtitle": "Key information about the structure of Bachelor’s and Master’s programs",
+    "tabs": {
+      "bachelor": "Bachelor",
+      "master": "Master"
+    },
+    "programs": {
+      "bachelor": [
+        { "label": "Duration", "value": "4 years" },
+        { "label": "Degree", "value": "Bachelor" },
+        { "label": "Study format", "value": "Full-time / Part-time" },
+        { "label": "Practice", "value": "3 practical trainings" },
+        { "label": "Language", "value": "Ukrainian / English" },
+        { "label": "Credits", "value": "240 ECTS" }
+      ],
+      "master": [
+        { "label": "Duration", "value": "1.5 years" },
+        { "label": "Degree", "value": "Master" },
+        { "label": "Study format", "value": "Full-time / Part-time" },
+        { "label": "Practice", "value": "1 practical training" },
+        { "label": "Language", "value": "Ukrainian / English" },
+        { "label": "Credits", "value": "90 ECTS" }
+      ]
+    }
+  },
   "about": {
     "title": "About Us",
     "description": "We are a team of professionals striving to create innovative solutions for our clients. Our mission is to help you succeed.",

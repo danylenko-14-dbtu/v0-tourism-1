@@ -59,6 +59,10 @@ export function ProgramFacts({ dictionary }: ProgramFactsProps) {
     }, 200)
   }
 
+  if (!programFacts?.programs) {
+    return null
+  }
+
   const currentFacts = programFacts.programs[activeTab]
 
   return (
