@@ -6,7 +6,7 @@ interface AboutProps {
 
 export function About({ dictionary }: AboutProps) {
   return (
-    <section id="about" className="scroll-mt-16">
+    <section id="about" className="scroll-mt-16 border-t border-border/50 bg-muted/30">
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="flex flex-col justify-center">

@@ -68,6 +68,36 @@
       }
     ]
   },
+  "graduatesWork": {
+    "title": "Where Graduates Work",
+    "subtitle": "Our graduates successfully build careers across various sectors of the tourism industry",
+    "categories": [
+      {
+        "title": "Travel Agencies",
+        "description": "Client consulting, tour selection, and travel organization"
+      },
+      {
+        "title": "Tour Operators",
+        "description": "Development of tourism products and travel routes"
+      },
+      {
+        "title": "Hospitality Industry",
+        "description": "Management of hotels, restaurants, and resorts"
+      },
+      {
+        "title": "International Online Platforms",
+        "description": "Working with Booking, Airbnb, TripAdvisor, and other services"
+      },
+      {
+        "title": "Own Tourism Business",
+        "description": "Creating custom tours and tourism startups"
+      },
+      {
+        "title": "Public Sector",
+        "description": "Work in tourism administration and regional development"
+      }
+    ]
+  },
   "about": {
     "title": "About Us",
     "description": "We are a team of professionals striving to create innovative solutions for our clients. Our mission is to help you succeed.",

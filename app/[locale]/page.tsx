@@ -4,6 +4,7 @@ import { Header } from '@/components/sections/header'
 import { Hero } from '@/components/sections/hero'
 import { Features } from '@/components/sections/features'
 import { LearningProcess } from '@/components/sections/learning-process'
+import { GraduatesWork } from '@/components/sections/graduates-work'
 import { About } from '@/components/sections/about'
 import { Pricing } from '@/components/sections/pricing'
 import { CTA } from '@/components/sections/cta'
@@ -24,6 +25,7 @@ export default async function HomePage({ params }: PageProps) {
         <Hero dictionary={dictionary} />
         <Features dictionary={dictionary} />
         <LearningProcess dictionary={dictionary} />
+        <GraduatesWork dictionary={dictionary} />
         <About dictionary={dictionary} />
         <Pricing dictionary={dictionary} />
         <CTA dictionary={dictionary} />
