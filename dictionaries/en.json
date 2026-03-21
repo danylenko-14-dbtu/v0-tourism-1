@@ -4,45 +4,45 @@
     "description": "Detailed description of your product or service for search engines"
   },
   "nav": {
-    "features": "Features",
+    "features": "Career",
     "about": "About",
     "pricing": "Pricing",
     "contact": "Contact"
   },
   "hero": {
     "badge": "New version available",
-    "title": "Your Project Headline",
-    "subtitle": "A short description of what your product does and what problem it solves for users",
-    "cta": "Get Started",
+    "title": "Apply for Admission",
+    "subtitle": "The Tourism and Recreation program is open for applicants at the State Biotechnological University.",
+    "cta": "Enroll",
     "ctaSecondary": "Learn More"
   },
   "features": {
-    "title": "Features",
-    "subtitle": "Everything you need to achieve your goals",
+    "title": "Career",
+    "subtitle": "Professions that shape the modern tourism business",
     "items": [
       {
-        "title": "First Feature",
-        "description": "A brief description of your product's first key feature"
+        "title": "Tourism Manager",
+        "description": "Organizing travel services, working with clients and partners in tourism"
       },
       {
-        "title": "Second Feature",
-        "description": "A brief description of your product's second key feature"
+        "title": "Travel Consultant",
+        "description": "Planning trips, selecting routes and working with global booking systems"
       },
       {
-        "title": "Third Feature",
-        "description": "A brief description of your product's third key feature"
+        "title": "Hospitality Specialist",
+        "description": "Managing service operations, hotel processes and guest experience"
       },
       {
-        "title": "Fourth Feature",
-        "description": "A brief description of your product's fourth key feature"
+        "title": "Tour and Event Organizer",
+        "description": "Designing routes, planning events and coordinating tourism programs"
       },
       {
-        "title": "Fifth Feature",
-        "description": "A brief description of your product's fifth key feature"
+        "title": "Tourism Entrepreneur",
+        "description": "Launching your own travel business or developing existing tourism projects"
       },
       {
-        "title": "Sixth Feature",
-        "description": "A brief description of your product's sixth key feature"
+        "title": "Public Sector Specialist",
+        "description": "Working in tourism administration and developing destinations"
       }
     ]
   },
