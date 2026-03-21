@@ -124,6 +124,29 @@
       ]
     }
   },
+  "howToApply": {
+    "title": "How to apply",
+    "subtitle": "Simple admission process for the Tourism and Recreation program",
+    "stages": [
+      {
+        "title": "Qualification",
+        "description": "National Multi-Subject Test or Unified Entrance Exam"
+      },
+      {
+        "title": "Applicant Account",
+        "description": "Register an applicant account based on secondary education or junior bachelor"
+      },
+      {
+        "title": "Documents",
+        "description": "Submit documents to the State Biotechnological University"
+      },
+      {
+        "title": "Program Choice",
+        "description": "Choose the program J3/242 Tourism and Recreation"
+      }
+    ],
+    "cta": "Apply"
+  },
   "about": {
     "title": "About Us",
     "description": "We are a team of professionals striving to create innovative solutions for our clients. Our mission is to help you succeed.",

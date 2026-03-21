@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { EnrollButton } from '@/components/sections/enroll-button'
 import type { Dictionary } from '@/lib/dictionaries'
 
 interface HeroProps {
@@ -40,10 +41,7 @@ export function Hero({ dictionary }: HeroProps) {
           </p>
           
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
-            <Button size="lg" className="group gap-2 rounded-full px-8 shadow-lg shadow-primary/20">
-              {dictionary.hero.cta}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
+            <EnrollButton label={dictionary.hero.cta} />
             <Button variant="outline" size="lg" className="rounded-full px-8 bg-background/50 backdrop-blur-sm border-border/50 hover:bg-background/80 text-foreground">
               {dictionary.hero.ctaSecondary}
             </Button>

@@ -6,6 +6,7 @@ import { Career } from '@/components/sections/career'
 import { LearningProcess } from '@/components/sections/learning-process'
 import { GraduatesWork } from '@/components/sections/graduates-work'
 import { ProgramFacts } from '@/components/sections/program-facts'
+import { HowToApply } from '@/components/sections/how-to-apply'
 import { About } from '@/components/sections/about'
 import { Pricing } from '@/components/sections/pricing'
 import { CTA } from '@/components/sections/cta'
@@ -28,6 +29,7 @@ export default async function HomePage({ params }: PageProps) {
         <LearningProcess dictionary={dictionary} />
         <GraduatesWork dictionary={dictionary} />
         <ProgramFacts dictionary={dictionary} />
+        <HowToApply dictionary={dictionary as any} />
         <About dictionary={dictionary} />
         <Pricing dictionary={dictionary} />
         <CTA dictionary={dictionary} />
