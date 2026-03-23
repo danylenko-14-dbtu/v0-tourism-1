@@ -6,7 +6,7 @@ interface AboutProps {
 
 export function About({ dictionary }: AboutProps) {
   return (
-    <section id="about" className="scroll-mt-16 border-t border-border/50 bg-muted/30">
+    <section id="about" className="scroll-mt-16 border-t border-border/50 ">
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-5 lg:gap-16">
           <div className="flex flex-col items-center justify-center text-center lg:col-span-2 lg:items-start lg:text-left">
@@ -27,21 +27,28 @@ export function About({ dictionary }: AboutProps) {
                 ? 'md:col-span-3 lg:col-span-2' 
                 : 'md:col-span-2 lg:col-span-2'
 
+              const placeholderClass = index === 0 
+                ? 'dark:bg-[#fbfbfb]' 
+                : index === 1 
+                ? 'bg-white dark:bg-white' 
+                : 'bg-white dark:bg-white'
+
+
               return (
                 <div
                   key={index}
-                  className={`group relative flex h-[16rem] lg:h-[200px] w-full max-w-[500px] mx-auto items-center justify-center overflow-hidden rounded-2xl border border-border/50 bg-muted/40 shadow-sm transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.03] hover:shadow-lg hover:border-border/80 ${spanClass}`}
+                  className={`group relative flex h-[16rem] lg:h-[220px] w-full max-w-[500px] mx-auto items-center justify-center overflow-hidden rounded-2xl border border-border/50 bg-muted/40 shadow-sm isolate transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-border/80 ${spanClass}`}
                 >
                   {/* Default State: Photo or Avatar Icon */}
                   <img 
                     src={photo} 
                     alt={member.name} 
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className={`absolute left-1/2 -translate-x-[50%] inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 max-w-[200px]`}
                     loading="lazy"
                   />
                   
                   {/* Avatar Placeholder (as a base layer or if photo fails to load - though simplified for now as requested) */}
-                  <div className="absolute inset-0 -z-10 flex h-full w-full items-center justify-center bg-muted/20">
+                  <div className={`absolute inset-0 -z-10 flex h-full w-full items-center justify-center bg-muted/20 ${placeholderClass}`}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="64"
@@ -60,11 +67,11 @@ export function About({ dictionary }: AboutProps) {
                   </div>
 
                   {/* Glassmorphism Overlay Animating from Bottom */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-6 text-left translate-y-full opacity-0 backdrop-blur-md bg-gradient-to-t from-background/95 via-background/60 to-background/10 transition-all duration-500 ease-in-out group-hover:translate-y-0 group-hover:opacity-100">
-                    <span className="block text-xl font-bold tracking-tight text-foreground">
+                  <div className="absolute inset-0 flex flex-col justify-end p-6 text-left translate-y-full opacity-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100">
+                    <span className="block text-xl font-bold tracking-tight text-white">
                       {member.name}
                     </span>
-                    <span className="mt-1 block text-sm font-medium text-foreground/80">
+                    <span className="mt-1 block text-sm font-medium text-white/80">
                       {member.role}
                     </span>
                   </div>
