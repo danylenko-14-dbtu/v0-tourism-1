@@ -66,7 +66,11 @@ export function ProgramFacts({ dictionary }: ProgramFactsProps) {
   const currentFacts = programFacts.programs[activeTab]
 
   return (
-    <section ref={sectionRef} className="border-t border-border/50 bg-background py-32">
+    <section
+      id="program-facts"
+      ref={sectionRef}
+      className="scroll-mt-16 border-t border-border/50 bg-background py-32"
+    >
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div 
           className={cn(
