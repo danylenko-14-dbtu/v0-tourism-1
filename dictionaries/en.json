@@ -4,7 +4,7 @@
     "description": "Detailed description of your product or service for search engines"
   },
   "nav": {
-    "career": "Career",
+    "professions": "Professions",
     "about": "About",
     "pricing": "Pricing",
     "contact": "Contact"
@@ -16,8 +16,8 @@
     "cta": "Enroll",
     "ctaSecondary": "Learn More"
   },
-  "career": {
-    "title": "Career",
+  "professions": {
+    "title": "Professions",
     "subtitle": "Professions that shape the modern tourism business",
     "items": [
       {
@@ -214,7 +214,7 @@
     "links": {
       "product": {
         "title": "Product",
-        "items": ["Career", "Pricing", "Documentation", "Updates"]
+        "items": ["Professions", "Pricing", "Documentation", "Updates"]
       },
       "company": {
         "title": "Company",

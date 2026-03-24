@@ -19,7 +19,7 @@ export function Header({ locale, dictionary }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const navItems = [
-    { href: '#career', label: dictionary.nav.career },
+    { href: '#professions', label: dictionary.nav.professions },
     { href: '#about', label: dictionary.nav.about },
     { href: '#pricing', label: dictionary.nav.pricing },
     { href: '#contact', label: dictionary.nav.contact },
