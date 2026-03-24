@@ -149,12 +149,13 @@
   },
   "about": {
     "title": "About Us",
-    "description": "We are a team of professionals striving to create innovative solutions for our clients. Our mission is to help you succeed.",
-    "stats": [
-      { "value": "10K+", "label": "Users" },
-      { "value": "99.9%", "label": "Uptime" },
-      { "value": "24/7", "label": "Support" },
-      { "value": "50+", "label": "Countries" }
+    "description": "We are a team of professionals dedicated to creating comfortable learning conditions for our students. Our mission is to help you achieve success.",
+    "team": [
+      { "name": "Halina Omelchenko", "role": "Head of the Department, Associate Professor, 20+ years of experience" },
+      { "name": "Volodymyr Merchansky", "role": "Associate Professor, 15+ years of experience" },
+      { "name": "Victoria Khudaverdieva", "role": "Associate Professor, 15+ years of experience" },
+      { "name": "Liliya Kharchevnikova", "role": "Associate Professor, 10+ years of experience" },
+      { "name": "Valerii Danylenko", "role": "Associate Professor, 10+ years of experience" }
     ]
   },
   "pricing": {
