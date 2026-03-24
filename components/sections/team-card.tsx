@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from 'react'
+import Image from 'next/image';
+import { useRef, useState } from 'react'
 
 interface TeamCardProps {
   member: { name: string; role: string }
@@ -9,6 +10,17 @@ interface TeamCardProps {
 
 export function TeamCard({ member, index }: TeamCardProps) {
   const [isActive, setIsActive] = useState(false)
+  const isTouchRef = useRef(false)
+
+  const handleTouch = () => {
+  isTouchRef.current = true
+}
+
+const handleClick = () => {
+  if (isTouchRef.current) {
+    setIsActive(prev => !prev)
+  }
+}
 
   const photo = `/staff/staff-photo-${index + 1}.jpg`
 
@@ -25,25 +37,33 @@ export function TeamCard({ member, index }: TeamCardProps) {
   return (
     <div
       tabIndex={0}
-      onClick={() => setIsActive((prev) => !prev)}
+      onTouchStart={handleTouch}
+      onClick={handleClick}
       onBlur={() => setIsActive(false)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          setIsActive(prev => !prev)
+        }
+      }}
       className={`
         group relative flex h-[200px] lg:h-[220px] w-full
         max-w-[500px] mx-auto items-center justify-center
         overflow-hidden rounded-2xl border border-border/50
-        bg-muted/40 shadow-sm isolate cursor-pointer outline-none
+        bg-muted/40 shadow-sm isolate cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
         transition-all duration-500 ease-out
         hover:-translate-y-1 hover:shadow-xl hover:border-border/80
         ${spanClass}
         ${isActive ? '-translate-y-1 shadow-xl border-border/80' : ''}
       `}
     >
-      <img
+      <Image
         src={photo}
         alt={member.name}
+        width={200}
+        height={200}
         className={`
-          absolute left-1/2 -translate-x-[50%] inset-0
-          h-full w-full object-cover max-w-[200px]
+          absolute top-0 left-1/2 -translate-x-1/2 h-full w-full max-w-[200px] object-cover
           transition-transform duration-700 ease-out
           group-hover:scale-105
           ${isActive ? 'scale-105' : ''}
@@ -73,7 +93,7 @@ export function TeamCard({ member, index }: TeamCardProps) {
 
       <div
         className={`
-          absolute inset-0 flex flex-col justify-end p-6 text-left
+          absolute inset-0 flex flex-col justify-end px-3 py-6 sm:px-6 text-left
           bg-gradient-to-t from-black/90 via-black/60 to-transparent
           transition-all duration-500 ease-out
           group-hover:translate-y-0 group-hover:opacity-100
