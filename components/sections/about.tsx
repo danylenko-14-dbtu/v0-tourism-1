@@ -18,7 +18,7 @@ export function About({ dictionary }: AboutProps) {
             </p>
           </div>
 
-          <div className="grid lg:col-span-3 grid-cols-1 md:grid-cols-6 gap-6">
+          <div className="grid lg:col-span-3 grid-cols-2 md:grid-cols-6 gap-4 sm:gap-6">
             {dictionary.about.team.map((member, index) => {
               const photo = `/staff/staff-photo-${index + 1}.jpg`
               const spanClass = index === 0 
@@ -37,7 +37,7 @@ export function About({ dictionary }: AboutProps) {
               return (
                 <div
                   key={index}
-                  className={`group relative flex h-[16rem] lg:h-[220px] w-full max-w-[500px] mx-auto items-center justify-center overflow-hidden rounded-2xl border border-border/50 bg-muted/40 shadow-sm isolate transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-border/80 ${spanClass}`}
+                  className={`group relative flex h-[200px] lg:h-[220px] w-full max-w-[500px] mx-auto items-center justify-center overflow-hidden rounded-2xl border border-border/50 bg-muted/40 shadow-sm isolate transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-border/80 ${spanClass}`}
                 >
                   {/* Default State: Photo or Avatar Icon */}
                   <img 
