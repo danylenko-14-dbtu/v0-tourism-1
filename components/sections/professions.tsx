@@ -2,27 +2,30 @@ import { Compass, Map, Hotel, Calendar, Rocket, Landmark } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import type { Dictionary } from '@/lib/dictionaries'
 
-interface CareerProps {
+interface ProfessionsProps {
   dictionary: Dictionary
 }
 
 const icons = [Compass, Map, Hotel, Calendar, Rocket, Landmark]
 
-export function Career({ dictionary }: CareerProps) {
+export function Professions({ dictionary }: ProfessionsProps) {
   return (
-    <section id="career" className="scroll-mt-16 border-t border-border/50 bg-muted/30">
+    <section
+      id="professions"
+      className="scroll-mt-16 border-t border-border/50 bg-muted/30"
+    >
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            {dictionary.career.title}
+            {dictionary.professions.title}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            {dictionary.career.subtitle}
+            {dictionary.professions.subtitle}
           </p>
         </div>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {dictionary.career.items.map((feature, index) => {
+          {dictionary.professions.items.map((feature, index) => {
             const Icon = icons[index % icons.length]
             return (
               <Card

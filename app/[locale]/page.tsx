@@ -2,7 +2,7 @@ import { getDictionary } from '@/lib/dictionaries'
 import type { Locale } from '@/lib/i18n'
 import { Header } from '@/components/sections/header'
 import { Hero } from '@/components/sections/hero'
-import { Career } from '@/components/sections/career'
+import { Professions } from '@/components/sections/professions'
 import { LearningProcess } from '@/components/sections/learning-process'
 import { GraduatesWork } from '@/components/sections/graduates-work'
 import { ProgramFacts } from '@/components/sections/program-facts'
@@ -25,7 +25,7 @@ export default async function HomePage({ params }: PageProps) {
       <Header locale={locale} dictionary={dictionary} />
       <main className="flex-1">
         <Hero dictionary={dictionary} />
-        <Career dictionary={dictionary} />
+        <Professions dictionary={dictionary} />
         <LearningProcess dictionary={dictionary} />
         <GraduatesWork dictionary={dictionary} />
         <ProgramFacts dictionary={dictionary} />
