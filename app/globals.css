@@ -127,6 +127,16 @@
   }
 }
 
+@layer utilities {
+  .focus-visible-ring {
+    @apply transition-shadow outline-none;
+  }
+
+  .focus-visible-ring:focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-ring/80 ring-2 ring-ring/30 ring-offset-2 ring-offset-background;
+  }
+}
+
 /* Soft Pop Design System - Animation utilities */
 @keyframes fade-in {
   from {
