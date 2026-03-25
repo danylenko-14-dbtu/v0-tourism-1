@@ -1,6 +1,7 @@
 'use client'
 
 import type { MouseEvent, ReactNode } from 'react'
+import { cn } from '@/lib/utils'
 
 interface ScrollLinkProps {
   href: string
@@ -28,7 +29,14 @@ export function ScrollLink({ href, className, onClick, children }: ScrollLinkPro
   }
 
   return (
-    <a href={href} onClick={handleClick} className={className}>
+    <a
+      href={href}
+      onClick={handleClick}
+      className={cn(
+        'outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring/80 focus-visible:ring-2 focus-visible:ring-ring/30',
+        className,
+      )}
+    >
       {children}
     </a>
   )
