@@ -9,7 +9,11 @@ interface HeroProps {
 
 export function Hero({ dictionary }: HeroProps) {
   return (
-    <section aria-label="Hero" className="relative overflow-hidden bg-background min-h-[80vh] flex items-center">
+    <section
+      aria-label="Hero"
+      tabIndex={0}
+      className="relative min-h-[80vh] flex items-center overflow-hidden bg-background outline-none transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring/80 focus-visible:ring-2 focus-visible:ring-ring/30"
+    >
       {/* Video Background Layer (z-0) */}
       <video
         poster="/hero-poster.webp"
@@ -42,7 +46,11 @@ export function Hero({ dictionary }: HeroProps) {
           
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
             <EnrollButton label={dictionary.hero.cta} />
-            <Button variant="outline" size="lg" className="rounded-full px-8 bg-background/50 backdrop-blur-sm border-border/50 hover:bg-background/80 text-foreground">
+            <Button
+              variant="outline"
+              size="lg"
+              className="rounded-full border-border/50 bg-background/50 px-8 text-foreground backdrop-blur-sm hover:bg-background/80"
+            >
               {dictionary.hero.ctaSecondary}
             </Button>
           </div>

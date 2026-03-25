@@ -10,10 +10,16 @@ interface PricingProps {
 
 export function Pricing({ dictionary }: PricingProps) {
   return (
-    <section id="pricing" className="scroll-mt-16 border-t border-border/50 bg-muted/30">
+    <section
+      id="pricing"
+      tabIndex={0}
+      role="region"
+      aria-labelledby="pricing-title"
+      className="scroll-mt-16 border-t border-border/50 bg-muted/30 outline-none transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring/80 focus-visible:ring-2 focus-visible:ring-ring/30"
+    >
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 id="pricing-title" className="text-3xl font-bold tracking-tight sm:text-4xl">
             {dictionary.pricing.title}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
