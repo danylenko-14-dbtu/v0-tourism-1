@@ -7,11 +7,17 @@ interface AboutProps {
 
 export function About({ dictionary }: AboutProps) {
   return (
-    <section id="about" className="scroll-mt-16 border-t border-border/50">
+    <section
+      id="about"
+      tabIndex={0}
+      role="region"
+      aria-labelledby="about-title"
+      className="scroll-mt-16 border-t border-border/50 outline-none transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring/80 focus-visible:ring-2 focus-visible:ring-ring/30"
+    >
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-5 lg:gap-16">
           <div className="flex flex-col items-center justify-center text-center lg:col-span-2 lg:items-start lg:text-left">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 id="about-title" className="text-3xl font-bold tracking-tight sm:text-4xl">
               {dictionary.about.title}
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-[500px] mx-auto lg:mx-0">

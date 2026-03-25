@@ -32,7 +32,7 @@ export function Header({ locale, dictionary }: HeaderProps) {
             <ScrollLink
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
             >
               {item.label}
             </ScrollLink>
