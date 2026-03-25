@@ -6,7 +6,7 @@ import { getDictionary } from '@/lib/dictionaries'
 
 interface LocaleLayoutProps {
   children: React.ReactNode
-  params: Promise<{ locale: Locale }>
+  params: Promise<{ locale: string }>
 }
 
 export async function generateStaticParams() {
@@ -16,10 +16,15 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: Locale }>
+  params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  const dictionary = await getDictionary(locale)
+
+  if (!locales.includes(locale as Locale)) {
+    return {}
+  }
+
+  const dictionary = await getDictionary(locale as Locale)
   
   return {
     title: dictionary.metadata.title,
@@ -33,12 +38,14 @@ export default async function LocaleLayout({
 }: LocaleLayoutProps) {
   const { locale } = await params
 
-  if (!locales.includes(locale)) {
+  if (!locales.includes(locale as Locale)) {
     notFound()
   }
 
+  const typedLocale = locale as Locale
+
   return (
-    <html lang={locale} suppressHydrationWarning data-scroll-behavior="smooth">
+    <html lang={typedLocale} suppressHydrationWarning data-scroll-behavior="smooth">
       <body className="font-sans antialiased" suppressHydrationWarning>
         <ThemeProvider
           attribute="class"

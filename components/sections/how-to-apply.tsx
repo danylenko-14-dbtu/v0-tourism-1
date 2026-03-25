@@ -57,7 +57,10 @@ export function HowToApply({ dictionary }: HowToApplyProps) {
   }, [howToApply.stages.length])
 
   return (
-    <section id="how-to-apply" className="py-16 md:py-24 border-t border-border/50 bg-muted/30">
+    <section
+      id="application"
+      className="scroll-mt-16 border-t border-border/50 bg-muted/30 py-16 md:py-24"
+    >
       <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
