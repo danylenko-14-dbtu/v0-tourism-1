@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { LanguageSwitcher } from '@/components/language-switcher'
 import { ScrollLink } from '@/components/scroll-link'
@@ -22,10 +21,10 @@ export function Header({ locale, dictionary }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
       <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href={`/${locale}`} className="focus-visible-ring flex items-center gap-2 rounded-md">
+        <ScrollLink href="#top" className="focus-visible-ring flex items-center gap-2 rounded-md">
           <div className="h-8 w-8 rounded-lg bg-foreground" />
           <span className="text-lg font-semibold">Logo</span>
-        </Link>
+        </ScrollLink>
 
         <nav className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (

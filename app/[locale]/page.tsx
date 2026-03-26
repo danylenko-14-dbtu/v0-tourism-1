@@ -28,7 +28,7 @@ export default async function HomePage({ params }: PageProps) {
   const dictionary = await getDictionary(typedLocale)
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div id="top" className="flex min-h-screen flex-col">
       <Header locale={typedLocale} dictionary={dictionary} />
       <main className="flex-1">
         <Hero dictionary={dictionary} />
