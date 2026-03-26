@@ -59,10 +59,9 @@ export function HowToApply({ dictionary }: HowToApplyProps) {
   return (
     <section
       id="application"
-      tabIndex={0}
       role="region"
       aria-labelledby="application-title"
-      className="scroll-mt-16 border-t border-border/50 bg-muted/30 py-16 md:py-24 outline-none transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring/80 focus-visible:ring-2 focus-visible:ring-ring/30"
+      className="scroll-mt-16 border-t border-border/50 bg-muted/30 py-16 md:py-24"
     >
       <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}

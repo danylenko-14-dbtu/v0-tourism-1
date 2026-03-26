@@ -12,10 +12,9 @@ export function Professions({ dictionary }: ProfessionsProps) {
   return (
     <section
       id="professions"
-      tabIndex={0}
       role="region"
       aria-labelledby="professions-title"
-      className="scroll-mt-16 border-t border-border/50 bg-muted/30 outline-none transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring/80 focus-visible:ring-2 focus-visible:ring-ring/30"
+      className="scroll-mt-16 border-t border-border/50 bg-muted/30"
     >
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">

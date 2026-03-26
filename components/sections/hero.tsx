@@ -11,8 +11,7 @@ export function Hero({ dictionary }: HeroProps) {
   return (
     <section
       aria-label="Hero"
-      tabIndex={0}
-      className="relative min-h-[80vh] flex items-center overflow-hidden bg-background outline-none transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring/80 focus-visible:ring-2 focus-visible:ring-ring/30"
+      className="relative min-h-[80vh] flex items-center overflow-hidden bg-background"
     >
       {/* Video Background Layer (z-0) */}
       <video

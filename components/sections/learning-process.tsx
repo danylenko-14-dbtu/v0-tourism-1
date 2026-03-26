@@ -57,10 +57,9 @@ export function LearningProcess({ dictionary }: LearningProcessProps) {
   return (
     <section
       id="learning-process"
-      tabIndex={0}
       role="region"
       aria-labelledby="learning-process-title"
-      className="py-16 md:py-24 outline-none transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring/80 focus-visible:ring-2 focus-visible:ring-ring/30"
+      className="py-16 md:py-24"
     >
       <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}

@@ -13,14 +13,14 @@ export function TeamCard({ member, index }: TeamCardProps) {
   const isTouchRef = useRef(false)
 
   const handleTouch = () => {
-  isTouchRef.current = true
-}
-
-const handleClick = () => {
-  if (isTouchRef.current) {
-    setIsActive(prev => !prev)
+    isTouchRef.current = true
   }
-}
+
+  const handleClick = () => {
+    if (isTouchRef.current) {
+      setIsActive((prev) => !prev)
+    }
+  }
 
   const photo = `/staff/staff-photo-${index + 1}.jpg`
 
@@ -50,9 +50,10 @@ const handleClick = () => {
         group relative flex h-[200px] lg:h-[220px] w-full
         max-w-[500px] mx-auto items-center justify-center
         overflow-hidden rounded-2xl border border-border/50
-        bg-muted/40 shadow-sm isolate cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
-        transition-all duration-500 ease-out
+        bg-muted/40 shadow-sm isolate cursor-pointer focus-visible-ring
+        transition-[transform,border-color,box-shadow] duration-500 ease-out
         hover:-translate-y-1 hover:shadow-xl hover:border-border/80
+        focus-visible:-translate-y-1 focus-visible:shadow-xl focus-visible:border-border/80
         ${spanClass}
         ${isActive ? '-translate-y-1 shadow-xl border-border/80' : ''}
       `}
@@ -64,8 +65,9 @@ const handleClick = () => {
         height={200}
         className={`
           absolute top-0 left-1/2 -translate-x-1/2 h-full w-full max-w-[200px] object-cover
-          transition-transform duration-700 ease-out
-          group-hover:scale-105
+          transform-gpu will-change-transform
+          transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
+          group-hover:scale-105 group-focus-visible:scale-105
           ${isActive ? 'scale-105' : ''}
         `}
         loading="lazy"
@@ -95,8 +97,10 @@ const handleClick = () => {
         className={`
           absolute inset-0 flex flex-col justify-end px-3 py-6 sm:px-6 text-left
           bg-gradient-to-t from-black/90 via-black/60 to-transparent
-          transition-all duration-500 ease-out
+          transform-gpu will-change-transform
+          transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
           group-hover:translate-y-0 group-hover:opacity-100
+          group-focus-visible:translate-y-0 group-focus-visible:opacity-100
           ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}
         `}
       >

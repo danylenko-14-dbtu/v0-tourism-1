@@ -64,10 +64,9 @@ export function GraduatesWork({ dictionary }: GraduatesWorkProps) {
   return (
     <section
       id="graduates"
-      tabIndex={0}
       role="region"
       aria-labelledby="graduates-title"
-      className="scroll-mt-16 border-t border-border/50 bg-muted/30 outline-none transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring/80 focus-visible:ring-2 focus-visible:ring-ring/30"
+      className="scroll-mt-16 border-t border-border/50 bg-muted/30"
     >
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         {/* Section Header */}

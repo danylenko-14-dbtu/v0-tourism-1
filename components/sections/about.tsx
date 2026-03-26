@@ -9,10 +9,9 @@ export function About({ dictionary }: AboutProps) {
   return (
     <section
       id="about"
-      tabIndex={0}
       role="region"
       aria-labelledby="about-title"
-      className="scroll-mt-16 border-t border-border/50 outline-none transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring/80 focus-visible:ring-2 focus-visible:ring-ring/30"
+      className="scroll-mt-16 border-t border-border/50"
     >
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-5 lg:gap-16">

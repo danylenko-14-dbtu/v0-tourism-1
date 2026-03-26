@@ -10,10 +10,9 @@ export function CTA({ dictionary }: CTAProps) {
   return (
     <section
       id="contact"
-      tabIndex={0}
       role="region"
       aria-labelledby="contact-title"
-      className="scroll-mt-16 outline-none transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring/80 focus-visible:ring-2 focus-visible:ring-ring/30"
+      className="scroll-mt-16"
     >
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-3xl bg-foreground px-8 py-16 text-center text-background sm:px-16 sm:py-24">
@@ -27,7 +26,7 @@ export function CTA({ dictionary }: CTAProps) {
             <Button
               size="lg"
               variant="secondary"
-              className="group gap-2 rounded-full px-8"
+              className="focus-visible-ring-inverted group gap-2 rounded-full px-8"
             >
               {dictionary.cta.button}
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-focus-visible:translate-x-1" />

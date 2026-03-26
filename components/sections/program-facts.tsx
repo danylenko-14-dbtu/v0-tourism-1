@@ -69,10 +69,9 @@ export function ProgramFacts({ dictionary }: ProgramFactsProps) {
     <section
       id="program-facts"
       ref={sectionRef}
-      tabIndex={0}
       role="region"
       aria-labelledby="program-facts-title"
-      className="scroll-mt-16 border-t border-border/50 bg-background py-32 outline-none transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring/80 focus-visible:ring-2 focus-visible:ring-ring/30"
+      className="scroll-mt-16 border-t border-border/50 bg-background py-32"
     >
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div 
@@ -102,10 +101,10 @@ export function ProgramFacts({ dictionary }: ProgramFactsProps) {
                 key={tab}
                 onClick={() => handleTabChange(tab)}
                 className={cn(
-                  "relative rounded-full px-8 py-2.5 text-sm font-medium transition-all duration-300 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring/80 focus-visible:ring-2 focus-visible:ring-ring/30",
-                  activeTab === tab 
-                    ? "bg-background text-foreground shadow-sm ring-1 ring-border/50" 
-                    : "text-muted-foreground hover:bg-muted/50 hover:text-foreground focus-visible:bg-muted/50 focus-visible:text-foreground"
+                  'focus-visible-ring relative rounded-full px-8 py-2.5 text-sm font-medium transition-all duration-300',
+                  activeTab === tab
+                    ? 'bg-background text-foreground shadow-sm ring-1 ring-border/50'
+                    : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground focus-visible:bg-muted/50 focus-visible:text-foreground',
                 )}
                 aria-selected={activeTab === tab}
                 role="tab"
