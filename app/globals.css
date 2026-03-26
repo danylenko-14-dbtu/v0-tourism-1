@@ -132,7 +132,8 @@
 }
 
 @layer utilities {
-  .focus-visible-ring {
+  .focus-visible-ring,
+  .focus-visible-ring-inverted {
     outline: 2px solid transparent;
     outline-offset: 5px;
     transition:
@@ -147,18 +148,6 @@
   .focus-visible-ring:focus-visible {
     outline: 2px solid var(--focus-ring);
     outline-offset: 2px;
-  }
-
-  .focus-visible-ring-inverted {
-    outline: 2px solid transparent;
-    outline-offset: 5px;
-    transition:
-      color 200ms ease,
-      background-color 200ms ease,
-      border-color 200ms ease,
-      transform 200ms ease,
-      outline-color 200ms ease,
-      outline-offset 200ms ease;
   }
 
   .focus-visible-ring-inverted:focus-visible {

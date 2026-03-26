@@ -95,9 +95,10 @@ export function ProgramFacts({ dictionary }: ProgramFactsProps) {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          <div className="inline-flex rounded-full bg-muted/50 p-1.5 backdrop-blur-sm border border-border/50">
+          <div role='tablist' aria-label="Program type" className="inline-flex rounded-full bg-muted/50 p-1.5 backdrop-blur-sm border border-border/50">
             {(["bachelor", "master"] as const).map((tab) => (
               <button
+                id={`tab-${tab}`}
                 key={tab}
                 onClick={() => handleTabChange(tab)}
                 className={cn(
@@ -107,6 +108,7 @@ export function ProgramFacts({ dictionary }: ProgramFactsProps) {
                     : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground focus-visible:bg-muted/50 focus-visible:text-foreground',
                 )}
                 aria-selected={activeTab === tab}
+                aria-controls="program-tabpanel"
                 role="tab"
                 type="button"
               >
@@ -119,6 +121,8 @@ export function ProgramFacts({ dictionary }: ProgramFactsProps) {
         {/* Content Grid */}
         <div 
           role="tabpanel"
+          id="program-tabpanel"
+          aria-labelledby={`tab-${activeTab}`}
           className={cn(
             "grid gap-x-12 gap-y-12 sm:grid-cols-2 lg:gap-x-16 lg:gap-y-16 transition-opacity duration-300 ease-in-out",
             isTransitioning ? "opacity-0" : "opacity-100",
