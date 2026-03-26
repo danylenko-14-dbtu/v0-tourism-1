@@ -55,11 +55,16 @@ export function LearningProcess({ dictionary }: LearningProcessProps) {
   }, [learningProcess.stages.length])
 
   return (
-    <section id="learning-process" className="py-16 md:py-24">
+    <section
+      id="learning-process"
+      role="region"
+      aria-labelledby="learning-process-title"
+      className="py-16 md:py-24"
+    >
       <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
+          <h2 id="learning-process-title" className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
             {learningProcess.title}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

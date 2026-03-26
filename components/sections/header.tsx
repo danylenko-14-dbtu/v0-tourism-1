@@ -22,7 +22,7 @@ export function Header({ locale, dictionary }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
       <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href={`/${locale}`} className="flex items-center gap-2">
+        <Link href={`/${locale}`} className="focus-visible-ring flex items-center gap-2 rounded-md">
           <div className="h-8 w-8 rounded-lg bg-foreground" />
           <span className="text-lg font-semibold">Logo</span>
         </Link>
@@ -32,7 +32,7 @@ export function Header({ locale, dictionary }: HeaderProps) {
             <ScrollLink
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="focus-visible-ring rounded-md px-2 py-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:bg-muted/50 focus-visible:text-foreground focus-visible:underline"
             >
               {item.label}
             </ScrollLink>

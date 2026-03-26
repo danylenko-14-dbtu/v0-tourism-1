@@ -23,6 +23,8 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
+  --focus-ring: oklch(0.708 0 0);
+  --focus-ring-inverted: oklch(1 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -59,6 +61,8 @@
   --border: oklch(0.269 0 0);
   --input: oklch(0.269 0 0);
   --ring: oklch(0.439 0 0);
+  --focus-ring: oklch(1 0 0);
+  --focus-ring-inverted: oklch(0.205 0 0);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -128,12 +132,27 @@
 }
 
 @layer utilities {
-  .focus-visible-ring {
-    @apply transition-shadow outline-none;
+  .focus-visible-ring,
+  .focus-visible-ring-inverted {
+    outline: 2px solid transparent;
+    outline-offset: 5px;
+    transition:
+      color 200ms ease,
+      background-color 200ms ease,
+      border-color 200ms ease,
+      transform 200ms ease,
+      outline-color 200ms ease,
+      outline-offset 200ms ease;
   }
 
   .focus-visible-ring:focus-visible {
-    @apply outline outline-2 outline-offset-2 outline-ring/80 ring-2 ring-ring/30 ring-offset-2 ring-offset-background;
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  .focus-visible-ring-inverted:focus-visible {
+    outline: 2px solid var(--focus-ring-inverted);
+    outline-offset: 2px;
   }
 }
 

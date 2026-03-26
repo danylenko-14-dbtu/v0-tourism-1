@@ -14,7 +14,10 @@ export function Footer({ dictionary }: FooterProps) {
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2">
+              <Link
+                href="/"
+              className="focus-visible-ring flex items-center gap-2"
+            >
               <div className="h-8 w-8 rounded-lg bg-foreground" />
               <span className="text-lg font-semibold">Logo</span>
             </Link>
@@ -33,7 +36,7 @@ export function Footer({ dictionary }: FooterProps) {
                 <li key={index}>
                   <Link
                     href="#"
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
                   >
                     {item}
                   </Link>
@@ -52,7 +55,7 @@ export function Footer({ dictionary }: FooterProps) {
                 <li key={index}>
                   <Link
                     href="#"
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
                   >
                     {item}
                   </Link>
@@ -71,7 +74,7 @@ export function Footer({ dictionary }: FooterProps) {
                 <li key={index}>
                   <Link
                     href="#"
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
                   >
                     {item}
                   </Link>

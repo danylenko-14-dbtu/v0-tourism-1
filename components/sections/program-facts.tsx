@@ -69,6 +69,8 @@ export function ProgramFacts({ dictionary }: ProgramFactsProps) {
     <section
       id="program-facts"
       ref={sectionRef}
+      role="region"
+      aria-labelledby="program-facts-title"
       className="scroll-mt-16 border-t border-border/50 bg-background py-32"
     >
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -78,7 +80,7 @@ export function ProgramFacts({ dictionary }: ProgramFactsProps) {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">
+          <h2 id="program-facts-title" className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">
             {programFacts.title}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground mx-auto max-w-2xl">
@@ -93,19 +95,22 @@ export function ProgramFacts({ dictionary }: ProgramFactsProps) {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          <div className="inline-flex rounded-full bg-muted/50 p-1.5 backdrop-blur-sm border border-border/50">
+          <div role='tablist' aria-label="Program type" className="inline-flex rounded-full bg-muted/50 p-1.5 backdrop-blur-sm border border-border/50">
             {(["bachelor", "master"] as const).map((tab) => (
               <button
+                id={`tab-${tab}`}
                 key={tab}
                 onClick={() => handleTabChange(tab)}
                 className={cn(
-                  "relative px-8 py-2.5 text-sm font-medium rounded-full transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                  activeTab === tab 
-                    ? "bg-background text-foreground shadow-sm ring-1 ring-border/50" 
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  'focus-visible-ring relative rounded-full px-8 py-2.5 text-sm font-medium transition-all duration-300',
+                  activeTab === tab
+                    ? 'bg-background text-foreground shadow-sm ring-1 ring-border/50'
+                    : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground focus-visible:bg-muted/50 focus-visible:text-foreground',
                 )}
                 aria-selected={activeTab === tab}
+                aria-controls="program-tabpanel"
                 role="tab"
+                type="button"
               >
                 {programFacts.tabs[tab]}
               </button>
@@ -116,6 +121,8 @@ export function ProgramFacts({ dictionary }: ProgramFactsProps) {
         {/* Content Grid */}
         <div 
           role="tabpanel"
+          id="program-tabpanel"
+          aria-labelledby={`tab-${activeTab}`}
           className={cn(
             "grid gap-x-12 gap-y-12 sm:grid-cols-2 lg:gap-x-16 lg:gap-y-16 transition-opacity duration-300 ease-in-out",
             isTransitioning ? "opacity-0" : "opacity-100",

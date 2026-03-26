@@ -62,11 +62,16 @@ export function GraduatesWork({ dictionary }: GraduatesWorkProps) {
   }, [graduatesWork.categories.length])
 
   return (
-    <section id="graduates" className="scroll-mt-16 border-t border-border/50 bg-muted/30">
+    <section
+      id="graduates"
+      role="region"
+      aria-labelledby="graduates-title"
+      className="scroll-mt-16 border-t border-border/50 bg-muted/30"
+    >
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 id="graduates-title" className="text-3xl font-bold tracking-tight sm:text-4xl">
             {graduatesWork.title}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
