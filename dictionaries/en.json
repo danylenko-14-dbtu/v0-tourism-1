@@ -161,6 +161,9 @@
   "pricing": {
     "title": "Tuition Fees",
     "subtitle": "Affordable contract-based study at our institution",
+    "currency": "UAH",
+    "yearlyLabel": "/year",
+    "monthlyLabel": "UAH/month",
     "plans": [
       {
         "name": "Bachelor's (Full-time)",

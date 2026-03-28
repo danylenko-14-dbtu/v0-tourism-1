@@ -53,10 +53,8 @@ export function ProgramFacts({ dictionary }: ProgramFactsProps) {
   const handleTabChange = (tab: "bachelor" | "master") => {
     if (tab === activeTab) return
     setIsTransitioning(true)
-    setTimeout(() => {
       setActiveTab(tab)
       setIsTransitioning(false)
-    }, 200)
   }
 
   if (!programFacts?.programs) {

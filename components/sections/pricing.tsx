@@ -47,11 +47,14 @@ export function Pricing({ dictionary }: PricingProps) {
                   <div className="mb-6">
                     <div className="text-center">
                       <span className="text-4xl font-bold">{plan.annualPrice.toLocaleString()}</span>
-                      <span className="text-muted-foreground ml-1">UAH</span>
+                      <span className="text-muted-foreground ml-1">
+                        {dictionary.pricing.currency}
+                        {dictionary.pricing.yearlyLabel}
+                      </span>
                     </div>
                     <div className="text-center mt-2">
                       <span className="text-sm text-muted-foreground">
-                        {monthlyPrice.toLocaleString()} UAH/month
+                        {monthlyPrice.toLocaleString()} {dictionary.pricing.monthlyLabel}
                       </span>
                     </div>
                   </div>
