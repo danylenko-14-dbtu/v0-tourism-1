@@ -228,9 +228,10 @@
     ]
   },
   "cta": {
-    "title": "Ready to Get Started?",
-    "subtitle": "Join thousands of satisfied users today",
-    "button": "Try for Free"
+    "title": "Still Have Questions?",
+    "subtitle": "We're here to help. Reach out to us or browse the FAQ for quick answers.",
+    "buttonPrimary": "Contact Us",
+    "buttonSecondary": "Browse FAQ"
   },
   "footer": {
     "description": "A brief description of your company and its mission",

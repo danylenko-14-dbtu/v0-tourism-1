@@ -22,14 +22,21 @@ export function CTA({ dictionary }: CTAProps) {
           <p className="mx-auto mt-4 max-w-xl text-pretty text-lg opacity-80">
             {dictionary.cta.subtitle}
           </p>
-          <div className="mt-10">
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
               size="lg"
               variant="secondary"
               className="focus-visible-ring-inverted group gap-2 rounded-full px-8"
             >
-              {dictionary.cta.button}
+              {dictionary.cta.buttonPrimary}
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-focus-visible:translate-x-1" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="focus-visible-ring-inverted rounded-full border-background/40 bg-transparent px-8 text-background hover:bg-background/10 hover:text-background"
+            >
+              {dictionary.cta.buttonSecondary}
             </Button>
           </div>
           
