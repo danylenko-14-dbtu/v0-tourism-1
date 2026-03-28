@@ -24,7 +24,7 @@ export function Pricing({ dictionary }: PricingProps) {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-4">
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {dictionary.pricing.plans.map((plan, index) => {
             const monthlyPrice = Math.round(plan.annualPrice / 12)
             return (
