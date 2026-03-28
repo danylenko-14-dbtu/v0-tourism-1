@@ -14,10 +14,11 @@ const _geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Project Name',
-    template: '%s | Project Name',
+    default: 'Tourism and Recreation',
+    template: '%s | Tourism and Recreation',
   },
-  description: 'A modern landing page with internationalization support',
+  description:  'Вступай на спеціальність Туризм і рекреація в Державний біотехнологічний університет. ' +
+      'Бакалавр і магістр — очна та заочна форми. Офіційний диплом державного зразка. Бюджетне фінансування і контрактна форма!',
   generator: 'v0.app',
   icons: {
     icon: [

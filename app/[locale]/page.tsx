@@ -41,7 +41,7 @@ export default async function HomePage({ params }: PageProps) {
         <Pricing dictionary={dictionary} />
         <CTA dictionary={dictionary} />
       </main>
-      <Footer dictionary={dictionary} />
+      <Footer dictionary={dictionary} locale={typedLocale} />
     </div>
   )
 }

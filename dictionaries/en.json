@@ -1,7 +1,10 @@
 {
   "metadata": {
-    "title": "Project Name — Short Description",
+    "title": "Tourism and Recreation — State Biotechnological University",
     "description": "Detailed description of your product or service for search engines"
+  },
+  "brand": {
+    "name": "Tourism and recreation"
   },
   "nav": {
     "professions": "Professions",

@@ -1,11 +1,14 @@
 import Link from 'next/link'
+import { BrandLogo } from '@/components/brand-logo'
+import type { Locale } from '@/lib/i18n'
 import type { Dictionary } from '@/lib/dictionaries'
 
 interface FooterProps {
   dictionary: Dictionary
+  locale: Locale
 }
 
-export function Footer({ dictionary }: FooterProps) {
+export function Footer({ dictionary, locale }: FooterProps) {
   const currentYear = new Date().getFullYear()
 
   return (
@@ -14,13 +17,12 @@ export function Footer({ dictionary }: FooterProps) {
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-              <Link
-                href="/"
-              className="focus-visible-ring flex items-center gap-2"
-            >
-              <div className="h-8 w-8 rounded-lg bg-foreground" />
-              <span className="text-lg font-semibold">Logo</span>
-            </Link>
+            <BrandLogo
+              href={`/${locale}`}
+              label={dictionary.brand.name}
+              className="focus-visible-ring flex items-center gap-3"
+              textClassName="text-lg font-semibold leading-none"
+            />
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               {dictionary.footer.description}
             </p>
@@ -86,7 +88,7 @@ export function Footer({ dictionary }: FooterProps) {
 
         <div className="mt-12 border-t border-border/50 pt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            &copy; {currentYear} Logo. {dictionary.footer.copyright}.
+            &copy; {currentYear} {dictionary.brand.name}. {dictionary.footer.copyright}.
           </p>
         </div>
       </div>
