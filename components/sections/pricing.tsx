@@ -1,6 +1,4 @@
-import { Check } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import type { Dictionary } from '@/lib/dictionaries'
 import { cn } from '@/lib/utils'
 
@@ -26,52 +24,48 @@ export function Pricing({ dictionary }: PricingProps) {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-3">
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {dictionary.pricing.plans.map((plan, index) => {
-            const isPopular = 'popular' in plan && plan.popular
+            const monthlyPrice = Math.round(plan.annualPrice / 12)
             return (
               <Card
                 key={index}
                 className={cn(
                   'relative flex flex-col transition-all duration-300',
-                  isPopular
-                    ? 'border-foreground shadow-lg scale-[1.02]'
-                    : 'border-border/50 hover:border-border hover:shadow-md'
+                  'border-border/50 hover:border-border hover:shadow-md'
                 )}
               >
-                {isPopular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-foreground px-4 py-1 text-xs font-medium text-background">
-                    Popular
-                  </div>
-                )}
-                <CardHeader className="text-center">
-                  <CardTitle className="text-xl">{plan.name}</CardTitle>
-                  <CardDescription>{plan.description}</CardDescription>
+                <CardHeader className="text-center pb-4">
+                  <CardTitle className="text-xl leading-tight">{plan.name}</CardTitle>
+                  {plan.description && (
+                    <CardDescription className="mt-2 text-xs font-medium text-muted-foreground">
+                      {plan.description}
+                    </CardDescription>
+                  )}
                 </CardHeader>
-                <CardContent className="flex-1">
-                  <div className="mb-6 text-center">
-                    <span className="text-5xl font-bold">${plan.price}</span>
-                    <span className="text-muted-foreground">{plan.period}</span>
+                <CardContent className="flex-1 flex flex-col">
+                  <div className="mb-6">
+                    <div className="text-center">
+                      <span className="text-4xl font-bold">{plan.annualPrice.toLocaleString()}</span>
+                      <span className="text-muted-foreground ml-1">
+                        {dictionary.pricing.currency}
+                        {dictionary.pricing.yearlyLabel}
+                      </span>
+                    </div>
+                    <div className="text-center mt-2">
+                      <span className="text-sm text-muted-foreground">
+                        {monthlyPrice.toLocaleString()} {dictionary.pricing.monthlyLabel}
+                      </span>
+                    </div>
                   </div>
-                  <ul className="space-y-3">
+                  <ul className="space-y-2 flex-1">
                     {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center gap-3">
-                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-muted">
-                          <Check className="h-3 w-3" />
-                        </div>
-                        <span className="text-sm">{feature}</span>
+                      <li key={featureIndex} className="text-sm text-muted-foreground">
+                        {feature}
                       </li>
                     ))}
                   </ul>
                 </CardContent>
-                <CardFooter>
-                  <Button
-                    className="w-full rounded-full"
-                    variant={isPopular ? 'default' : 'outline'}
-                  >
-                    {plan.cta}
-                  </Button>
-                </CardFooter>
               </Card>
             )
           })}
