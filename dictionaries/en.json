@@ -159,47 +159,68 @@
     ]
   },
   "pricing": {
-    "title": "Pricing",
-    "subtitle": "Choose the plan that's right for you",
+    "title": "Tuition Fees",
+    "subtitle": "Affordable contract-based study at our institution",
     "plans": [
       {
-        "name": "Basic",
-        "price": "0",
-        "period": "/month",
-        "description": "Perfect for getting started",
+        "name": "Bachelor's (Full-time)",
+        "nameUa": "Бакалавр (денне)",
+        "annualPrice": 21900,
+        "description": "Remote format",
+        "descriptionUa": "Дистанційний формат",
         "features": [
-          "Up to 5 projects",
-          "Basic analytics",
-          "Email support"
+          "~720 in-class hours per year",
+          "~1 080 self-study hours per year"
         ],
-        "cta": "Start for Free"
+        "featuresUa": [
+          "~720 аудиторних годин на рік",
+          "~1 080 годин самостійної роботи на рік"
+        ]
       },
       {
-        "name": "Professional",
-        "price": "29",
-        "period": "/month",
-        "description": "For growing teams",
+        "name": "Bachelor's (Part-time)",
+        "nameUa": "Бакалавр (заочне)",
+        "annualPrice": 12000,
+        "description": "",
+        "descriptionUa": "",
         "features": [
-          "Unlimited projects",
-          "Advanced analytics",
-          "Priority support",
-          "API access"
+          "~360 in-class hours per year",
+          "~1 440 self-study hours per year"
         ],
-        "cta": "Choose Plan",
-        "popular": true
+        "featuresUa": [
+          "~360 аудиторних годин на рік",
+          "~1 440 годин самостійної роботи на рік"
+        ]
       },
       {
-        "name": "Enterprise",
-        "price": "99",
-        "period": "/month",
-        "description": "For large organizations",
+        "name": "Master's (Full-time)",
+        "nameUa": "Магістр (денне)",
+        "annualPrice": 26580,
+        "description": "Remote format",
+        "descriptionUa": "Дистанційний формат",
         "features": [
-          "Everything in Professional",
-          "Dedicated manager",
-          "SLA guarantees",
-          "Custom integrations"
+          "~594 in-class hours per year",
+          "~1 206 self-study hours per year"
         ],
-        "cta": "Contact Us"
+        "featuresUa": [
+          "~594 аудиторних годин на рік",
+          "~1 206 годин самостійної роботи на рік"
+        ]
+      },
+      {
+        "name": "Master's (Part-time)",
+        "nameUa": "Магістр (заочне)",
+        "annualPrice": 13500,
+        "description": "",
+        "descriptionUa": "",
+        "features": [
+          "~240 in-class hours per year",
+          "~1 560 self-study hours per year"
+        ],
+        "featuresUa": [
+          "~240 аудиторних годин на рік",
+          "~1 560 годин самостійної роботи на рік"
+        ]
       }
     ]
   },
