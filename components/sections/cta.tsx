@@ -34,7 +34,7 @@ export function CTA({ dictionary }: CTAProps) {
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full border-background/40 bg-transparent px-8 text-background hover:bg-background/10 hover:text-background"
+              className="focus-visible-ring-inverted rounded-full border-background/40 bg-transparent px-8 text-background hover:bg-background/10 hover:text-background"
             >
               {dictionary.cta.buttonSecondary}
             </Button>
