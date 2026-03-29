@@ -1,10 +1,18 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import type { Dictionary } from '@/lib/dictionaries'
+import { publicEnv } from '@/lib/public-env'
 import { cn } from '@/lib/utils'
 
 interface PricingProps {
   dictionary: Dictionary
 }
+
+const pricingAnnualPrices = [
+  publicEnv.pricingAnnualPrices.bachelorFullTime,
+  publicEnv.pricingAnnualPrices.bachelorPartTime,
+  publicEnv.pricingAnnualPrices.masterFullTime,
+  publicEnv.pricingAnnualPrices.masterPartTime,
+] as const
 
 export function Pricing({ dictionary }: PricingProps) {
   return (
@@ -26,7 +34,8 @@ export function Pricing({ dictionary }: PricingProps) {
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {dictionary.pricing.plans.map((plan, index) => {
-            const monthlyPrice = Math.round(plan.annualPrice / 12)
+            const annualPrice = pricingAnnualPrices[index] ?? plan.annualPrice
+            const monthlyPrice = Math.round(annualPrice / 12)
             return (
               <Card
                 key={index}
@@ -46,7 +55,7 @@ export function Pricing({ dictionary }: PricingProps) {
                 <CardContent className="flex-1 flex flex-col">
                   <div className="mb-6">
                     <div className="text-center">
-                      <span className="text-4xl font-bold">{plan.annualPrice.toLocaleString()}</span>
+                      <span className="text-4xl font-bold">{annualPrice.toLocaleString()}</span>
                       <span className="text-muted-foreground ml-1">
                         {dictionary.pricing.currency}
                         {dictionary.pricing.yearlyLabel}

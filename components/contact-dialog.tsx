@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useContactDialog } from '@/hooks/use-contact-dialog'
 import type { Dictionary } from '@/lib/dictionaries'
+import { publicEnv } from '@/lib/public-env'
 
 interface ContactDialogProps {
   dictionary: Dictionary
@@ -21,11 +22,11 @@ export function ContactDialog({ dictionary }: ContactDialogProps) {
   const { isOpen, onClose } = useContactDialog()
   const [copied, setCopied] = useState(false)
 
-  const phoneNumber = '+380 50 555 XXXX'
+  const phoneNumber = publicEnv.contactPhoneNumber
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(phoneNumber)
+      await navigator.clipboard.writeText(phoneNumber.display)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
@@ -49,7 +50,7 @@ export function ContactDialog({ dictionary }: ContactDialogProps) {
             <div className="flex gap-2">
               <Input
                 type="tel"
-                value={phoneNumber}
+                value={phoneNumber.display}
                 readOnly
                 className="flex-1 bg-muted"
               />
