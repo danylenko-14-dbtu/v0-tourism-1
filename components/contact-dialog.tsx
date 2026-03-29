@@ -1,38 +1,41 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { MessageCircle } from 'lucide-react'
+import { useState } from "react";
+import { MessageCircle } from "lucide-react";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { useContactDialog } from '@/hooks/use-contact-dialog'
-import type { Dictionary } from '@/lib/dictionaries'
-import { publicEnv } from '@/lib/public-env'
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useContactDialog } from "@/hooks/use-contact-dialog";
+import type { Dictionary } from "@/lib/dictionaries";
+import { publicEnv } from "@/lib/public-env";
 
 interface ContactDialogProps {
-  dictionary: Dictionary
+  dictionary: Dictionary;
 }
 
 export function ContactDialog({ dictionary }: ContactDialogProps) {
-  const { isOpen, onClose } = useContactDialog()
-  const [copied, setCopied] = useState(false)
+  const { isOpen, onClose } = useContactDialog();
+  const [copied, setCopied] = useState(false);
 
-  const phoneNumber = publicEnv.contactPhoneNumber
+  const phoneNumber = publicEnv.contactPhoneNumber;
+  const normalizedPhoneNumber = phoneNumber.telHref.replace(/^tel:/, "");
+  const encodedPhoneNumber = encodeURIComponent(normalizedPhoneNumber);
+  const telegramSharePhoneNumber = normalizedPhoneNumber.replace(/^\+/, "");
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(phoneNumber.display)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      await navigator.clipboard.writeText(phoneNumber.display);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy:', err)
+      console.error("Failed to copy:", err);
     }
-  }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -60,7 +63,9 @@ export function ContactDialog({ dictionary }: ContactDialogProps) {
                 onClick={handleCopy}
                 className="px-4"
               >
-                {copied ? dictionary.contactDialog.copied : dictionary.contactDialog.copy}
+                {copied
+                  ? dictionary.contactDialog.copied
+                  : dictionary.contactDialog.copy}
               </Button>
             </div>
           </div>
@@ -72,7 +77,11 @@ export function ContactDialog({ dictionary }: ContactDialogProps) {
               type="button"
               className="w-full gap-2 bg-[#7360f2] hover:bg-[#7360f2]/90 text-white"
               onClick={() => {
-                // TODO: add deep links
+                window.open(
+                  `viber://chat?number=${encodedPhoneNumber}`,
+                  "_blank",
+                  "noopener,noreferrer",
+                );
               }}
             >
               <MessageCircle className="h-5 w-5" />
@@ -84,7 +93,11 @@ export function ContactDialog({ dictionary }: ContactDialogProps) {
               type="button"
               className="w-full gap-2 bg-[#2AABEE] hover:bg-[#2AABEE]/90 text-white"
               onClick={() => {
-                // TODO: add deep links
+                window.open(
+                  `https://t.me/+${telegramSharePhoneNumber}`,
+                  "_blank",
+                  "noopener,noreferrer",
+                );
               }}
             >
               <MessageCircle className="h-5 w-5" />
@@ -94,5 +107,5 @@ export function ContactDialog({ dictionary }: ContactDialogProps) {
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
