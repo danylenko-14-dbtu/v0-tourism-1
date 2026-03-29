@@ -1,5 +1,6 @@
-import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { EnrollButton } from '@/components/sections/enroll-button'
 import type { Dictionary } from '@/lib/dictionaries'
 
 interface CTAProps {
@@ -23,20 +24,17 @@ export function CTA({ dictionary }: CTAProps) {
             {dictionary.cta.subtitle}
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button
-              size="lg"
-              variant="secondary"
-              className="focus-visible-ring-inverted group gap-2 rounded-full px-8"
-            >
-              {dictionary.cta.buttonPrimary}
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-focus-visible:translate-x-1" />
-            </Button>
+            <EnrollButton
+              label={dictionary.cta.buttonPrimary}
+              className="focus-visible-ring-inverted bg-secondary text-secondary-foreground shadow-none hover:bg-secondary/80 focus-visible:bg-secondary/80"
+            />
             <Button
               size="lg"
               variant="outline"
               className="focus-visible-ring-inverted rounded-full border-background/40 bg-transparent px-8 text-background hover:bg-background/10 hover:text-background"
+              asChild
             >
-              {dictionary.cta.buttonSecondary}
+              <Link href="/faq">{dictionary.cta.buttonSecondary}</Link>
             </Button>
           </div>
           

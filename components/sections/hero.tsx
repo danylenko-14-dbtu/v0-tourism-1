@@ -1,7 +1,7 @@
-import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { EnrollButton } from '@/components/sections/enroll-button'
 import type { Dictionary } from '@/lib/dictionaries'
+import Link from 'next/link'
 
 interface HeroProps {
   dictionary: Dictionary
@@ -46,11 +46,12 @@ export function Hero({ dictionary }: HeroProps) {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
             <EnrollButton label={dictionary.hero.cta} />
             <Button
+              asChild
               variant="outline"
               size="lg"
               className="rounded-full border-border/50 bg-background/50 px-8 text-foreground backdrop-blur-sm hover:bg-background/80"
             >
-              {dictionary.hero.ctaSecondary}
+              <Link href="/faq">{dictionary.hero.ctaSecondary}</Link>
             </Button>
           </div>
         </div>

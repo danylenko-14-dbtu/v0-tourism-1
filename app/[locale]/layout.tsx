@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { ThemeProvider } from '@/components/theme-provider'
+import { ContactDialogProvider } from '@/hooks/use-contact-dialog'
 import { locales, type Locale } from '@/lib/i18n'
 import { getDictionary } from '@/lib/dictionaries'
 
@@ -53,7 +54,9 @@ export default async function LocaleLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <ContactDialogProvider>
+            {children}
+          </ContactDialogProvider>
         </ThemeProvider>
       </body>
     </html>

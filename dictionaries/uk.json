@@ -236,6 +236,14 @@
     "buttonPrimary": "Зв'язатися з нами",
     "buttonSecondary": "Переглянути FAQ"
   },
+  "contactDialog": {
+    "title": "Зв'яжіться з нами",
+    "phoneLabel": "Телефон",
+    "copy": "Копіювати",
+    "copied": "Скопійовано!",
+    "viber": "Напишіть у Viber",
+    "telegram": "Напишіть у Telegram"
+  },
   "footer": {
     "description": "Короткий опис вашої компанії та її місії",
     "copyright": "Всі права захищено",
