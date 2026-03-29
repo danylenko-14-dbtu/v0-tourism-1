@@ -1,5 +1,8 @@
+'use client'
+
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useContactDialog } from '@/hooks/use-contact-dialog'
 import type { Dictionary } from '@/lib/dictionaries'
 
 interface CTAProps {
@@ -7,6 +10,7 @@ interface CTAProps {
 }
 
 export function CTA({ dictionary }: CTAProps) {
+  const { onOpen } = useContactDialog()
   return (
     <section
       id="contact"
@@ -27,6 +31,7 @@ export function CTA({ dictionary }: CTAProps) {
               size="lg"
               variant="secondary"
               className="focus-visible-ring-inverted group gap-2 rounded-full px-8"
+              onClick={onOpen}
             >
               {dictionary.cta.buttonPrimary}
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-focus-visible:translate-x-1" />

@@ -236,6 +236,14 @@
     "buttonPrimary": "Contact Us",
     "buttonSecondary": "Browse FAQ"
   },
+  "contactDialog": {
+    "title": "Contact Us",
+    "phoneLabel": "Phone",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "viber": "Message on Viber",
+    "telegram": "Message on Telegram"
+  },
   "footer": {
     "description": "A brief description of your company and its mission",
     "copyright": "All rights reserved",

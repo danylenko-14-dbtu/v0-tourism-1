@@ -1,6 +1,9 @@
+'use client'
+
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { EnrollButton } from '@/components/sections/enroll-button'
+import { useContactDialog } from '@/hooks/use-contact-dialog'
 import type { Dictionary } from '@/lib/dictionaries'
 
 interface HeroProps {
@@ -8,6 +11,7 @@ interface HeroProps {
 }
 
 export function Hero({ dictionary }: HeroProps) {
+  const { onOpen } = useContactDialog()
   return (
     <section
       aria-label="Hero"
@@ -49,6 +53,7 @@ export function Hero({ dictionary }: HeroProps) {
               variant="outline"
               size="lg"
               className="rounded-full border-border/50 bg-background/50 px-8 text-foreground backdrop-blur-sm hover:bg-background/80"
+              onClick={onOpen}
             >
               {dictionary.hero.ctaSecondary}
             </Button>

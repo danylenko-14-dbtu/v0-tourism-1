@@ -12,6 +12,7 @@ import { About } from '@/components/sections/about'
 import { Pricing } from '@/components/sections/pricing'
 import { CTA } from '@/components/sections/cta'
 import { Footer } from '@/components/sections/footer'
+import { ContactDialog } from '@/components/contact-dialog'
 
 interface PageProps {
   params: Promise<{ locale: string }>
@@ -42,6 +43,7 @@ export default async function HomePage({ params }: PageProps) {
         <CTA dictionary={dictionary} />
       </main>
       <Footer dictionary={dictionary} locale={typedLocale} />
+      <ContactDialog dictionary={dictionary} />
     </div>
   )
 }

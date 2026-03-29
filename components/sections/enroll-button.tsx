@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useContactDialog } from "@/hooks/use-contact-dialog"
 import { cn } from "@/lib/utils"
 
 interface EnrollButtonProps {
@@ -11,16 +12,13 @@ interface EnrollButtonProps {
 }
 
 export function EnrollButton({ label, className, size = "lg" }: EnrollButtonProps) {
-  const handleClick = () => {
-    // Future modal logic will go here
-    console.log("Enroll button clicked")
-  }
+  const { onOpen } = useContactDialog()
 
   return (
     <Button 
       size={size} 
       className={cn("group gap-2 rounded-full px-8 shadow-lg shadow-primary/20", className)}
-      onClick={handleClick}
+      onClick={onOpen}
     >
       {label}
       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-focus-visible:translate-x-1" />
