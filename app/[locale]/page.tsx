@@ -40,7 +40,7 @@ export default async function HomePage({ params }: PageProps) {
         <HowToApply dictionary={dictionary} />
         <About dictionary={dictionary} />
         <Pricing dictionary={dictionary} />
-        <CTA dictionary={dictionary} />
+        <CTA dictionary={dictionary} locale={typedLocale} />
       </main>
       <Footer dictionary={dictionary} locale={typedLocale} />
       <ContactDialog dictionary={dictionary} />

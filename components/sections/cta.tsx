@@ -2,12 +2,16 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { EnrollButton } from '@/components/sections/enroll-button'
 import type { Dictionary } from '@/lib/dictionaries'
+import type { Locale } from '@/lib/i18n'
 
 interface CTAProps {
   dictionary: Dictionary
+  locale: Locale
 }
 
-export function CTA({ dictionary }: CTAProps) {
+export function CTA({ dictionary, locale }: CTAProps) {
+  const faqPath = `/${locale}/faq`
+
   return (
     <section
       id="contact"
@@ -34,7 +38,7 @@ export function CTA({ dictionary }: CTAProps) {
               className="focus-visible-ring-inverted rounded-full border-background/40 bg-transparent px-8 text-background hover:bg-background/10 hover:text-background"
               asChild
             >
-              <Link href="/faq">{dictionary.cta.buttonSecondary}</Link>
+              <Link href={faqPath}>{dictionary.cta.buttonSecondary}</Link>
             </Button>
           </div>
           
