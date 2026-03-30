@@ -1,13 +1,15 @@
 import { Button } from '@/components/ui/button'
 import { EnrollButton } from '@/components/sections/enroll-button'
 import type { Dictionary } from '@/lib/dictionaries'
+import type { Locale } from '@/lib/i18n'
 import Link from 'next/link'
 
 interface HeroProps {
   dictionary: Dictionary
+  locale: Locale
 }
 
-export function Hero({ dictionary }: HeroProps) {
+export function Hero({ dictionary, locale }: HeroProps) {
   return (
     <section
       aria-label="Hero"
@@ -51,7 +53,7 @@ export function Hero({ dictionary }: HeroProps) {
               size="lg"
               className="rounded-full border-border/50 bg-background/50 px-8 text-foreground backdrop-blur-sm hover:bg-background/80"
             >
-              <Link href="/faq">{dictionary.hero.ctaSecondary}</Link>
+              <Link href={`/${locale}/faq`}>{dictionary.hero.ctaSecondary}</Link>
             </Button>
           </div>
         </div>

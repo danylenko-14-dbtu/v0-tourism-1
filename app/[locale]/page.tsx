@@ -32,7 +32,7 @@ export default async function HomePage({ params }: PageProps) {
     <div id="top" className="flex min-h-screen flex-col">
       <Header locale={typedLocale} dictionary={dictionary} />
       <main className="flex-1">
-        <Hero dictionary={dictionary} />
+        <Hero dictionary={dictionary} locale={typedLocale} />
         <Professions dictionary={dictionary} />
         <LearningProcess dictionary={dictionary} />
         <GraduatesWork dictionary={dictionary} />
