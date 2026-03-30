@@ -1,6 +1,10 @@
 'use client'
 
+import { useRouter, usePathname } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import type { MouseEvent, ReactNode } from 'react'
+import { getLocalizedPath } from '@/lib/navigation'
+import type { Locale } from '@/lib/i18n'
 
 interface ScrollLinkProps {
   href: string
@@ -10,18 +14,34 @@ interface ScrollLinkProps {
 }
 
 export function ScrollLink({ href, className, onClick, children }: ScrollLinkProps) {
+  const router = useRouter()
+  const pathname = usePathname()
+  const params = useParams()
+  const locale = (params.locale as Locale) || 'en'
+
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
 
+    // Extract hash from href
     const hashIndex = href.indexOf('#')
-    const id = hashIndex >= 0 ? href.slice(hashIndex + 1) : href
-    const element = document.getElementById(id)
+    const hash = hashIndex >= 0 ? href.slice(hashIndex + 1) : ''
+    
+    // Check if we're on the homepage
+    const isHomepage = pathname === `/${locale}` || pathname === `/${locale}/`
 
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      window.history.pushState(null, '', href)
+    if (isHomepage) {
+      // On homepage: scroll to section
+      if (hash) {
+        const element = document.getElementById(hash)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          window.history.pushState(null, '', `#${hash}`)
+        }
+      }
     } else {
-      window.location.href = href
+      // On other pages: navigate to homepage with hash
+      const targetPath = hash ? `/${locale}/#${hash}` : `/${locale}`
+      router.push(targetPath)
     }
 
     onClick?.()
