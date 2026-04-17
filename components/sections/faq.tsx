@@ -1,15 +1,13 @@
-'use client'
-
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from '@/components/ui/accordion'
-import type { Dictionary } from '@/lib/dictionaries'
+} from "@/components/ui/accordion";
+import type { Dictionary } from "@/lib/dictionaries";
 
 interface FAQProps {
-  dictionary: Dictionary
+  dictionary: Dictionary;
 }
 
 export function FAQ({ dictionary }: FAQProps) {
@@ -30,42 +28,41 @@ export function FAQ({ dictionary }: FAQProps) {
             <AccordionItem
               key={index}
               value={`item-${index}`}
-              className="border border-border/50 rounded-lg px-6 data-[state=open]:bg-muted/50"
+              className="border border-border/50 rounded-lg px-6 data-[state=open]:bg-muted/50 last:border-b"
             >
               <AccordionTrigger className="py-4 text-left font-semibold hover:no-underline">
                 {item.question}
               </AccordionTrigger>
               <AccordionContent className="text-base leading-relaxed text-muted-foreground">
-                {item.answer.split('\n').map((line, i) => (
-                  <div key={i}>
-                    {line.includes('http') ? (
-                      <>
-                        {line.split('http').map((part, idx) => (
-                          <span key={idx}>
-                            {idx > 0 && (
-                              <a
-                                href={`http${line.split('http')[idx]}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline break-all text-blue-600 hover:underline dark:text-blue-400"
-                              >
-                                {`http${line.split('http')[idx].split(' ')[0]}`}
-                              </a>
-                            )}
+                {item.answer.split("\n").map((line, i) => {
+                  const parts = line.split(/(https?:\/\/[^\s]+)/g);
+
+                  return (
+                    <div key={i} className="mb-3 last:mb-0">
+                      {parts.map((part, idx) =>
+                        /^https?:\/\/[^\s]+$/.test(part) ? (
+                          <a
+                            key={idx}
+                            href={part}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${part} (opens in new tab)`}
+                            className="inline break-all text-blue-600 hover:underline dark:text-blue-400"
+                          >
                             {part}
-                          </span>
-                        ))}
-                      </>
-                    ) : (
-                      <p className="mb-3 last:mb-0">{line}</p>
-                    )}
-                  </div>
-                ))}
+                          </a>
+                        ) : (
+                          <span key={idx}>{part}</span>
+                        )
+                      )}
+                    </div>
+                  );
+                })}
               </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
       </div>
     </section>
-  )
+  );
 }

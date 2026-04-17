@@ -57,7 +57,7 @@ export function TeamCard({ member, index }: TeamCardProps) {
       className={`
         group relative flex h-[200px] lg:h-[220px] w-full max-w-[500px] mx-auto 
         items-center justify-center overflow-hidden rounded-2xl 
-        border border-border/50 bg-muted/40 shadow-sm isolate cursor-pointer 
+        border border-border/50 bg-muted/40 shadow-sm isolate cursor-default 
         outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
         transition-[transform,border-color,box-shadow] duration-500 ease-out 
         hover:-translate-y-1 hover:shadow-xl hover:border-border/80 

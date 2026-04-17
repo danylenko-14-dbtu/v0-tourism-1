@@ -4,7 +4,9 @@
     "description": "Detailed description of your product or service for search engines"
   },
   "brand": {
-    "name": "Tourism and recreation"
+    "name": "Tourism and Recreation",
+    "department": "Department of Tourism",
+    "university": "State Biotechnological University"
   },
   "nav": {
     "professions": "Professions",
@@ -246,7 +248,7 @@
       },
       {
         "question": "How does the learning process work?",
-        "answer": "The learning process combines theoretical knowledge with practical training and modern digital tools. Due to the current security situation in Kharkiv and its proximity to active conflict zones, the university has implemented an online learning format.\nStudents attend lectures, complete assignments, and interact with instructors through digital platforms, ensuring continuity and accessibility of education while maintaining academic quality."
+        "answer": "The learning process combines theoretical knowledge with practical training and modern digital tools. Due to the current security situation in city of Kharkiv and its proximity to active conflict zones, the university has implemented an online learning format.\nStudents attend lectures, complete assignments, and interact with instructors through digital platforms, ensuring continuity and accessibility of education while maintaining academic quality."
       },
       {
         "question": "What is the State Biotechnological University?",
@@ -263,7 +265,7 @@
     "telegram": "Message on Telegram"
   },
   "footer": {
-    "description": "A brief description of your company and its mission",
+    "description": "Tourism Department of the State Biotechnology University — training specialists who shape the future of tourism industry.",
     "copyright": "All rights reserved",
     "links": {
       "product": {
