@@ -33,7 +33,7 @@ export function Pricing({ dictionary }: PricingProps) {
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {dictionary.pricing.plans.map((plan, index) => {
             const annualPrice = pricingAnnualPrices[index] ?? plan.annualPrice;
-            const monthlyPrice = Math.round(annualPrice / 12);
+
             return (
               <Card
                 key={index}
@@ -57,11 +57,7 @@ export function Pricing({ dictionary }: PricingProps) {
                         {dictionary.pricing.yearlyLabel}
                       </span>
                     </div>
-                    <div className="text-center mt-4">
-                      {/* <span className="text-sm text-muted-foreground">
-                        {monthlyPrice.toLocaleString()} {dictionary.pricing.monthlyLabel}
-                      </span> */}
-                    </div>
+                    <div className="text-center mt-4"></div>
                   </div>
                   <ul className="space-y-2 flex-1">
                     {plan.features.map((feature, featureIndex) => (

@@ -24,15 +24,15 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/logo-dark.png",
+        url: "/favicon-light.png",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/logo-light.png",
+        url: "/logo-dark.png",
         media: "(prefers-color-scheme: dark)",
       },
       {
-        url: "/logo-light.png",
+        url: "/logo-light.svg",
         type: "image/svg+xml",
       },
     ],
