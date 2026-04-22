@@ -4,7 +4,9 @@
     "description": "Detailed description of your product or service for search engines"
   },
   "brand": {
-    "name": "Tourism and recreation"
+    "name": "Tourism and Recreation",
+    "department": "Department of Tourism",
+    "university": "State Biotechnological University"
   },
   "nav": {
     "professions": "Professions",
@@ -236,6 +238,24 @@
     "buttonPrimary": "Contact Us",
     "buttonSecondary": "Browse FAQ"
   },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about our program and university",
+    "items": [
+      {
+        "question": "Who are we?",
+        "answer": "We are the Department of Tourism at the State Biotechnological University, part of the Faculty of Trade, Entrepreneurship and Customs Administration. We educate students in the 'Tourism and Recreation' program (specialty 242/J3), preparing them for careers in the tourism industry.\nYou can learn more about the department here: https://biotechuniv.edu.ua/fakulteti-instituti/fakultet-upravlinnya-torgovelno-pidpriyemnitskoyu-ta-mitnoyu-diyalnistyu/kafedra-turizmu/"
+      },
+      {
+        "question": "How does the learning process work?",
+        "answer": "The learning process combines theoretical knowledge with practical training and modern digital tools. Due to the current security situation in city of Kharkiv and its proximity to active conflict zones, the university has implemented an online learning format.\nStudents attend lectures, complete assignments, and interact with instructors through digital platforms, ensuring continuity and accessibility of education while maintaining academic quality."
+      },
+      {
+        "question": "What is the State Biotechnological University?",
+        "answer": "The State Biotechnological University was established on May 12, 2021, by the Cabinet of Ministers of Ukraine (Order No. 431-r), following a proposal from the Ministry of Education and Science.\nIt was created through the reorganization of four higher education institutions in Kharkiv into a single, powerful university complex. The goal is to provide high-quality education and strengthen scientific potential.\nOfficial website: https://biotechuniv.edu.ua/"
+      }
+    ]
+  },
   "contactDialog": {
     "title": "Contact Us",
     "phoneLabel": "Phone",
@@ -245,7 +265,7 @@
     "telegram": "Message on Telegram"
   },
   "footer": {
-    "description": "A brief description of your company and its mission",
+    "description": "Tourism Department of the State Biotechnology University — training specialists who shape the future of tourism industry.",
     "copyright": "All rights reserved",
     "links": {
       "product": {

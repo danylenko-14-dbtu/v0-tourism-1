@@ -1,10 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import type { Dictionary } from '@/lib/dictionaries'
-import { publicEnv } from '@/lib/public-env'
-import { cn } from '@/lib/utils'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import type { Dictionary } from "@/lib/dictionaries";
+import { publicEnv } from "@/lib/public-env";
+import { cn } from "@/lib/utils";
 
 interface PricingProps {
-  dictionary: Dictionary
+  dictionary: Dictionary;
 }
 
 const pricingAnnualPrices = [
@@ -12,7 +12,7 @@ const pricingAnnualPrices = [
   publicEnv.pricingAnnualPrices.bachelorPartTime,
   publicEnv.pricingAnnualPrices.masterFullTime,
   publicEnv.pricingAnnualPrices.masterPartTime,
-] as const
+] as const;
 
 export function Pricing({ dictionary }: PricingProps) {
   return (
@@ -27,30 +27,26 @@ export function Pricing({ dictionary }: PricingProps) {
           <h2 id="pricing-title" className="text-3xl font-bold tracking-tight sm:text-4xl">
             {dictionary.pricing.title}
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            {dictionary.pricing.subtitle}
-          </p>
+          <p className="mt-4 text-lg text-muted-foreground">{dictionary.pricing.subtitle}</p>
         </div>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {dictionary.pricing.plans.map((plan, index) => {
-            const annualPrice = pricingAnnualPrices[index] ?? plan.annualPrice
-            const monthlyPrice = Math.round(annualPrice / 12)
+            const annualPrice = pricingAnnualPrices[index] ?? plan.annualPrice;
+
             return (
               <Card
                 key={index}
                 className={cn(
-                  'relative flex flex-col transition-all duration-300',
-                  'border-border/50 hover:border-border hover:shadow-md'
+                  "relative flex flex-col transition-all duration-300",
+                  "border-border/50 hover:border-border hover:shadow-md"
                 )}
               >
                 <CardHeader className="text-center pb-4">
                   <CardTitle className="text-xl leading-tight">{plan.name}</CardTitle>
-                  {plan.description && (
-                    <CardDescription className="mt-2 text-xs font-medium text-muted-foreground">
-                      {plan.description}
-                    </CardDescription>
-                  )}
+                  <CardDescription className="mt-2 min-h-[16px] text-xs font-medium text-muted-foreground">
+                    {plan.description}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="flex-1 flex flex-col">
                   <div className="mb-6">
@@ -61,11 +57,7 @@ export function Pricing({ dictionary }: PricingProps) {
                         {dictionary.pricing.yearlyLabel}
                       </span>
                     </div>
-                    <div className="text-center mt-2">
-                      <span className="text-sm text-muted-foreground">
-                        {monthlyPrice.toLocaleString()} {dictionary.pricing.monthlyLabel}
-                      </span>
-                    </div>
+                    <div className="text-center mt-4"></div>
                   </div>
                   <ul className="space-y-2 flex-1">
                     {plan.features.map((feature, featureIndex) => (
@@ -76,10 +68,10 @@ export function Pricing({ dictionary }: PricingProps) {
                   </ul>
                 </CardContent>
               </Card>
-            )
+            );
           })}
         </div>
       </div>
     </section>
-  )
+  );
 }

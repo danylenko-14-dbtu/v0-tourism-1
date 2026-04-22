@@ -88,7 +88,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
 
         <div className="mt-12 border-t border-border/50 pt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            &copy; {currentYear} {dictionary.brand.name}. {dictionary.footer.copyright}.
+            &copy; {currentYear} {dictionary.brand.department}. {dictionary.footer.copyright}.
           </p>
         </div>
       </div>
