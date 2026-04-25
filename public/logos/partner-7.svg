@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 64" role="img" aria-label="Partner 7 logo">
-  <g fill="none" stroke="#71717a" stroke-width="2" stroke-linejoin="round">
-    <polygon points="24,14 40,26 34,46 14,46 8,26" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" role="img" aria-label="Partner 7">
+  <g fill="currentColor">
+    <circle cx="24" cy="32" r="10" fill="none" stroke="currentColor" stroke-width="4" />
+    <circle cx="44" cy="32" r="10" fill="none" stroke="currentColor" stroke-width="4" />
+    <text x="64" y="40" font-family="Geist, system-ui, sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5">Loop &amp; Co.</text>
   </g>
-  <text x="48" y="38" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="16" font-weight="600" fill="#71717a">Partner 7</text>
 </svg>
