@@ -23,10 +23,13 @@ const partners: Partner[] = [
   { id: 'partner-8', name: 'Partner 8', url: 'https://example.com', logo: '/logos/partner-8.svg' },
 ]
 
-export function Partners({ dictionary }: PartnersProps) {
-  // Duplicate the list once so the keyframe can translate -50% for a seamless loop.
-  const loop = [...partners, ...partners]
+// Spacing is owned by each item's right padding (NOT a flex gap on the parent),
+// so the total track width is exactly N * (itemWidth + itemPadding). That makes
+// translateX(-50%) land the second group's first item perfectly on top of the
+// first group's first item — no seam, no half-gap drift.
+const itemSpacing = 'pr-8 sm:pr-16 md:pr-24'
 
+export function Partners({ dictionary }: PartnersProps) {
   return (
     <section
       id="partners"
@@ -49,11 +52,19 @@ export function Partners({ dictionary }: PartnersProps) {
           aria-label={dictionary.partners.ariaLabel}
           role="group"
         >
-          <ul className="partners-marquee-track flex items-center gap-8 sm:gap-16 md:gap-24">
-            {loop.map((partner, index) => (
+          <ul className="partners-marquee-track flex items-center">
+            {/* Group 1 — visible to assistive tech */}
+            {partners.map((partner) => (
+              <li key={partner.id} className={`flex items-center ${itemSpacing}`}>
+                <PartnerLogo name={partner.name} url={partner.url} logo={partner.logo} />
+              </li>
+            ))}
+            {/* Group 2 — identical duplicate, hidden from assistive tech */}
+            {partners.map((partner) => (
               <li
-                key={`${partner.id}-${index}`}
-                aria-hidden={index >= partners.length ? 'true' : undefined}
+                key={`dup-${partner.id}`}
+                aria-hidden="true"
+                className={`flex items-center ${itemSpacing}`}
               >
                 <PartnerLogo name={partner.name} url={partner.url} logo={partner.logo} />
               </li>
