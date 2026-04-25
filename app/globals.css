@@ -215,7 +215,7 @@
 
 .partners-marquee-track {
   width: max-content;
-  animation: partners-marquee 56s linear infinite;
+  animation: partners-marquee 112s linear infinite;
   will-change: transform;
 }
 
