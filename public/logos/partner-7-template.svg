@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" role="img" aria-label="Partner 7">
+  <g fill="currentColor">
+    <circle cx="24" cy="32" r="10" fill="none" stroke="currentColor" stroke-width="4" />
+    <circle cx="44" cy="32" r="10" fill="none" stroke="currentColor" stroke-width="4" />
+    <text x="64" y="40" font-family="Geist, system-ui, sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5">Loop &amp; Co.</text>
+  </g>
+</svg>

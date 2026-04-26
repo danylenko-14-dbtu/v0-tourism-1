@@ -10,6 +10,7 @@ import { ProgramFacts } from '@/components/sections/program-facts'
 import { HowToApply } from '@/components/sections/how-to-apply'
 import { About } from '@/components/sections/about'
 import { Pricing } from '@/components/sections/pricing'
+import { Partners } from '@/components/sections/partners'
 import { CTA } from '@/components/sections/cta'
 import { Footer } from '@/components/sections/footer'
 import { ContactDialog } from '@/components/contact-dialog'
@@ -40,6 +41,7 @@ export default async function HomePage({ params }: PageProps) {
         <HowToApply dictionary={dictionary} />
         <About dictionary={dictionary} />
         <Pricing dictionary={dictionary} />
+        <Partners dictionary={dictionary} />
         <CTA dictionary={dictionary} locale={typedLocale} />
       </main>
       <Footer dictionary={dictionary} locale={typedLocale} />
