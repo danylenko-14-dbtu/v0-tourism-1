@@ -156,7 +156,10 @@
     "title": "About Us",
     "description": "We are a team of professionals dedicated to creating comfortable learning conditions for our students. Our mission is to help you achieve success.",
     "team": [
-      { "name": "Halina Omelchenko", "role": "Head of the Department, Associate Professor, 20+ years of experience" },
+      {
+        "name": "Halina Omelchenko",
+        "role": "Head of the Department, Associate Professor, 20+ years of experience"
+      },
       { "name": "Volodymyr Merchansky", "role": "Associate Professor, 15+ years of experience" },
       { "name": "Victoria Khudaverdieva", "role": "Associate Professor, 15+ years of experience" },
       { "name": "Liliya Kharchevnikova", "role": "Associate Professor, 10+ years of experience" },
@@ -176,14 +179,8 @@
         "annualPrice": 21900,
         "description": "Remote format",
         "descriptionUa": "Дистанційний формат",
-        "features": [
-          "~720 in-class hours per year",
-          "~1 080 self-study hours per year"
-        ],
-        "featuresUa": [
-          "~720 аудиторних годин на рік",
-          "~1 080 годин самостійної роботи на рік"
-        ]
+        "features": ["~720 in-class hours per year", "~1 080 self-study hours per year"],
+        "featuresUa": ["~720 аудиторних годин на рік", "~1 080 годин самостійної роботи на рік"]
       },
       {
         "name": "Bachelor's (Part-time)",
@@ -191,14 +188,8 @@
         "annualPrice": 12000,
         "description": "",
         "descriptionUa": "",
-        "features": [
-          "~360 in-class hours per year",
-          "~1 440 self-study hours per year"
-        ],
-        "featuresUa": [
-          "~360 аудиторних годин на рік",
-          "~1 440 годин самостійної роботи на рік"
-        ]
+        "features": ["~360 in-class hours per year", "~1 440 self-study hours per year"],
+        "featuresUa": ["~360 аудиторних годин на рік", "~1 440 годин самостійної роботи на рік"]
       },
       {
         "name": "Master's (Full-time)",
@@ -206,14 +197,8 @@
         "annualPrice": 26580,
         "description": "Remote format",
         "descriptionUa": "Дистанційний формат",
-        "features": [
-          "~594 in-class hours per year",
-          "~1 206 self-study hours per year"
-        ],
-        "featuresUa": [
-          "~594 аудиторних годин на рік",
-          "~1 206 годин самостійної роботи на рік"
-        ]
+        "features": ["~594 in-class hours per year", "~1 206 self-study hours per year"],
+        "featuresUa": ["~594 аудиторних годин на рік", "~1 206 годин самостійної роботи на рік"]
       },
       {
         "name": "Master's (Part-time)",
@@ -221,20 +206,24 @@
         "annualPrice": 13500,
         "description": "",
         "descriptionUa": "",
-        "features": [
-          "~240 in-class hours per year",
-          "~1 560 self-study hours per year"
-        ],
-        "featuresUa": [
-          "~240 аудиторних годин на рік",
-          "~1 560 годин самостійної роботи на рік"
-        ]
+        "features": ["~240 in-class hours per year", "~1 560 self-study hours per year"],
+        "featuresUa": ["~240 аудиторних годин на рік", "~1 560 годин самостійної роботи на рік"]
       }
     ]
   },
   "partners": {
     "title": "Our Partners",
-    "ariaLabel": "Partner logos marquee"
+    "ariaLabel": "Partner logos marquee",
+    "names": [
+      "Tourist Information Center",
+      "Charitable Organization",
+      "Youth Success Alliance",
+      "NGO \"Tourism Development of Regions\"",
+      "Travel Agency",
+      "Hotel Network",
+      "Hotel \"Kharkiv\"",
+      "Travel Agency"
+    ]
   },
   "cta": {
     "title": "Still Have Questions?",

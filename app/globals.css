@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -79,8 +79,8 @@
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -176,7 +176,9 @@
 }
 
 .animate-in {
-  animation: fade-in 0.5s ease-out forwards, slide-in-from-bottom 0.5s ease-out forwards;
+  animation:
+    fade-in 0.5s ease-out forwards,
+    slide-in-from-bottom 0.5s ease-out forwards;
 }
 
 .fade-in {
@@ -201,47 +203,4 @@
 
 .delay-500 {
   animation-delay: 0.5s;
-}
-
-/* Partners marquee */
-@keyframes partners-marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.partners-marquee-track {
-  width: max-content;
-  animation: partners-marquee 112s linear infinite;
-  will-change: transform;
-}
-
-.partners-marquee-track:hover {
-  animation-play-state: paused;
-}
-
-.partners-marquee-mask {
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    black 8%,
-    black 92%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    black 8%,
-    black 92%,
-    transparent 100%
-  );
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .partners-marquee-track {
-    animation: none;
-  }
 }

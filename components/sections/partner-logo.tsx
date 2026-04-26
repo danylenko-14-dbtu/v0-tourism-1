@@ -1,31 +1,28 @@
-import Image from 'next/image'
+import Image from "next/image";
 
 interface PartnerLogoProps {
-  name: string
-  url: string
-  logo: string
+  name: string;
+  logo: string;
 }
 
-export function PartnerLogo({ name, url, logo }: PartnerLogoProps) {
+export function PartnerLogo({ name, logo }: PartnerLogoProps) {
   return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={name}
+    <div
       title={name}
-      className="focus-visible-ring flex h-16 w-40 shrink-0 items-center justify-center text-muted-foreground opacity-70 transition-opacity duration-300 hover:opacity-100 sm:h-20 sm:w-56 md:w-60"
+      aria-label={name}
+      rel="noopener noreferrer"
+      className="flex h-30 w-40 shrink-0 items-center justify-center text-muted-foreground opacity-70 transition-opacity duration-300 hover:opacity-100 sm:h-20 sm:w-56 md:w-60"
     >
       <Image
         src={logo}
         alt=""
         width={240}
-        height={64}
+        height={164}
         aria-hidden="true"
-        className="h-10 w-auto object-contain sm:h-12"
+        className="h-25 w-auto object-contain dark:invert"
         loading="lazy"
         unoptimized
       />
-    </a>
-  )
+    </div>
+  );
 }
