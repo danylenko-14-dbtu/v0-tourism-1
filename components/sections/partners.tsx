@@ -1,6 +1,6 @@
 import type { Dictionary } from "@/lib/dictionaries";
 import { PartnerLogo } from "@/components/sections/partner-logo";
-import "@/styles/marquee.css";
+import styles from "@/styles/marquee.module.css";
 
 interface PartnersProps {
   dictionary: Dictionary;
@@ -40,7 +40,11 @@ export function Partners({ dictionary }: PartnersProps) {
           </h2>
         </div>
 
-        <div className="logos-ticker marquee-mask mt-16" aria-label={dictionary.partners.ariaLabel} role="group">
+        <div
+          className={`${styles.logosTicker} ${styles.marqueeMask} mt-16`}
+          aria-label={dictionary.partners.ariaLabel}
+          role="group"
+        >
           <ul>
             {partners.map((partner, index) => (
               <li key={partner.id}>

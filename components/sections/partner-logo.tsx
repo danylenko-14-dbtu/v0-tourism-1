@@ -10,7 +10,6 @@ export function PartnerLogo({ name, logo }: PartnerLogoProps) {
     <div
       title={name}
       aria-label={name}
-      rel="noopener noreferrer"
       className="flex h-30 w-40 shrink-0 items-center justify-center text-muted-foreground opacity-70 transition-opacity duration-300 hover:opacity-100 sm:h-20 sm:w-56 md:w-60"
     >
       <Image
