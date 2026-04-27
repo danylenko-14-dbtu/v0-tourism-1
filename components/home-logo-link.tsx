@@ -1,38 +1,38 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import type { MouseEvent, ReactNode } from 'react'
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import type { MouseEvent, ReactNode } from "react";
 
 interface HomeLogoLinkProps {
-  href: string
-  className?: string
-  children: ReactNode
+  href: string;
+  className?: string;
+  children: ReactNode;
 }
 
 export function HomeLogoLink({ href, className, children }: HomeLogoLinkProps) {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (pathname !== href) {
-      return
+      return;
     }
 
-    event.preventDefault()
+    event.preventDefault();
 
-    const topAnchor = document.getElementById('top')
+    const topAnchor = document.getElementById("top");
 
     if (topAnchor) {
-      topAnchor.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      return
+      topAnchor.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
     }
 
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <Link href={href} onClick={handleClick} className={className}>
       {children}
     </Link>
-  )
+  );
 }
