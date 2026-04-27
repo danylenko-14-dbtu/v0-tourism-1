@@ -20,7 +20,7 @@ export function BrandLogo({
     <HomeLogoLink href={href} className={className}>
       <span className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-xl">
         <Image
-          src="/logo-light.png"
+          src="/dbtu-logo.png"
           alt={label}
           fill
           priority
@@ -28,7 +28,7 @@ export function BrandLogo({
           className={`object-contain dark:hidden ${imageClassName ?? ''}`}
         />
         <Image
-          src="/logo-dark.png"
+          src="/dbtu-logo.png"
           alt={label}
           fill
           priority
