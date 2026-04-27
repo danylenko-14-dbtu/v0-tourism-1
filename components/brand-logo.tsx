@@ -23,12 +23,11 @@ export function BrandLogo({
   const renderLabel = () => {
     if (variant === "split") {
       const [first, ...rest] = label.split(" ");
-      console.log({ first, rest });
       return (
         <span className={`flex flex-col ${textClassName ?? ""}`}>
           <span className="text-xl leading-tight font-bold tracking-wider">{first}</span>
           {rest.length > 0 && (
-            <span className="text-base leading-tight font-semibold"> {rest.join(" ")}</span>
+            <span className="text-base leading-tight font-semibold">{rest.join(" ")}</span>
           )}
         </span>
       );
@@ -52,7 +51,7 @@ export function BrandLogo({
           alt={label}
           fill
           priority
-          sizes="40px"
+          sizes="50px"
           className={`hidden object-contain dark:block ${imageClassName ?? ""}`}
         />
       </span>

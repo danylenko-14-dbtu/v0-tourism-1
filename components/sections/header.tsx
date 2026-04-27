@@ -27,7 +27,6 @@ export function Header({ locale, dictionary }: HeaderProps) {
           label={dictionary.brand.name}
           title={dictionary.brand.university}
           className="focus-visible-ring flex items-center gap-3 rounded-md"
-          textClassName="text-sm font-semibold leading-none sm:text-lg"
           variant="split"
         />
 
