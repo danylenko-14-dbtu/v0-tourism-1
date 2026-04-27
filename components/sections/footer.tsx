@@ -1,15 +1,15 @@
-import Link from 'next/link'
-import { BrandLogo } from '@/components/brand-logo'
-import type { Locale } from '@/lib/i18n'
-import type { Dictionary } from '@/lib/dictionaries'
+import Link from "next/link";
+import { BrandLogo } from "@/components/brand-logo";
+import type { Locale } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/dictionaries";
 
 interface FooterProps {
-  dictionary: Dictionary
-  locale: Locale
+  dictionary: Dictionary;
+  locale: Locale;
 }
 
 export function Footer({ dictionary, locale }: FooterProps) {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="border-t border-border/50 bg-muted/30">
@@ -18,6 +18,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
           {/* Brand */}
           <div className="lg:col-span-1">
             <BrandLogo
+              title={dictionary.brand.university}
               href={`/${locale}`}
               label={dictionary.brand.name}
               className="focus-visible-ring flex items-center gap-3"
@@ -30,9 +31,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
 
           {/* Product links */}
           <div>
-            <h3 className="text-sm font-semibold">
-              {dictionary.footer.links.product.title}
-            </h3>
+            <h3 className="text-sm font-semibold">{dictionary.footer.links.product.title}</h3>
             <ul className="mt-4 space-y-3">
               {dictionary.footer.links.product.items.map((item, index) => (
                 <li key={index}>
@@ -49,9 +48,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
 
           {/* Company links */}
           <div>
-            <h3 className="text-sm font-semibold">
-              {dictionary.footer.links.company.title}
-            </h3>
+            <h3 className="text-sm font-semibold">{dictionary.footer.links.company.title}</h3>
             <ul className="mt-4 space-y-3">
               {dictionary.footer.links.company.items.map((item, index) => (
                 <li key={index}>
@@ -68,9 +65,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
 
           {/* Legal links */}
           <div>
-            <h3 className="text-sm font-semibold">
-              {dictionary.footer.links.legal.title}
-            </h3>
+            <h3 className="text-sm font-semibold">{dictionary.footer.links.legal.title}</h3>
             <ul className="mt-4 space-y-3">
               {dictionary.footer.links.legal.items.map((item, index) => (
                 <li key={index}>
@@ -93,5 +88,5 @@ export function Footer({ dictionary, locale }: FooterProps) {
         </div>
       </div>
     </footer>
-  )
+  );
 }

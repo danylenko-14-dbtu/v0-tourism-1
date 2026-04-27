@@ -1,12 +1,12 @@
-import { Button } from '@/components/ui/button'
-import { EnrollButton } from '@/components/sections/enroll-button'
-import type { Dictionary } from '@/lib/dictionaries'
-import type { Locale } from '@/lib/i18n'
-import Link from 'next/link'
+import { Button } from "@/components/ui/button";
+import { EnrollButton } from "@/components/sections/enroll-button";
+import type { Dictionary } from "@/lib/dictionaries";
+import type { Locale } from "@/lib/i18n";
+import Link from "next/link";
 
 interface HeroProps {
-  dictionary: Dictionary
-  locale: Locale
+  dictionary: Dictionary;
+  locale: Locale;
 }
 
 export function Hero({ dictionary, locale }: HeroProps) {
@@ -20,7 +20,7 @@ export function Hero({ dictionary, locale }: HeroProps) {
         poster="/hero-poster.webp"
         src="/hero-video.mp4"
         autoPlay
-        preload='auto'
+        preload="auto"
         loop
         muted
         playsInline
@@ -35,16 +35,15 @@ export function Hero({ dictionary, locale }: HeroProps) {
 
       {/* Content Preservation Layer (z-20) */}
       <div className="relative z-20 mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
-        <div className="mx-auto max-w-3xl text-center">
-          
-          <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl text-foreground animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 [text-shadow:_0_1px_3px_rgb(0_0_0_/_0.2)]">
+        <div className="mx-auto max-w-4xl text-center">
+          <h1 className="text-balance text-4xl font-bold  sm:text-5xl lg:text-6xl text-foreground animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 [text-shadow:_0_1px_3px_rgb(0_0_0_/_0.2)]">
             {dictionary.hero.title}
           </h1>
-          
+
           <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-foreground/80 sm:text-xl animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 [text-shadow:_0_1px_3px_rgb(0_0_0_/_0.2)]">
             {dictionary.hero.subtitle}
           </p>
-          
+
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
             <EnrollButton label={dictionary.hero.cta} />
             <Button
@@ -59,5 +58,5 @@ export function Hero({ dictionary, locale }: HeroProps) {
         </div>
       </div>
     </section>
-  )
+  );
 }
