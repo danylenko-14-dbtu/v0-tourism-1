@@ -24,19 +24,19 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/favicon-light.png",
+        url: "/svg-favicon.svg",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/logo-dark.png",
+        url: "/svg-favicon.svg",
         media: "(prefers-color-scheme: dark)",
       },
       {
-        url: "/logo-light.svg",
+        url: "/svg-favicon.svg",
         type: "image/svg+xml",
       },
     ],
-    apple: "/logo-light.png",
+    apple: "/svg-favicon.svg",
   },
 };
 
