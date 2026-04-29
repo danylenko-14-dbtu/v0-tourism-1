@@ -29,34 +29,36 @@ export function Footer({ dictionary, locale }: FooterProps) {
             </p>
           </div>
 
-          {/* Product links */}
+          {/* Study links */}
           <div>
-            <h3 className="text-sm font-semibold">{dictionary.footer.links.product.title}</h3>
+            <h3 className="text-sm font-semibold">{dictionary.footer.links.study.title}</h3>
             <ul className="mt-4 space-y-3">
-              {dictionary.footer.links.product.items.map((item, index) => (
+              {dictionary.footer.links.study.items.map((item, index) => (
                 <li key={index}>
                   <Link
-                    href="#"
+                    target="_blank"
+                    href={item.href || "#"}
                     className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
                   >
-                    {item}
+                    {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Company links */}
+          {/* Department links */}
           <div>
-            <h3 className="text-sm font-semibold">{dictionary.footer.links.company.title}</h3>
+            <h3 className="text-sm font-semibold">{dictionary.footer.links.department.title}</h3>
             <ul className="mt-4 space-y-3">
-              {dictionary.footer.links.company.items.map((item, index) => (
+              {dictionary.footer.links.department.items.map((item, index) => (
                 <li key={index}>
                   <Link
-                    href="#"
+                    target="_blank"
+                    href={item.href || "#"}
                     className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
                   >
-                    {item}
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -70,10 +72,12 @@ export function Footer({ dictionary, locale }: FooterProps) {
               {dictionary.footer.links.legal.items.map((item, index) => (
                 <li key={index}>
                   <Link
-                    href="#"
+                    target="_blank"
+                    // rel="noopener noreferrer"
+                    href={item.href || "#"}
                     className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
                   >
-                    {item}
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -83,7 +87,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
 
         <div className="mt-12 border-t border-border/50 pt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            &copy; {currentYear} {dictionary.brand.department}. {dictionary.footer.copyright}.
+            &copy; {currentYear} {dictionary.brand.department} {dictionary.footer.copyright}.
           </p>
         </div>
       </div>
