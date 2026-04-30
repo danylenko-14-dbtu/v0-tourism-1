@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FaFacebook, FaTiktok } from "react-icons/fa6";
 import { BrandLogo } from "@/components/brand-logo";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries";
@@ -10,6 +11,10 @@ interface FooterProps {
 
 export function Footer({ dictionary, locale }: FooterProps) {
   const currentYear = new Date().getFullYear();
+  const socialLinks = [
+    { href: "https://www.facebook.com/groups/2391713780998700", label: "Facebook", icon: FaFacebook },
+    { href: "https://www.tiktok.com/@tourism_dbtu", label: "TikTok", icon: FaTiktok },
+  ];
 
   return (
     <footer className="border-t border-border/50 bg-muted/30">
@@ -27,6 +32,24 @@ export function Footer({ dictionary, locale }: FooterProps) {
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               {dictionary.footer.description}
             </p>
+            <div className="mt-4 flex items-center gap-2 justify-center md:justify-start md:mt-1">
+              {socialLinks.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <Link
+                    key={item.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={item.href}
+                    aria-label={item.label}
+                    className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
+                  >
+                    <Icon className="h-5 w-5 md:h-4 md:w-4" />
+                  </Link>
+                );
+              })}
+            </div>
           </div>
 
           {/* Study links */}
@@ -37,6 +60,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
                 <li key={index}>
                   <Link
                     target="_blank"
+                    rel="noopener noreferrer"
                     href={item.href || "#"}
                     className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
                   >
@@ -55,6 +79,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
                 <li key={index}>
                   <Link
                     target="_blank"
+                    rel="noopener noreferrer"
                     href={item.href || "#"}
                     className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
                   >
@@ -73,7 +98,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
                 <li key={index}>
                   <Link
                     target="_blank"
-                    // rel="noopener noreferrer"
+                    rel="noopener noreferrer"
                     href={item.href || "#"}
                     className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
                   >

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MessageCircle } from "lucide-react";
+import { FaTelegram, FaViber } from "react-icons/fa6";
 import {
   Dialog,
   DialogContent,
@@ -84,7 +84,7 @@ export function ContactDialog({ dictionary }: ContactDialogProps) {
                 );
               }}
             >
-              <MessageCircle className="h-5 w-5" />
+              <FaViber className="h-5 w-5" />
               {dictionary.contactDialog.viber}
             </Button>
 
@@ -100,7 +100,7 @@ export function ContactDialog({ dictionary }: ContactDialogProps) {
                 );
               }}
             >
-              <MessageCircle className="h-5 w-5" />
+              <FaTelegram className="h-5 w-5" />
               {dictionary.contactDialog.telegram}
             </Button>
           </div>
