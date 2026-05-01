@@ -112,20 +112,56 @@
     },
     "programs": {
       "bachelor": [
-        { "label": "Duration", "value": "4 years" },
-        { "label": "Degree", "value": "Bachelor" },
-        { "label": "Study format", "value": "Full-time / Part-time" },
-        { "label": "Practice", "value": "3 practical trainings" },
-        { "label": "Language", "value": "Ukrainian / English" },
-        { "label": "Credits", "value": "240 ECTS" }
+        {
+          "label": "Duration",
+          "value": "4 years"
+        },
+        {
+          "label": "Degree",
+          "value": "Bachelor"
+        },
+        {
+          "label": "Study format",
+          "value": "Full-time / Part-time"
+        },
+        {
+          "label": "Practice",
+          "value": "3 practical trainings"
+        },
+        {
+          "label": "Language",
+          "value": "Ukrainian / English"
+        },
+        {
+          "label": "Credits",
+          "value": "240 ECTS"
+        }
       ],
       "master": [
-        { "label": "Duration", "value": "1.5 years" },
-        { "label": "Degree", "value": "Master" },
-        { "label": "Study format", "value": "Full-time / Part-time" },
-        { "label": "Practice", "value": "1 practical training" },
-        { "label": "Language", "value": "Ukrainian / English" },
-        { "label": "Credits", "value": "90 ECTS" }
+        {
+          "label": "Duration",
+          "value": "1.5 years"
+        },
+        {
+          "label": "Degree",
+          "value": "Master"
+        },
+        {
+          "label": "Study format",
+          "value": "Full-time / Part-time"
+        },
+        {
+          "label": "Practice",
+          "value": "1 practical training"
+        },
+        {
+          "label": "Language",
+          "value": "Ukrainian / English"
+        },
+        {
+          "label": "Credits",
+          "value": "90 ECTS"
+        }
       ]
     }
   },
@@ -160,10 +196,22 @@
         "name": "Halina Omelchenko",
         "role": "Head of the Department, Associate Professor, 20+ years of experience"
       },
-      { "name": "Volodymyr Merchansky", "role": "Associate Professor, 15+ years of experience" },
-      { "name": "Victoria Khudaverdieva", "role": "Associate Professor, 15+ years of experience" },
-      { "name": "Liliya Kharchevnikova", "role": "Associate Professor, 10+ years of experience" },
-      { "name": "Valerii Danylenko", "role": "Associate Professor, 10+ years of experience" }
+      {
+        "name": "Volodymyr Merchansky",
+        "role": "Associate Professor, 15+ years of experience"
+      },
+      {
+        "name": "Victoria Khudaverdieva",
+        "role": "Associate Professor, 15+ years of experience"
+      },
+      {
+        "name": "Liliya Kharchevnikova",
+        "role": "Associate Professor, 10+ years of experience"
+      },
+      {
+        "name": "Valerii Danylenko",
+        "role": "Associate Professor, 10+ years of experience"
+      }
     ]
   },
   "pricing": {
@@ -174,7 +222,7 @@
     "monthlyLabel": "UAH/month",
     "plans": [
       {
-        "name": "Bachelor's (Full-time)",
+        "name": "Bachelor\u0027s (Full-time)",
         "nameUa": "Бакалавр (денне)",
         "annualPrice": 21900,
         "description": "Remote format",
@@ -183,7 +231,7 @@
         "featuresUa": ["~720 аудиторних годин на рік", "~1 080 годин самостійної роботи на рік"]
       },
       {
-        "name": "Bachelor's (Part-time)",
+        "name": "Bachelor\u0027s (Part-time)",
         "nameUa": "Бакалавр (заочне)",
         "annualPrice": 12000,
         "description": "",
@@ -192,7 +240,7 @@
         "featuresUa": ["~360 аудиторних годин на рік", "~1 440 годин самостійної роботи на рік"]
       },
       {
-        "name": "Master's (Full-time)",
+        "name": "Master\u0027s (Full-time)",
         "nameUa": "Магістр (денне)",
         "annualPrice": 26580,
         "description": "Remote format",
@@ -201,7 +249,7 @@
         "featuresUa": ["~594 аудиторних годин на рік", "~1 206 годин самостійної роботи на рік"]
       },
       {
-        "name": "Master's (Part-time)",
+        "name": "Master\u0027s (Part-time)",
         "nameUa": "Магістр (заочне)",
         "annualPrice": 13500,
         "description": "",
@@ -227,7 +275,7 @@
   },
   "cta": {
     "title": "Still Have Questions?",
-    "subtitle": "We're here to help. Reach out to us or browse the FAQ for quick answers.",
+    "subtitle": "We\u0027re here to help. Reach out to us or browse the FAQ for quick answers.",
     "buttonPrimary": "Contact Us",
     "buttonSecondary": "Browse FAQ"
   },
@@ -237,7 +285,7 @@
     "items": [
       {
         "question": "Who are we?",
-        "answer": "We are the Department of Tourism at the State Biotechnological University, part of the Faculty of Trade, Entrepreneurship and Customs Administration. We educate students in the 'Tourism and Recreation' program (specialty 242/J3), preparing them for careers in the tourism industry.\nYou can learn more about the department here: https://biotechuniv.edu.ua/fakulteti-instituti/fakultet-upravlinnya-torgovelno-pidpriyemnitskoyu-ta-mitnoyu-diyalnistyu/kafedra-turizmu/"
+        "answer": "We are the Department of Tourism at the State Biotechnological University, part of the Faculty of Trade, Entrepreneurship and Customs Administration. We educate students in the \u0027Tourism and Recreation\u0027 program (specialty 242/J3), preparing them for careers in the tourism industry.\nYou can learn more about the department here: https://biotechuniv.edu.ua/fakulteti-instituti/fakultet-upravlinnya-torgovelno-pidpriyemnitskoyu-ta-mitnoyu-diyalnistyu/kafedra-turizmu/"
       },
       {
         "question": "How does the learning process work?",
@@ -250,6 +298,10 @@
       {
         "question": "Is the J3 “Tourism and Recreation” program relevant during martial law?",
         "answer": "Yes, but the focus has shifted. Today, the industry needs specialists who can develop domestic tourism, work with psychological rehabilitation through recreation, and organize safe trips for children and wellness purposes. In addition, we train professionals for Ukraine’s large-scale post-war recovery, where tourism will become one of the key drivers of the economy."
+      },
+      {
+        "question": "How to apply for the Tourism and Recreation program?",
+        "answer": "To apply for the Tourism and Recreation program, you need to follow these steps:\n1. Take the National Multi-Subject Test or Unified Entrance Exam.\n2. Register an applicant account based on secondary education or junior bachelor.\n3. Submit your documents to the State Biotechnological University.\n4. Choose the J3/242 Tourism and Recreation program.\n\nYou can get a detailed free consultation by contacting us at +380 50 827 1056. Call us or message us in the messenger that is most convenient for you."
       },
       {
         "question": "What careers can I pursue besides being a travel agent?",
@@ -266,10 +318,6 @@
       {
         "question": "Where do students of your department complete their internships?",
         "answer": "We cooperate with leading hotel complexes in Ukraine (especially in western regions), national natural parks, tour operators, and specialized departments of city councils. There are also international internship programs available (for example, in Turkey, Bulgaria, and Greece)."
-      },
-      {
-        "question": "How to apply for the Tourism and Recreation program?",
-        "answer": "To apply for the Tourism and Recreation program, you need to follow these steps:\n1. Take the National Multi-Subject Test or Unified Entrance Exam.\n2. Register an applicant account based on secondary education or junior bachelor.\n3. Submit your documents to the State Biotechnological University.\n4. Choose the J3/242 Tourism and Recreation program."
       }
     ]
   },
@@ -283,19 +331,67 @@
   },
   "footer": {
     "description": "Tourism Department of the State Biotechnology University — training specialists who shape the future of tourism industry.",
-    "copyright": "All rights reserved",
+    "copyright": "| J3/242 Tourism and Recreation",
+    "address": "City of Kharkiv, Klochkivska Street, 333, 61051, Ukraine",
     "links": {
-      "product": {
-        "title": "Product",
-        "items": ["Professions", "Pricing", "Documentation", "Updates"]
+      "study": {
+        "title": "Study",
+        "items": [
+          {
+            "label": "For Applicants",
+            "href": "https://biotechuniv.edu.ua/vstupnyku/vstup-2026/"
+          },
+          {
+            "label": "Schedule",
+            "href": "/uploads/2026/242-2-semester-2026.pdf"
+          },
+          {
+            "label": "Subjects",
+            "href": "https://biotechuniv.edu.ua/fakulteti-instituti/fakultet-upravlinnya-torgovelno-pidpriyemnitskoyu-ta-mitnoyu-diyalnistyu/kafedra-turizmu/akred-kaf-tur/242-pershyj-bakalavrskyj-riven-osvity/"
+          },
+          {
+            "label": "Theses",
+            "href": "https://repo.btu.kharkiv.ua/collections/1031c082-2c4f-457b-99e5-5e9214be55b4/search"
+          }
+        ]
       },
-      "company": {
-        "title": "Company",
-        "items": ["About", "Blog", "Careers", "Contact"]
+      "department": {
+        "title": "Department",
+        "items": [
+          {
+            "label": "Blog",
+            "href": ""
+          },
+          {
+            "label": "Publications",
+            "href": "https://repo.btu.kharkiv.ua/search?query=&spc.page=1&view=list&f.affiliation=%D0%94%D0%B5%D1%80%D0%B6%D0%B0%D0%B2%D0%BD%D0%B8%D0%B9%20%D0%B1%D1%96%D0%BE%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D1%96%D1%87%D0%BD%D0%B8%D0%B9%20%D1%83%D0%BD%D1%96%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82,%20%D0%9A%D0%B0%D1%84%D0%B5%D0%B4%D1%80%D0%B0%20%D1%82%D1%83%D1%80%D0%B8%D0%B7%D0%BC%D1%83,equals"
+          },
+          {
+            "label": "University",
+            "href": "https://biotechuniv.edu.ua/"
+          },
+          {
+            "label": "Contacts",
+            "href": "#contact"
+          }
+        ]
       },
       "legal": {
-        "title": "Legal",
-        "items": ["Privacy", "Terms", "License"]
+        "title": "Legal Information",
+        "items": [
+          {
+            "label": "Regulations",
+            "href": "/uploads/2026/pol-org-op-25.pdf"
+          },
+          {
+            "label": "Program",
+            "href": "/uploads/2026/J3b-opp-25.pdf"
+          },
+          {
+            "label": "Accreditation",
+            "href": "https://biotechuniv.edu.ua/fakulteti-instituti/fakultet-upravlinnya-torgovelno-pidpriyemnitskoyu-ta-mitnoyu-diyalnistyu/kafedra-turizmu/akred-kaf-tur/242-pershyj-bakalavrskyj-riven-osvity/"
+          }
+        ]
       }
     }
   }
