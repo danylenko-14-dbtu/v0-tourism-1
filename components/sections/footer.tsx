@@ -10,6 +10,12 @@ interface FooterProps {
   locale: Locale;
 }
 
+function isExternalHref(href?: string) {
+  if (!href) return false;
+  if (href.startsWith("#") || href.startsWith("/")) return false;
+  return href.startsWith("http") || href.startsWith("//");
+}
+
 export function Footer({ dictionary, locale }: FooterProps) {
   const currentYear = new Date().getFullYear();
   const socialLinks = [
@@ -43,18 +49,22 @@ export function Footer({ dictionary, locale }: FooterProps) {
           <div>
             <h3 className="text-sm font-semibold">{dictionary.footer.links.study.title}</h3>
             <ul className="mt-4 space-y-3">
-              {dictionary.footer.links.study.items.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={item.href || "#"}
-                    className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+              {dictionary.footer.links.study.items.map((item, index) => {
+                const external = isExternalHref(item.href);
+
+                return (
+                  <li key={index}>
+                    <Link
+                      href={item.href || "#"}
+                      target={external ? "_blank" : undefined}
+                      rel={external ? "noopener noreferrer" : undefined}
+                      className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -62,18 +72,22 @@ export function Footer({ dictionary, locale }: FooterProps) {
           <div>
             <h3 className="text-sm font-semibold">{dictionary.footer.links.department.title}</h3>
             <ul className="mt-4 space-y-3">
-              {dictionary.footer.links.department.items.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={item.href || "#"}
-                    className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+              {dictionary.footer.links.department.items.map((item, index) => {
+                const external = isExternalHref(item.href);
+
+                return (
+                  <li key={index}>
+                    <Link
+                      href={item.href || "#"}
+                      target={external ? "_blank" : undefined}
+                      rel={external ? "noopener noreferrer" : undefined}
+                      className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -81,18 +95,22 @@ export function Footer({ dictionary, locale }: FooterProps) {
           <div>
             <h3 className="text-sm font-semibold">{dictionary.footer.links.legal.title}</h3>
             <ul className="mt-4 space-y-3">
-              {dictionary.footer.links.legal.items.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={item.href || "#"}
-                    className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+              {dictionary.footer.links.legal.items.map((item, index) => {
+                const external = isExternalHref(item.href);
+
+                return (
+                  <li key={index}>
+                    <Link
+                      href={item.href || "#"}
+                      target={external ? "_blank" : undefined}
+                      rel={external ? "noopener noreferrer" : undefined}
+                      className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
@@ -115,8 +133,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
             );
           })}
           <div className="text-sm text-muted-foreground">
-            <MapPin className="inline" />{" "}
-            <span>м. Харків, вул. Клочківська, 333, 61051, Україна</span>
+            <MapPin className="inline" /> <span>{dictionary.footer.address}</span>
           </div>
         </div>
 
