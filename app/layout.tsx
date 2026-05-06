@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
+import { serverEnv } from "@/lib/env";
+
 const _geist = Geist({
   subsets: ["latin", "latin-ext"],
   variable: "--font-geist-sans",
@@ -12,31 +14,32 @@ const _geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
+const { siteUrl } = serverEnv;
+
 export const metadata: Metadata = {
   title: {
     default: "Tourism and Recreation",
     template: "%s | Tourism and Recreation",
   },
   description:
-    "Вступай на спеціальність Туризм і рекреація в Державний біотехнологічний університет. " +
+    "Вступай на спеціальність Туризм та рекреація в Державний біотехнологічний університет. " +
     "Бакалавр і магістр — очна та заочна форми. Офіційний диплом державного зразка. Бюджетне фінансування і контрактна форма!",
-  generator: "v0.app",
+
+  metadataBase: new URL(siteUrl),
+
+  robots: {
+    index: siteUrl === "http://localhost:3000" ? false : true,
+    follow: true,
+  },
+
   icons: {
     icon: [
-      {
-        url: "/svg-favicon.svg",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/svg-favicon.svg",
-        media: "(prefers-color-scheme: dark)",
-      },
       {
         url: "/svg-favicon.svg",
         type: "image/svg+xml",
       },
     ],
-    apple: "/svg-favicon.svg",
+    apple: "/apple-touch-icon.png",
   },
 };
 

@@ -1,49 +1,81 @@
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import { ThemeProvider } from '@/components/theme-provider'
-import { ContactDialogProvider } from '@/hooks/use-contact-dialog'
-import { locales, type Locale } from '@/lib/i18n'
-import { getDictionary } from '@/lib/dictionaries'
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ContactDialogProvider } from "@/hooks/use-contact-dialog";
+import { locales, type Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/dictionaries";
+import { serverEnv } from "@/lib/env";
 
 interface LocaleLayoutProps {
-  children: React.ReactNode
-  params: Promise<{ locale: string }>
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }
 
+const { siteUrl } = serverEnv;
+
 export async function generateStaticParams() {
-  return locales.map((locale) => ({ locale }))
+  return locales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string }>
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const { locale } = await params
+  const { locale } = await params;
 
   if (!locales.includes(locale as Locale)) {
-    return {}
+    return {};
   }
 
-  const dictionary = await getDictionary(locale as Locale)
-  
+  const dictionary = await getDictionary(locale as Locale);
+
   return {
     title: dictionary.metadata.title,
     description: dictionary.metadata.description,
-  }
+
+    alternates: {
+      canonical: `${siteUrl}/${locale}`,
+      languages: {
+        uk: `${siteUrl}/uk`,
+        en: `${siteUrl}/en`,
+        "x-default": `${siteUrl}/uk`,
+      },
+    },
+
+    openGraph: {
+      title: dictionary.metadata.title,
+      description: dictionary.metadata.description,
+      url: `${siteUrl}/${locale}`,
+      siteName: "Туризм та рекреація ДБТУ",
+      locale: locale === "uk" ? "uk_UA" : "en_US",
+      type: "website",
+      images: [
+        {
+          url: "/og_image_uk.png",
+          width: 1200,
+          height: 630,
+          alt: dictionary.metadata.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dictionary.metadata.title,
+      description: dictionary.metadata.description,
+      images: ["/og_image_uk.png"],
+    },
+  };
 }
 
-export default async function LocaleLayout({
-  children,
-  params,
-}: LocaleLayoutProps) {
-  const { locale } = await params
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
+  const { locale } = await params;
 
   if (!locales.includes(locale as Locale)) {
-    notFound()
+    notFound();
   }
 
-  const typedLocale = locale as Locale
+  const typedLocale = locale as Locale;
 
   return (
     <html lang={typedLocale} suppressHydrationWarning data-scroll-behavior="smooth">
@@ -54,11 +86,9 @@ export default async function LocaleLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ContactDialogProvider>
-            {children}
-          </ContactDialogProvider>
+          <ContactDialogProvider>{children}</ContactDialogProvider>
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

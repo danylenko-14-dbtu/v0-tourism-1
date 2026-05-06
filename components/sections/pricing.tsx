@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Dictionary } from "@/lib/dictionaries";
-import { publicEnv } from "@/lib/public-env";
+import { publicEnv } from "@/lib/env";
 import { cn } from "@/lib/utils";
 
 interface PricingProps {

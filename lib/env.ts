@@ -1,47 +1,49 @@
-const DEFAULT_CONTACT_PHONE_NUMBER = '+380 50 827 1056'
+const DEFAULT_CONTACT_PHONE_NUMBER = "+380 50 827 1056";
 
 const DEFAULT_PRICING_ANNUAL_PRICES = {
   bachelorFullTime: 21900,
   bachelorPartTime: 12000,
   masterFullTime: 26580,
   masterPartTime: 13500,
-} as const
+} as const;
+
+const DEFAULT_SITE_URL = "https://tourism.biotechuniv.edu.ua";
 
 function readStringEnv(value: string | undefined, fallback: string) {
-  return value?.trim() || fallback
+  return value?.trim() || fallback;
 }
 
 function readNumberEnv(value: string | undefined, fallback: number) {
-  const parsed = Number(value)
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
 
 function formatPhoneDisplay(value: string) {
-  const normalized = value.trim().replace(/\s+/g, '')
-  const digits = normalized.startsWith('+') ? normalized.slice(1) : normalized
+  const normalized = value.trim().replace(/\s+/g, "");
+  const digits = normalized.startsWith("+") ? normalized.slice(1) : normalized;
 
-  if (digits.startsWith('380') && digits.length === 12) {
-    const local = digits.slice(3)
-    return `+380 ${local.slice(0, 2)} ${local.slice(2, 5)} ${local.slice(5, 7)} ${local.slice(7)}`
+  if (digits.startsWith("380") && digits.length === 12) {
+    const local = digits.slice(3);
+    return `+380 ${local.slice(0, 2)} ${local.slice(2, 5)} ${local.slice(5, 7)} ${local.slice(7)}`;
   }
 
-  return value.trim()
+  return value.trim();
 }
 
 function formatPhoneTelHref(value: string) {
-  const normalized = value.trim().replace(/[^\d+]/g, '')
+  const normalized = value.trim().replace(/[^\d+]/g, "");
 
   if (!normalized) {
-    return ''
+    return "";
   }
 
-  return normalized.startsWith('+') ? `tel:${normalized}` : `tel:+${normalized}`
+  return normalized.startsWith("+") ? `tel:${normalized}` : `tel:+${normalized}`;
 }
 
 const contactPhoneNumberRaw = readStringEnv(
   process.env.NEXT_PUBLIC_CONTACT_PHONE_NUMBER,
   DEFAULT_CONTACT_PHONE_NUMBER
-)
+);
 
 export const publicEnv = {
   contactPhoneNumber: {
@@ -66,4 +68,8 @@ export const publicEnv = {
       DEFAULT_PRICING_ANNUAL_PRICES.masterPartTime
     ),
   },
-} as const
+} as const;
+
+export const serverEnv = {
+  siteUrl: readStringEnv(process.env.SITE_URL, DEFAULT_SITE_URL),
+} as const;

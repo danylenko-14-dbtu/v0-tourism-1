@@ -2,17 +2,12 @@
 
 import { useState } from "react";
 import { FaTelegram, FaViber } from "react-icons/fa6";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useContactDialog } from "@/hooks/use-contact-dialog";
 import type { Dictionary } from "@/lib/dictionaries";
-import { publicEnv } from "@/lib/public-env";
+import { publicEnv } from "@/lib/env";
 
 interface ContactDialogProps {
   dictionary: Dictionary;
@@ -51,21 +46,9 @@ export function ContactDialog({ dictionary }: ContactDialogProps) {
               {dictionary.contactDialog.phoneLabel}
             </label>
             <div className="flex gap-2">
-              <Input
-                type="tel"
-                value={phoneNumber.display}
-                readOnly
-                className="flex-1 bg-muted"
-              />
-              <Button
-                type="button"
-                variant="outline"
-                onClick={handleCopy}
-                className="px-4"
-              >
-                {copied
-                  ? dictionary.contactDialog.copied
-                  : dictionary.contactDialog.copy}
+              <Input type="tel" value={phoneNumber.display} readOnly className="flex-1 bg-muted" />
+              <Button type="button" variant="outline" onClick={handleCopy} className="px-4">
+                {copied ? dictionary.contactDialog.copied : dictionary.contactDialog.copy}
               </Button>
             </div>
           </div>
@@ -80,7 +63,7 @@ export function ContactDialog({ dictionary }: ContactDialogProps) {
                 window.open(
                   `viber://chat?number=${encodedPhoneNumber}`,
                   "_blank",
-                  "noopener,noreferrer",
+                  "noopener,noreferrer"
                 );
               }}
             >
@@ -96,7 +79,7 @@ export function ContactDialog({ dictionary }: ContactDialogProps) {
                 window.open(
                   `https://t.me/+${telegramSharePhoneNumber}`,
                   "_blank",
-                  "noopener,noreferrer",
+                  "noopener,noreferrer"
                 );
               }}
             >
