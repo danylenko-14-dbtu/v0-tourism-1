@@ -14,7 +14,7 @@ const _geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
-const { siteUrl } = serverEnv;
+const { siteUrl, robotsAllowIndex } = serverEnv;
 
 export const metadata: Metadata = {
   title: {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   robots: {
-    index: siteUrl === "http://localhost:3000" ? false : true,
+    index: robotsAllowIndex,
     follow: true,
   },
 

@@ -72,4 +72,5 @@ export const publicEnv = {
 
 export const serverEnv = {
   siteUrl: readStringEnv(process.env.SITE_URL, DEFAULT_SITE_URL),
+  robotsAllowIndex: readStringEnv(process.env.ROBOTS_ALLOW_INDEX, "false") === "true",
 } as const;

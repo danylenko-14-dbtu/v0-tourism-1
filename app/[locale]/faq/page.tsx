@@ -49,7 +49,7 @@ export async function generateMetadata({
       description: dictionary.faq.subtitle,
       url: `${siteUrl}/${locale}/faq`,
       type: "website",
-      images: [{ url: "/og_image_uk.jpg", width: 1200, height: 630 }],
+      images: [{ url: `${siteUrl}/og_image_uk.png`, width: 1200, height: 630 }],
     },
   };
 }
