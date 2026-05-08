@@ -30,6 +30,7 @@ export async function generateMetadata({
   }
 
   const dictionary = await getDictionary(locale as Locale);
+  const ogImage = locale === "uk" ? "/og_image_uk.jpg" : "/og_image_en.jpg";
 
   return {
     title: `${dictionary.faq.title} — ${dictionary.brand.name}`,
@@ -49,7 +50,7 @@ export async function generateMetadata({
       description: dictionary.faq.subtitle,
       url: `${siteUrl}/${locale}/faq`,
       type: "website",
-      images: [{ url: `${siteUrl}/og_image_uk.png`, width: 1200, height: 630 }],
+      images: [{ url: ogImage, width: 1200, height: 630 }],
     },
   };
 }
