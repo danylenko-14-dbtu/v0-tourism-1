@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getDictionary } from '@/lib/dictionaries'
 import { locales, type Locale } from '@/lib/i18n'
-import { Header } from '@/components/sections/header'
 import { Hero } from '@/components/sections/hero'
 import { Professions } from '@/components/sections/professions'
 import { LearningProcess } from '@/components/sections/learning-process'
@@ -12,8 +11,6 @@ import { About } from '@/components/sections/about'
 import { Pricing } from '@/components/sections/pricing'
 import { Partners } from '@/components/sections/partners'
 import { CTA } from '@/components/sections/cta'
-import { Footer } from '@/components/sections/footer'
-import { ContactDialog } from '@/components/contact-dialog'
 
 interface PageProps {
   params: Promise<{ locale: string }>
@@ -30,22 +27,17 @@ export default async function HomePage({ params }: PageProps) {
   const dictionary = await getDictionary(typedLocale)
 
   return (
-    <div id="top" className="flex min-h-screen flex-col">
-      <Header locale={typedLocale} dictionary={dictionary} />
-      <main className="flex-1">
-        <Hero dictionary={dictionary} locale={typedLocale} />
-        <Professions dictionary={dictionary} />
-        <LearningProcess dictionary={dictionary} />
-        <GraduatesWork dictionary={dictionary} />
-        <ProgramFacts dictionary={dictionary} />
-        <HowToApply dictionary={dictionary} />
-        <About dictionary={dictionary} />
-        <Pricing dictionary={dictionary} />
-        <Partners dictionary={dictionary} />
-        <CTA dictionary={dictionary} locale={typedLocale} />
-      </main>
-      <Footer dictionary={dictionary} locale={typedLocale} />
-      <ContactDialog dictionary={dictionary} />
-    </div>
+    <main className="flex-1">
+      <Hero dictionary={dictionary} locale={typedLocale} />
+      <Professions dictionary={dictionary} />
+      <LearningProcess dictionary={dictionary} />
+      <GraduatesWork dictionary={dictionary} />
+      <ProgramFacts dictionary={dictionary} />
+      <HowToApply dictionary={dictionary} />
+      <About dictionary={dictionary} />
+      <Pricing dictionary={dictionary} />
+      <Partners dictionary={dictionary} />
+      <CTA dictionary={dictionary} locale={typedLocale} />
+    </main>
   )
 }
