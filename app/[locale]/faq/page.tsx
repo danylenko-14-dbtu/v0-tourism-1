@@ -2,10 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getDictionary } from "@/lib/dictionaries";
 import { locales, type Locale } from "@/lib/i18n";
-import { Header } from "@/components/sections/header";
 import { FAQ } from "@/components/sections/faq";
-import { Footer } from "@/components/sections/footer";
-import { ContactDialog } from "@/components/contact-dialog";
 import { serverEnv } from "@/lib/env";
 
 interface FAQPageProps {
@@ -66,13 +63,8 @@ export default async function FAQPage({ params }: FAQPageProps) {
   const dictionary = await getDictionary(typedLocale);
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header locale={typedLocale} dictionary={dictionary} />
-      <main className="flex-1">
-        <FAQ dictionary={dictionary} />
-      </main>
-      <Footer dictionary={dictionary} locale={typedLocale} />
-      <ContactDialog dictionary={dictionary} />
-    </div>
+    <main className="flex-1">
+      <FAQ dictionary={dictionary} />
+    </main>
   );
 }

@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ContactDialog } from "@/components/contact-dialog";
+import { Footer } from "@/components/sections/footer";
+import { Header } from "@/components/sections/header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ContactDialogProvider } from "@/hooks/use-contact-dialog";
 import { locales, type Locale } from "@/lib/i18n";
@@ -77,6 +80,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   }
 
   const typedLocale = locale as Locale;
+  const dictionary = await getDictionary(typedLocale);
 
   return (
     <html lang={typedLocale} suppressHydrationWarning data-scroll-behavior="smooth">
@@ -87,7 +91,14 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           enableSystem
           disableTransitionOnChange
         >
-          <ContactDialogProvider>{children}</ContactDialogProvider>
+          <ContactDialogProvider>
+            <div id="top" className="flex min-h-screen flex-col">
+              <Header locale={typedLocale} dictionary={dictionary} />
+              {children}
+              <Footer dictionary={dictionary} locale={typedLocale} />
+              <ContactDialog dictionary={dictionary} />
+            </div>
+          </ContactDialogProvider>
         </ThemeProvider>
       </body>
     </html>
