@@ -59,9 +59,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      {children}
-      <Analytics />
-    </>
+    <html lang="uk" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <body className="font-sans antialiased">
+        {children}
+        <Analytics />
+      </body>
+    </html>
   );
 }

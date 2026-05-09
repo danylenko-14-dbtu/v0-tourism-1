@@ -83,24 +83,20 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const dictionary = await getDictionary(typedLocale);
 
   return (
-    <html lang={typedLocale} suppressHydrationWarning data-scroll-behavior="smooth">
-      <body className="font-sans antialiased" suppressHydrationWarning>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ContactDialogProvider>
-            <div id="top" className="flex min-h-screen flex-col">
-              <Header locale={typedLocale} dictionary={dictionary} />
-              {children}
-              <Footer dictionary={dictionary} locale={typedLocale} />
-              <ContactDialog dictionary={dictionary} />
-            </div>
-          </ContactDialogProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <ContactDialogProvider>
+        <div id="top" className="flex min-h-screen flex-col">
+          <Header locale={typedLocale} dictionary={dictionary} />
+          {children}
+          <Footer dictionary={dictionary} locale={typedLocale} />
+          <ContactDialog dictionary={dictionary} />
+        </div>
+      </ContactDialogProvider>
+    </ThemeProvider>
   );
 }
