@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
-import "./globals.css";
-
 import { serverEnv } from "@/lib/env";
+import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import "./globals.css";
 
 const _geist = Geist({
   subsets: ["latin", "latin-ext"],
@@ -30,6 +30,10 @@ export const metadata: Metadata = {
   robots: {
     index: robotsAllowIndex,
     follow: true,
+  },
+
+  verification: {
+    google: "B3FLAIq7ObS7cx74Mudlj4bRp2_hupFBXu8UFxMSnRQ",
   },
 
   icons: {
@@ -59,6 +63,7 @@ export default function RootLayout({
     <>
       {children}
       <Analytics />
+      <GoogleAnalytics gaId="G-H45NJ3NRR6" />
     </>
   );
 }
