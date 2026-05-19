@@ -1,4 +1,3 @@
-import { createClient } from "@sanity/client";
 import OpenAI from "openai";
 import { sanity } from "./sanity";
 
@@ -113,7 +112,24 @@ async function callOpenAI(title: string, excerpt: string, mainImageAlt: string, 
     ],
   });
 
-  const result: TranslationResult = JSON.parse(response.choices[0].message.content ?? "{}");
+  //   const result: TranslationResult = JSON.parse(response.choices[0].message.content ?? "{}");
+
+  const raw = response.choices[0].message.content;
+
+  if (!raw) {
+    throw new Error("OpenAI returned empty response");
+  }
+
+  let result: TranslationResult;
+  try {
+    result = JSON.parse(raw);
+  } catch {
+    throw new Error("OpenAI returned malformed JSON");
+  }
+
+  if (!Array.isArray(result.texts)) {
+    throw new Error("OpenAI response missing texts array");
+  }
 
   const translatedMap = new Map(result.texts.map((t) => [t.id, t.translated]));
   const translatedBlocks = applyTranslations(blocks, entries, translatedMap);
