@@ -1,5 +1,19 @@
+import { createClient } from "@sanity/client";
 import OpenAI from "openai";
-import { sanity } from "./sanity";
+
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const token = process.env.SANITY_API_TOKEN;
+
+if (!projectId) throw new Error("Missing NEXT_PUBLIC_SANITY_PROJECT_ID");
+if (!token) throw new Error("Missing SANITY_API_TOKEN");
+
+export const sanity = createClient({
+  projectId,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
+  apiVersion: "2026-05-02",
+  token,
+  useCdn: false,
+});
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
 
@@ -111,8 +125,6 @@ async function callOpenAI(title: string, excerpt: string, mainImageAlt: string, 
       },
     ],
   });
-
-  //   const result: TranslationResult = JSON.parse(response.choices[0].message.content ?? "{}");
 
   const raw = response.choices[0].message.content;
 
