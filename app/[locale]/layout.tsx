@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { ContactDialog } from "@/components/contact-dialog";
 import { Footer } from "@/components/sections/footer";
 import { Header } from "@/components/sections/header";
-import { ThemeProvider } from "@/components/theme-provider";
 import { ContactDialogProvider } from "@/hooks/use-contact-dialog";
 import { locales, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
@@ -83,24 +82,13 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const dictionary = await getDictionary(typedLocale);
 
   return (
-    <html lang={typedLocale} suppressHydrationWarning data-scroll-behavior="smooth">
-      <body className="font-sans antialiased" suppressHydrationWarning>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ContactDialogProvider>
-            <div id="top" className="flex min-h-screen flex-col">
-              <Header locale={typedLocale} dictionary={dictionary} />
-              {children}
-              <Footer dictionary={dictionary} locale={typedLocale} />
-              <ContactDialog dictionary={dictionary} />
-            </div>
-          </ContactDialogProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ContactDialogProvider>
+      <div id="top" className="flex min-h-screen flex-col">
+        <Header locale={typedLocale} dictionary={dictionary} />
+        {children}
+        <Footer dictionary={dictionary} locale={typedLocale} />
+        <ContactDialog dictionary={dictionary} />
+      </div>
+    </ContactDialogProvider>
   );
 }

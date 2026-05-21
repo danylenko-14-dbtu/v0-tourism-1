@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { serverEnv } from "@/lib/env";
+import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
@@ -60,10 +61,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      {children}
-      <Analytics />
-      <GoogleAnalytics gaId="G-H45NJ3NRR6" />
-    </>
+    <html lang="uk" suppressHydrationWarning data-scroll-behavior="smooth">
+      <body
+        className={`${_geist.variable} ${_geistMono.variable} font-sans antialiased`}
+        suppressHydrationWarning
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+        <Analytics />
+        <GoogleAnalytics gaId="G-H45NJ3NRR6" />
+      </body>
+    </html>
   );
 }

@@ -1,21 +1,22 @@
-import Link from "next/link"
+import Link from "next/link";
+import Image from "next/image";
 
 interface PostForDisplay {
-  _id: string
-  title: string
-  href: string
-  imageUrl?: string
-  imageAlt?: string
-  categoryLabel?: string
-  formattedDate: string
-  excerpt?: string
-  authorName?: string
-  autoTranslated?: boolean
+  _id: string;
+  title: string;
+  href: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  lqip?: string;
+  categoryLabel?: string;
+  formattedDate: string;
+  excerpt?: string;
+  authorName?: string;
 }
 
 interface BlogGridProps {
-  posts: PostForDisplay[]
-  locale: "uk" | "en"
+  posts: PostForDisplay[];
+  locale: "uk" | "en";
 }
 
 const EMPTY_COPY: Record<BlogGridProps["locale"], { title: string; description: string }> = {
@@ -27,73 +28,48 @@ const EMPTY_COPY: Record<BlogGridProps["locale"], { title: string; description: 
     title: "No posts yet",
     description: "Check back soon — new articles are on the way.",
   },
-}
-
-const AUTO_TRANSLATED_LABEL: Record<BlogGridProps["locale"], string> = {
-  uk: "Автопереклад",
-  en: "Auto-translated",
-}
+};
 
 function CategoryLabel({ label }: { label?: string }) {
-  if (!label) return null
-  return (
-    <span className="text-sm font-medium text-chart-3 leading-none">
-      {label}
-    </span>
-  )
-}
-
-function AutoTranslatedNote({
-  autoTranslated,
-  locale,
-}: {
-  autoTranslated?: boolean
-  locale: BlogGridProps["locale"]
-}) {
-  if (!autoTranslated || locale !== "en") return null
-  return (
-    <span className="mt-2 block text-xs italic text-muted-foreground">
-      {AUTO_TRANSLATED_LABEL[locale]}
-    </span>
-  )
+  if (!label) return null;
+  return <span className="text-sm font-medium text-chart-3 leading-none">{label}</span>;
 }
 
 function PostImage({
   src,
   alt,
+  lqip,
+  sizes,
+  priority = false,
   className,
 }: {
-  src?: string
-  alt?: string
-  className?: string
+  src?: string;
+  alt?: string;
+  lqip?: string;
+  sizes: string;
+  priority?: boolean;
+  className?: string;
 }) {
   if (!src) {
-    return (
-      <div
-        className={`bg-muted ${className ?? ""}`}
-        aria-hidden="true"
-      />
-    )
+    return <div className={`bg-muted ${className ?? ""}`} aria-hidden />;
   }
   return (
-    <img
-      src={src || "/placeholder.svg"}
+    <Image
+      src={src}
       alt={alt ?? ""}
-      loading="lazy"
-      className={`h-full w-full object-cover ${className ?? ""}`}
+      fill
+      sizes={sizes}
+      priority={priority}
+      placeholder={lqip ? "blur" : "empty"}
+      blurDataURL={lqip}
+      className={`object-cover ${className ?? ""}`}
     />
-  )
+  );
 }
 
 /* ------------------------------ Hero card ------------------------------ */
 
-function HeroCard({
-  post,
-  locale,
-}: {
-  post: PostForDisplay
-  locale: BlogGridProps["locale"]
-}) {
+function HeroCard({ post }: { post: PostForDisplay }) {
   return (
     <article className="group bg-muted/30">
       <Link
@@ -104,6 +80,8 @@ function HeroCard({
           <PostImage
             src={post.imageUrl}
             alt={post.imageAlt ?? post.title}
+            sizes="(max-width: 768px) 100vw, 55vw"
+            priority={true}
             className="transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </div>
@@ -118,13 +96,12 @@ function HeroCard({
                 {post.excerpt}
               </p>
             )}
-            <AutoTranslatedNote autoTranslated={post.autoTranslated} locale={locale} />
           </div>
           <p className="text-sm text-muted-foreground">{post.formattedDate}</p>
         </div>
       </Link>
     </article>
-  )
+  );
 }
 
 /* --------------------------- Horizontal card --------------------------- */
@@ -132,21 +109,17 @@ function HeroCard({
 
 function HorizontalCard({
   post,
-  locale,
 }: {
-  post: PostForDisplay
-  locale: BlogGridProps["locale"]
+  post: PostForDisplay;
 }) {
   return (
     <article className="group h-full bg-muted/30">
-      <Link
-        href={post.href}
-        className="grid h-full grid-cols-2 focus-visible-ring rounded-sm"
-      >
+      <Link href={post.href} className="grid h-full grid-cols-2 focus-visible-ring rounded-sm">
         <div className="relative overflow-hidden">
           <PostImage
             src={post.imageUrl}
             alt={post.imageAlt ?? post.title}
+            sizes="(max-width: 768px) 100vw, 25vw"
             className="transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </div>
@@ -156,35 +129,26 @@ function HorizontalCard({
             <h3 className="text-lg font-semibold leading-snug tracking-tight text-foreground text-balance md:text-xl group-hover:underline underline-offset-4">
               {post.title}
             </h3>
-            <AutoTranslatedNote autoTranslated={post.autoTranslated} locale={locale} />
           </div>
           <p className="text-sm text-muted-foreground">{post.formattedDate}</p>
         </div>
       </Link>
     </article>
-  )
+  );
 }
 
 /* ---------------------------- Vertical card ---------------------------- */
 /* Used on desktop for col-span 1 cards                                   */
 
-function VerticalCard({
-  post,
-  locale,
-}: {
-  post: PostForDisplay
-  locale: BlogGridProps["locale"]
-}) {
+function VerticalCard({ post }: { post: PostForDisplay }) {
   return (
     <article className="group h-full bg-muted/30">
-      <Link
-        href={post.href}
-        className="flex h-full flex-col focus-visible-ring rounded-sm"
-      >
+      <Link href={post.href} className="flex h-full flex-col focus-visible-ring rounded-sm">
         <div className="relative aspect-[4/3] overflow-hidden">
           <PostImage
             src={post.imageUrl}
             alt={post.imageAlt ?? post.title}
+            sizes="(max-width: 768px) 100vw, 25vw"
             className="transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </div>
@@ -194,34 +158,29 @@ function VerticalCard({
             <h3 className="text-lg font-semibold leading-snug tracking-tight text-foreground text-balance group-hover:underline underline-offset-4">
               {post.title}
             </h3>
-            <AutoTranslatedNote autoTranslated={post.autoTranslated} locale={locale} />
           </div>
           <p className="text-sm text-muted-foreground">{post.formattedDate}</p>
         </div>
       </Link>
     </article>
-  )
+  );
 }
 
 /* -------------------- Mobile compact (horizontal small) ---------------- */
 
 function MobileCompactCard({
   post,
-  locale,
 }: {
-  post: PostForDisplay
-  locale: BlogGridProps["locale"]
+  post: PostForDisplay;
 }) {
   return (
     <article className="group bg-muted/30">
-      <Link
-        href={post.href}
-        className="flex gap-4 p-3 focus-visible-ring rounded-sm"
-      >
+      <Link href={post.href} className="flex gap-4 p-3 focus-visible-ring rounded-sm">
         <div className="relative h-24 w-28 shrink-0 overflow-hidden">
           <PostImage
             src={post.imageUrl}
             alt={post.imageAlt ?? post.title}
+            sizes="112px"
             className="transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </div>
@@ -231,32 +190,27 @@ function MobileCompactCard({
             {post.title}
           </h3>
           <p className="text-xs text-muted-foreground">{post.formattedDate}</p>
-          <AutoTranslatedNote autoTranslated={post.autoTranslated} locale={locale} />
         </div>
       </Link>
     </article>
-  )
+  );
 }
 
 /* -------------------- Mobile featured (vertical large) ----------------- */
 
 function MobileFeaturedCard({
   post,
-  locale,
 }: {
-  post: PostForDisplay
-  locale: BlogGridProps["locale"]
+  post: PostForDisplay;
 }) {
   return (
     <article className="group bg-muted/30">
-      <Link
-        href={post.href}
-        className="flex flex-col focus-visible-ring rounded-sm"
-      >
+      <Link href={post.href} className="flex flex-col focus-visible-ring rounded-sm">
         <div className="relative aspect-[16/10] overflow-hidden">
           <PostImage
             src={post.imageUrl}
             alt={post.imageAlt ?? post.title}
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </div>
@@ -265,39 +219,34 @@ function MobileFeaturedCard({
           <h3 className="text-xl font-semibold leading-tight tracking-tight text-foreground text-balance group-hover:underline underline-offset-4">
             {post.title}
           </h3>
-          <AutoTranslatedNote autoTranslated={post.autoTranslated} locale={locale} />
           <p className="text-sm text-muted-foreground">{post.formattedDate}</p>
         </div>
       </Link>
     </article>
-  )
+  );
 }
 
 /* -------------------------------- Grid -------------------------------- */
 
 export function BlogGrid({ posts, locale }: BlogGridProps) {
   if (posts.length === 0) {
-    const empty = EMPTY_COPY[locale]
+    const empty = EMPTY_COPY[locale];
     return (
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-border/50 bg-muted/30 px-6 py-20 text-center">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            {empty.title}
-          </h2>
-          <p className="max-w-md text-base text-muted-foreground">
-            {empty.description}
-          </p>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">{empty.title}</h2>
+          <p className="max-w-md text-base text-muted-foreground">{empty.description}</p>
         </div>
       </div>
-    )
+    );
   }
 
-  const hero = posts[0]
-  const row2Wide = posts[1]
-  const row2Small = posts.slice(2, 4) // posts[2], posts[3]
-  const row3Small = posts.slice(4, 6) // posts[4], posts[5]
-  const row3Wide = posts[6]
-  const rest = posts.slice(7)
+  const hero = posts[0];
+  const row2Wide = posts[1];
+  const row2Small = posts.slice(2, 4); // posts[2], posts[3]
+  const row3Small = posts.slice(4, 6); // posts[4], posts[5]
+  const row3Wide = posts[6];
+  const rest = posts.slice(7);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
@@ -305,28 +254,28 @@ export function BlogGrid({ posts, locale }: BlogGridProps) {
       <div className="flex flex-col gap-6 md:hidden">
         {posts.map((post, index) => {
           if (index < 2) {
-            return <MobileFeaturedCard key={post._id} post={post} locale={locale} />
+            return <MobileFeaturedCard key={post._id} post={post} />;
           }
-          return <MobileCompactCard key={post._id} post={post} locale={locale} />
+          return <MobileCompactCard key={post._id} post={post} />;
         })}
       </div>
 
       {/* Desktop layout */}
       <div className="hidden md:flex md:flex-col md:gap-6">
         {/* Row 1: Hero (full width, internal 2/2 split) */}
-        <HeroCard post={hero} locale={locale} />
+        <HeroCard post={hero} />
 
         {/* Row 2: wide-left (2) + small (1) + small (1) */}
         {(row2Wide || row2Small.length > 0) && (
           <div className="grid grid-cols-4 gap-6">
             {row2Wide && (
               <div className="col-span-2">
-                <HorizontalCard post={row2Wide} locale={locale} />
+                <HorizontalCard post={row2Wide} />
               </div>
             )}
             {row2Small.map((post) => (
               <div key={post._id} className="col-span-1">
-                <VerticalCard post={post} locale={locale} />
+                <VerticalCard post={post} />
               </div>
             ))}
           </div>
@@ -337,12 +286,12 @@ export function BlogGrid({ posts, locale }: BlogGridProps) {
           <div className="grid grid-cols-4 gap-6">
             {row3Small.map((post) => (
               <div key={post._id} className="col-span-1">
-                <VerticalCard post={post} locale={locale} />
+                <VerticalCard post={post} />
               </div>
             ))}
             {row3Wide && (
               <div className="col-span-2">
-                <HorizontalCard post={row3Wide} locale={locale} />
+                <HorizontalCard post={row3Wide} />
               </div>
             )}
           </div>
@@ -353,14 +302,14 @@ export function BlogGrid({ posts, locale }: BlogGridProps) {
           <div className="grid grid-cols-4 gap-6">
             {rest.map((post) => (
               <div key={post._id} className="col-span-1">
-                <VerticalCard post={post} locale={locale} />
+                <VerticalCard post={post} />
               </div>
             ))}
           </div>
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default BlogGrid
+export default BlogGrid;

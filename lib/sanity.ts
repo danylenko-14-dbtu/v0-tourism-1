@@ -7,9 +7,27 @@ export interface PostListItem {
   slug: { current: string };
   excerpt: string;
   publishedAt: string;
+  categories?: Array<{
+    _id: string;
+    title: string;
+  }>;
   mainImage?: {
     asset: { _ref: string; _type: "reference" };
+    metadata?: {
+      lqip?: string;
+      dimensions?: {
+        width?: number;
+        height?: number;
+      };
+    };
     alt?: string;
+    hotspot?: {
+      x: number;
+      y: number;
+      height?: number;
+      width?: number;
+    };
+    crop?: object;
   };
 }
 
@@ -31,9 +49,24 @@ export function urlFor(source: SanityImageSource) {
 }
 
 export const ALL_POSTS_QUERY = `
-  *[_type == "post" && language == $locale && draft != true]
-  | order(publishedAt desc) {
+  *[_type == "post" && language == $locale && !(_id in path("drafts.**"))]
+  | order(publishedAt desc) [0...$limit] {
     _id, title, slug, excerpt, publishedAt,
-    mainImage { asset, alt }
-  }
+    categories[]-> {
+      _id,
+      "title": select(
+        defined(title[$locale]) => title[$locale],
+        defined(title.uk) => title.uk,
+        defined(title.en) => title.en,
+        title
+      )
+    },
+    mainImage {
+      asset,
+      "metadata": asset->metadata { lqip, dimensions { width, height } },
+      alt,
+      hotspot,
+      crop 
+    }
+  }    
 `;
