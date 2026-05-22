@@ -1,5 +1,4 @@
 import { getAllPosts } from "@/lib/blog";
-import { urlFor } from "@/lib/sanity";
 import { BlogGrid } from "@/components/blog/BlogGrid";
 
 const BLOG_POSTS_LIMIT = 7;
@@ -17,9 +16,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
     _id: post._id,
     title: post.title,
     href: `/${normalizedLocale}/blog/${post.slug.current}`,
-    imageUrl: post.mainImage ? urlFor(post.mainImage).width(1200).auto("format").url() : undefined,
-    imageAlt: post.mainImage?.alt ?? post.title,
-    lqip: post.mainImage?.metadata?.lqip,
+    mainImage: post.mainImage,
     categoryLabel: asDisplayString(post.categories?.[0]?.title),
     formattedDate: new Date(post.publishedAt).toLocaleDateString(
       normalizedLocale === "uk" ? "uk-UA" : "en-US",

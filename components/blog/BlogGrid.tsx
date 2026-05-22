@@ -1,13 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
+import { buildImageUrl, type PostListItem } from "@/lib/sanity";
 
 interface PostForDisplay {
   _id: string;
   title: string;
   href: string;
-  imageUrl?: string;
-  imageAlt?: string;
-  lqip?: string;
+  mainImage?: PostListItem["mainImage"];
   categoryLabel?: string;
   formattedDate: string;
   excerpt?: string;
@@ -36,29 +35,31 @@ function CategoryLabel({ label }: { label?: string }) {
 }
 
 function PostImage({
-  src,
-  alt,
-  lqip,
-  sizes,
+  mainImage,
+  width,
+  height,
   priority = false,
   className,
 }: {
-  src?: string;
-  alt?: string;
-  lqip?: string;
-  sizes: string;
+  mainImage?: PostListItem["mainImage"];
+  width: number;
+  height: number;
   priority?: boolean;
   className?: string;
 }) {
+  const src = buildImageUrl(mainImage, width, height);
+  const lqip = mainImage?.metadata?.lqip;
+
   if (!src) {
     return <div className={`bg-muted ${className ?? ""}`} aria-hidden />;
   }
+
   return (
     <Image
       src={src}
-      alt={alt ?? ""}
+      alt={mainImage?.alt ?? ""}
       fill
-      sizes={sizes}
+      sizes={`(max-width: 768px) 100vw, ${width}px`}
       priority={priority}
       placeholder={lqip ? "blur" : "empty"}
       blurDataURL={lqip}
@@ -78,9 +79,9 @@ function HeroCard({ post }: { post: PostForDisplay }) {
       >
         <div className="relative aspect-[16/10] overflow-hidden md:aspect-auto md:min-h-[360px]">
           <PostImage
-            src={post.imageUrl}
-            alt={post.imageAlt ?? post.title}
-            sizes="(max-width: 768px) 100vw, 55vw"
+            mainImage={post.mainImage}
+            width={900}
+            height={562}
             priority={true}
             className="transition-transform duration-500 group-hover:scale-[1.02]"
           />
@@ -117,9 +118,9 @@ function HorizontalCard({
       <Link href={post.href} className="grid h-full grid-cols-2 focus-visible-ring rounded-sm">
         <div className="relative overflow-hidden">
           <PostImage
-            src={post.imageUrl}
-            alt={post.imageAlt ?? post.title}
-            sizes="(max-width: 768px) 100vw, 25vw"
+            mainImage={post.mainImage}
+            width={400}
+            height={600}
             className="transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </div>
@@ -146,9 +147,9 @@ function VerticalCard({ post }: { post: PostForDisplay }) {
       <Link href={post.href} className="flex h-full flex-col focus-visible-ring rounded-sm">
         <div className="relative aspect-[4/3] overflow-hidden">
           <PostImage
-            src={post.imageUrl}
-            alt={post.imageAlt ?? post.title}
-            sizes="(max-width: 768px) 100vw, 25vw"
+            mainImage={post.mainImage}
+            width={400}
+            height={300}
             className="transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </div>
@@ -178,9 +179,9 @@ function MobileCompactCard({
       <Link href={post.href} className="flex gap-4 p-3 focus-visible-ring rounded-sm">
         <div className="relative h-24 w-28 shrink-0 overflow-hidden">
           <PostImage
-            src={post.imageUrl}
-            alt={post.imageAlt ?? post.title}
-            sizes="112px"
+            mainImage={post.mainImage}
+            width={112}
+            height={96}
             className="transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </div>
@@ -208,9 +209,9 @@ function MobileFeaturedCard({
       <Link href={post.href} className="flex flex-col focus-visible-ring rounded-sm">
         <div className="relative aspect-[16/10] overflow-hidden">
           <PostImage
-            src={post.imageUrl}
-            alt={post.imageAlt ?? post.title}
-            sizes="(max-width: 768px) 100vw, 50vw"
+            mainImage={post.mainImage}
+            width={800}
+            height={500}
             className="transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </div>
