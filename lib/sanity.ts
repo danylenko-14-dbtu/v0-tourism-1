@@ -33,18 +33,28 @@ export interface PostListItem {
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 
-if (!projectId) throw new Error("Missing NEXT_PUBLIC_SANITY_PROJECT_ID");
+export const sanityClient = projectId
+  ? createClient({
+      projectId,
+      dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
+      apiVersion: "2026-05-02",
+      useCdn: false,
+    })
+  : null;
 
-export const sanityClient = createClient({
-  projectId,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
-  apiVersion: "2026-05-02",
-  useCdn: false,
-});
+function assertSanityClient(): NonNullable<typeof sanityClient> {
+  if (!sanityClient) {
+    throw new Error("Missing NEXT_PUBLIC_SANITY_PROJECT_ID");
+  }
+  return sanityClient;
+}
 
 // Image URL builder
-const builder = createImageUrlBuilder(sanityClient);
+const builder = sanityClient ? createImageUrlBuilder(sanityClient) : null;
 export function urlFor(source: SanityImageSource) {
+  if (!builder) {
+    throw new Error("Missing NEXT_PUBLIC_SANITY_PROJECT_ID");
+  }
   return builder.image(source);
 }
 
@@ -53,14 +63,17 @@ export function buildImageUrl(
   width: number,
   height: number
 ): string | undefined {
-  if (!source?.asset) return undefined;
-  return urlFor(source)
+  if (!source?.asset || !builder) return undefined;
+  return builder
+    .image(source)
     .width(width)
     .height(height)
     .fit("crop")
     .auto("format")
     .url();
 }
+
+export { assertSanityClient };
 
 export const BLOG_POSTS_TAG = "blog-posts";
 
