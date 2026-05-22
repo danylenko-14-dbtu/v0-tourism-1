@@ -167,6 +167,70 @@ function VerticalCard({ post }: { post: PostForDisplay }) {
   );
 }
 
+/* ----------------------- Tablet vertical card -------------------------- */
+/* Image on top (height matches one mini-card), text below                */
+
+function TabletVerticalCard({ post }: { post: PostForDisplay }) {
+  return (
+    <article className="group h-full bg-muted/30">
+      <Link
+        href={post.href}
+        className="grid h-full grid-rows-2 focus-visible-ring rounded-sm"
+      >
+        <div className="relative overflow-hidden">
+          <PostImage
+            mainImage={post.mainImage}
+            width={600}
+            height={400}
+            className="transition-transform duration-500 group-hover:scale-[1.02]"
+          />
+        </div>
+        <div className="flex flex-col justify-between gap-4 p-5">
+          <div className="flex flex-col gap-3">
+            <CategoryLabel label={post.categoryLabel} />
+            <h3 className="text-lg font-semibold leading-snug tracking-tight text-foreground text-balance group-hover:underline underline-offset-4">
+              {post.title}
+            </h3>
+          </div>
+          <p className="text-sm text-muted-foreground">{post.formattedDate}</p>
+        </div>
+      </Link>
+    </article>
+  );
+}
+
+/* ------------------------ Tablet mini card ----------------------------- */
+/* Small image left (1/3), text right (2/3)                              */
+
+function TabletMiniCard({ post }: { post: PostForDisplay }) {
+  return (
+    <article className="group h-full bg-muted/30">
+      <Link
+        href={post.href}
+        className="grid h-full grid-cols-3 focus-visible-ring rounded-sm"
+      >
+        <div className="relative col-span-1 overflow-hidden">
+          <PostImage
+            mainImage={post.mainImage}
+            width={300}
+            height={300}
+            className="transition-transform duration-500 group-hover:scale-[1.02]"
+          />
+        </div>
+        <div className="col-span-2 flex flex-col justify-between gap-3 p-4">
+          <div className="flex flex-col gap-2">
+            <CategoryLabel label={post.categoryLabel} />
+            <h3 className="text-base font-semibold leading-snug tracking-tight text-foreground text-balance group-hover:underline underline-offset-4">
+              {post.title}
+            </h3>
+          </div>
+          <p className="text-sm text-muted-foreground">{post.formattedDate}</p>
+        </div>
+      </Link>
+    </article>
+  );
+}
+
 /* -------------------- Mobile compact (horizontal small) ---------------- */
 
 function MobileCompactCard({
@@ -251,7 +315,7 @@ export function BlogGrid({ posts, locale }: BlogGridProps) {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-      {/* Mobile layout */}
+      {/* Mobile layout (< md) */}
       <div className="flex flex-col gap-6 md:hidden">
         {posts.map((post, index) => {
           if (index < 2) {
@@ -261,8 +325,67 @@ export function BlogGrid({ posts, locale }: BlogGridProps) {
         })}
       </div>
 
-      {/* Desktop layout */}
-      <div className="hidden md:flex md:flex-col md:gap-6">
+      {/* Tablet layout (md → lg) */}
+      <div className="hidden md:flex md:flex-col md:gap-6 lg:hidden">
+        {/* Row 1: Hero (full width, internal 2/2 split) */}
+        <HeroCard post={hero} />
+
+        {/* Block 1: vertical-left + 2 mini-right */}
+        {(row2Wide || row2Small.length > 0) && (
+          <div className="grid grid-cols-2 grid-rows-2 gap-6">
+            {row2Wide && (
+              <div className="row-span-2 col-start-1 row-start-1">
+                <TabletVerticalCard post={row2Wide} />
+              </div>
+            )}
+            {row2Small[0] && (
+              <div className="col-start-2 row-start-1">
+                <TabletMiniCard post={row2Small[0]} />
+              </div>
+            )}
+            {row2Small[1] && (
+              <div className="col-start-2 row-start-2">
+                <TabletMiniCard post={row2Small[1]} />
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Block 2 (mirrored): 2 mini-left + vertical-right */}
+        {(row3Wide || row3Small.length > 0) && (
+          <div className="grid grid-cols-2 grid-rows-2 gap-6">
+            {row3Small[0] && (
+              <div className="col-start-1 row-start-1">
+                <TabletMiniCard post={row3Small[0]} />
+              </div>
+            )}
+            {row3Small[1] && (
+              <div className="col-start-1 row-start-2">
+                <TabletMiniCard post={row3Small[1]} />
+              </div>
+            )}
+            {row3Wide && (
+              <div className="row-span-2 col-start-2 row-start-1">
+                <TabletVerticalCard post={row3Wide} />
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Rest: simple 2-column grid */}
+        {rest.length > 0 && (
+          <div className="grid grid-cols-2 gap-6">
+            {rest.map((post) => (
+              <div key={post._id}>
+                <TabletMiniCard post={post} />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Desktop layout (lg+) */}
+      <div className="hidden lg:flex lg:flex-col lg:gap-6">
         {/* Row 1: Hero (full width, internal 2/2 split) */}
         <HeroCard post={hero} />
 
