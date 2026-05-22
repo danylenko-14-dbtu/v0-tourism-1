@@ -7,9 +7,6 @@ interface PostForDisplay {
   title: string;
   href: string;
   mainImage?: PostListItem["mainImage"];
-  /** Optional direct image URL fallback (used by mock/preview pages). */
-  imageUrl?: string;
-  imageAlt?: string;
   categoryLabel?: string;
   formattedDate: string;
   excerpt?: string;
@@ -39,25 +36,19 @@ function CategoryLabel({ label }: { label?: string }) {
 
 function PostImage({
   mainImage,
-  imageUrl,
-  imageAlt,
   width,
   height,
   priority = false,
   className,
 }: {
   mainImage?: PostListItem["mainImage"];
-  imageUrl?: string;
-  imageAlt?: string;
   width: number;
   height: number;
   priority?: boolean;
   className?: string;
 }) {
-  const sanitySrc = buildImageUrl(mainImage, width, height);
-  const src = sanitySrc ?? imageUrl;
+  const src = buildImageUrl(mainImage, width, height);
   const lqip = mainImage?.metadata?.lqip;
-  const alt = mainImage?.alt ?? imageAlt ?? "";
 
   if (!src) {
     return <div className={`bg-muted ${className ?? ""}`} aria-hidden />;
@@ -66,7 +57,7 @@ function PostImage({
   return (
     <Image
       src={src}
-      alt={alt}
+      alt={mainImage?.alt ?? ""}
       fill
       sizes={`(max-width: 768px) 100vw, ${width}px`}
       priority={priority}
@@ -89,8 +80,6 @@ function HeroCard({ post }: { post: PostForDisplay }) {
         <div className="relative aspect-[16/10] overflow-hidden md:aspect-auto md:min-h-[360px]">
           <PostImage
             mainImage={post.mainImage}
-            imageUrl={post.imageUrl}
-            imageAlt={post.imageAlt}
             width={900}
             height={562}
             priority={true}
@@ -130,8 +119,6 @@ function HorizontalCard({
         <div className="relative overflow-hidden">
           <PostImage
             mainImage={post.mainImage}
-            imageUrl={post.imageUrl}
-            imageAlt={post.imageAlt}
             width={400}
             height={600}
             className="transition-transform duration-500 group-hover:scale-[1.02]"
@@ -161,8 +148,6 @@ function VerticalCard({ post }: { post: PostForDisplay }) {
         <div className="relative aspect-[4/3] overflow-hidden">
           <PostImage
             mainImage={post.mainImage}
-            imageUrl={post.imageUrl}
-            imageAlt={post.imageAlt}
             width={400}
             height={300}
             className="transition-transform duration-500 group-hover:scale-[1.02]"
@@ -195,8 +180,6 @@ function TabletVerticalCard({ post }: { post: PostForDisplay }) {
         <div className="relative overflow-hidden">
           <PostImage
             mainImage={post.mainImage}
-            imageUrl={post.imageUrl}
-            imageAlt={post.imageAlt}
             width={600}
             height={400}
             className="transition-transform duration-500 group-hover:scale-[1.02]"
@@ -229,8 +212,6 @@ function TabletMiniCard({ post }: { post: PostForDisplay }) {
         <div className="relative col-span-1 overflow-hidden">
           <PostImage
             mainImage={post.mainImage}
-            imageUrl={post.imageUrl}
-            imageAlt={post.imageAlt}
             width={300}
             height={300}
             className="transition-transform duration-500 group-hover:scale-[1.02]"
@@ -263,8 +244,6 @@ function MobileCompactCard({
         <div className="relative h-24 w-28 shrink-0 overflow-hidden">
           <PostImage
             mainImage={post.mainImage}
-            imageUrl={post.imageUrl}
-            imageAlt={post.imageAlt}
             width={112}
             height={96}
             className="transition-transform duration-500 group-hover:scale-[1.02]"
@@ -295,8 +274,6 @@ function MobileFeaturedCard({
         <div className="relative aspect-[16/10] overflow-hidden">
           <PostImage
             mainImage={post.mainImage}
-            imageUrl={post.imageUrl}
-            imageAlt={post.imageAlt}
             width={800}
             height={500}
             className="transition-transform duration-500 group-hover:scale-[1.02]"
