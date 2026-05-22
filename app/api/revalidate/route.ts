@@ -18,7 +18,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  revalidateTag(BLOG_POSTS_TAG, "max");
+  try {
+    revalidateTag(BLOG_POSTS_TAG, "max");
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Unknown revalidation error";
+    console.error("[/api/revalidate]", message);
+    return NextResponse.json(
+      { ok: false, error: "Revalidation failed", message },
+      { status: 500 }
+    );
+  }
 
   return NextResponse.json({
     ok: true,
