@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Clock } from "lucide-react";
 import { MOCK_POST } from "@/mocks/mockPost";
 import { PostAuthor } from "@/components/blog/PostAuthor";
-import { PostShareButtons } from "@/components/blog/PostShareButtons";
 import { PostSidebar } from "@/components/blog/PostSidebar";
 import { PostBody } from "@/components/blog/PostBody";
 import { MobileShareBar } from "@/components/blog/MobileShareBar";
@@ -67,24 +66,9 @@ export default function TestPostPage() {
             {/* Author block under banner */}
             <div
               id={HERO_AUTHOR_ID}
-              className="flex items-center justify-between gap-6 border-b border-border/60 pb-8"
+              className="border-b border-border/60 pb-8"
             >
               <PostAuthor author={post.author} />
-
-              {/* Desktop-only: inline Share row right under the banner.
-                  On scroll past the banner, it scrolls away and the sticky
-                  sidebar takes over. On mobile/tablet the share is handled
-                  by the sticky bottom bar. */}
-              <div className="hidden flex-col items-end gap-2 lg:flex">
-                <span className="text-sm font-semibold text-foreground">
-                  Share it!
-                </span>
-                <PostShareButtons
-                  url={SHARE_URL}
-                  title={post.title}
-                  variant="row"
-                />
-              </div>
             </div>
 
             {/* Body */}

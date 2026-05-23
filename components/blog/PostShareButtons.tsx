@@ -14,6 +14,8 @@ interface PostShareButtonsProps {
    */
   variant?: "stacked" | "row";
   label?: string;
+  /** Horizontal alignment for the stacked variant. */
+  align?: "start" | "end";
   className?: string;
 }
 
@@ -25,6 +27,7 @@ export function PostShareButtons({
   title,
   variant = "stacked",
   label = "Share it!",
+  align = "start",
   className,
 }: PostShareButtonsProps) {
   const [copied, setCopied] = useState(false);
@@ -102,7 +105,13 @@ export function PostShareButtons({
   }
 
   return (
-    <div className={cn("flex flex-col gap-3", className)}>
+    <div
+      className={cn(
+        "flex flex-col gap-3",
+        align === "end" ? "items-end" : "items-start",
+        className
+      )}
+    >
       <p className="text-sm font-semibold text-foreground">{label}</p>
 
       <button
