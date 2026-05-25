@@ -5,9 +5,9 @@ export type LocalizedString = string | { uk?: string; en?: string };
 
 export interface PostListItem {
   _id: string;
-  title: string;
+  title: LocalizedString;
   slug?: { current?: string };
-  excerpt: string;
+  excerpt: LocalizedString;
   publishedAt: string;
   categories?: Array<{
     _id: string;
@@ -22,7 +22,7 @@ export interface PostListItem {
         height?: number;
       };
     };
-    alt?: string;
+    alt?: LocalizedString;
     hotspot?: {
       x: number;
       y: number;
@@ -62,7 +62,7 @@ export interface PostFull extends PostListItem {
   body: PostBodyNode[];
   author?: {
     _id?: string;
-    name?: string;
+    name?: LocalizedString;
     role?: LocalizedString;
     avatarUrl?: string;
   };

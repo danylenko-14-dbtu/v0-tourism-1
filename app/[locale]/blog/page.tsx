@@ -14,7 +14,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
 
     return {
       _id: post._id,
-      title: post.title,
+      title: asDisplayString(post.title, normalizedLocale) ?? "",
       href: `/${normalizedLocale}/blog/${slug}`,
       mainImage: post.mainImage,
       categoryLabel: asDisplayString(post.categories?.[0]?.title, normalizedLocale),
@@ -22,7 +22,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
         normalizedLocale === "uk" ? "uk-UA" : "en-US",
         { year: "numeric", month: "long", day: "numeric" }
       ),
-      excerpt: post.excerpt,
+      excerpt: asDisplayString(post.excerpt, normalizedLocale) ?? "",
     };
   });
 

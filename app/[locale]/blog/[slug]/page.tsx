@@ -48,16 +48,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPostBySlug(normalizedLocale, slug);
   if (!post) return {};
 
+  const title = asDisplayString(post.title, normalizedLocale);
+  const description = asDisplayString(post.excerpt, normalizedLocale);
+
   const ogImage = post.mainImage
     ? urlFor(post.mainImage).width(1200).height(630).fit("crop").url()
     : undefined;
 
   return {
-    title: post.title,
-    description: post.excerpt,
+    title,
+    description,
     openGraph: {
-      title: post.title,
-      description: post.excerpt,
+      title,
+      description,
       images: ogImage ? [{ url: ogImage, width: 1200, height: 630 }] : undefined,
     },
   };
@@ -76,8 +79,8 @@ export default async function BlogPostPage({ params }: Props) {
     : "";
 
   const postForDisplay = {
-    title: post.title,
-    excerpt: post.excerpt,
+    title: asDisplayString(post.title, normalizedLocale) ?? "",
+    excerpt: asDisplayString(post.excerpt, normalizedLocale) ?? "",
     categoryLabel: asDisplayString(post.categories?.[0]?.title, normalizedLocale) ?? "",
     formattedDate: new Date(post.publishedAt).toLocaleDateString(
       normalizedLocale === "uk" ? "uk-UA" : "en-US",
@@ -85,9 +88,12 @@ export default async function BlogPostPage({ params }: Props) {
     ),
     readingTime: calculateReadingTime(post.body, normalizedLocale),
     imageUrl,
-    imageAlt: post.mainImage?.alt ?? post.title,
+    imageAlt:
+      asDisplayString(post.mainImage?.alt, normalizedLocale) ??
+      asDisplayString(post.title, normalizedLocale) ??
+      "",
     author: {
-      name: post.author?.name ?? "",
+      name: asDisplayString(post.author?.name, normalizedLocale) ?? "",
       role: asDisplayString(post.author?.role, normalizedLocale),
       avatarUrl: post.author?.avatarUrl,
     },
