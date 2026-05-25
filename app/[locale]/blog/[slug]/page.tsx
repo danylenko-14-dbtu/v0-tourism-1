@@ -70,6 +70,7 @@ export default async function BlogPostPage({ params }: Props) {
   const { locale, slug } = await params;
   const normalizedLocale = normalizeLocale(locale);
   const post = await getPostBySlug(normalizedLocale, slug);
+
   if (!post) notFound();
 
   const shareUrl = `${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/${normalizedLocale}/blog/${slug}`;
@@ -94,7 +95,7 @@ export default async function BlogPostPage({ params }: Props) {
       "",
     author: {
       name: asDisplayString(post.author?.name, normalizedLocale) ?? "",
-      role: asDisplayString(post.author?.role, normalizedLocale),
+      bio: asDisplayString(post.author?.bio, normalizedLocale),
       avatarUrl: post.author?.avatarUrl,
     },
     body: post.body ?? [],
@@ -120,7 +121,9 @@ export default async function BlogPostPage({ params }: Props) {
           {/* Date + reading time */}
           <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
             <span>{postForDisplay.formattedDate}</span>
-            <span aria-hidden className="text-border">|</span>
+            <span aria-hidden className="text-border">
+              |
+            </span>
             <span className="inline-flex items-center gap-1.5">
               <Clock className="h-4 w-4" aria-hidden />
               {postForDisplay.readingTime}
@@ -150,10 +153,7 @@ export default async function BlogPostPage({ params }: Props) {
           {/* ===================== LEFT COLUMN ===================== */}
           <div className="min-w-0">
             {/* Author block under banner */}
-            <div
-              id={HERO_AUTHOR_ID}
-              className="border-b border-border/60 pb-8"
-            >
+            <div id={HERO_AUTHOR_ID} className="border-b border-border/60 pb-8">
               <PostAuthor author={postForDisplay.author} />
             </div>
 

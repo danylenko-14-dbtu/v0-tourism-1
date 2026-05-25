@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 export interface PostAuthorData {
   name: string;
-  role?: string;
+  bio?: string;
   avatarUrl?: string;
 }
 
@@ -41,14 +41,14 @@ export function PostAuthor({ author, size = "md", className }: PostAuthorProps) 
         >
           {author.name}
         </span>
-        {author.role && (
+        {author.bio && (
           <span
             className={cn(
               "text-muted-foreground leading-snug",
               size === "sm" ? "text-xs" : "text-sm"
             )}
           >
-            {author.role}
+            {author.bio}
           </span>
         )}
       </div>

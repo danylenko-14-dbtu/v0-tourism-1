@@ -63,7 +63,7 @@ export interface PostFull extends PostListItem {
   author?: {
     _id?: string;
     name?: LocalizedString;
-    role?: LocalizedString;
+    bio?: LocalizedString;
     avatarUrl?: string;
   };
 }
@@ -143,7 +143,7 @@ export const POST_BY_SLUG_QUERY = `
     "author": author->{
       _id,
       "name": coalesce(name, fullName),
-      role,
+      bio,
       "avatarUrl": image.asset->url
     }
   }
