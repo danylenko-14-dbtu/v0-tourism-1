@@ -40,16 +40,20 @@ export function PostSidebar({
     <aside className="hidden lg:block">
       {/* top-20 = sticky header (h-16) + 16px breathing room */}
       <div className="sticky top-20 flex flex-col items-end gap-6">
-        {/* Author appears above share once user scrolls past the banner */}
+        {/* Author appears above Share once the user scrolls past the banner.
+            Uses a CSS grid row trick so the empty state takes no space and
+            the reveal animates smoothly without layout jumps. */}
         <div
-          className={`w-full transition-all duration-300 ${
+          className={`grid w-full transition-[grid-template-rows,opacity] duration-300 ease-out ${
             revealed
-              ? "translate-y-0 opacity-100"
-              : "pointer-events-none -translate-y-1 opacity-0"
+              ? "grid-rows-[1fr] opacity-100"
+              : "grid-rows-[0fr] opacity-0"
           }`}
           aria-hidden={!revealed}
         >
-          <PostAuthor author={author} size="sm" />
+          <div className="overflow-hidden">
+            <PostAuthor author={author} size="sm" />
+          </div>
         </div>
 
         {/* Share is always visible — anchored to the right edge of its column,
