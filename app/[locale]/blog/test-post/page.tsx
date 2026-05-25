@@ -87,12 +87,8 @@ export default function TestPostPage() {
         </div>
       </article>
 
-      {/* Sticky bottom share bar — mobile/tablet only */}
-      <MobileShareBar
-        url={SHARE_URL}
-        title={post.title}
-        triggerAnchorId={HERO_AUTHOR_ID}
-      />
+      {/* Always-on sticky bottom share bar — mobile/tablet only */}
+      <MobileShareBar url={SHARE_URL} title={post.title} />
     </main>
   );
 }
