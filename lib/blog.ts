@@ -27,19 +27,32 @@ export async function getPostBySlug(
   locale: string,
   slug: string
 ): Promise<PostFull | null> {
-  const post = await sanityClient.fetch<PostFull | null>(
+  return sanityClient.fetch(
     POST_BY_SLUG_QUERY,
     { locale, slug },
     { next: { tags: [BLOG_POSTS_TAG] } }
   );
-  return post ?? null;
 }
 
 export async function getRecentPostSlugs(limit = 20): Promise<string[]> {
-  const rows = await sanityClient.fetch<Array<{ slug: string }>>(
+  const result = await sanityClient.fetch<Array<{ slug: string }>>(
     RECENT_POST_SLUGS_QUERY,
     { limit },
     { next: { tags: [BLOG_POSTS_TAG] } }
   );
-  return rows.map((r) => r.slug).filter(Boolean);
+  return result.map((r) => r.slug).filter(Boolean);
+}
+
+export function asDisplayString(
+  value: unknown,
+  locale: "uk" | "en"
+): string | undefined {
+  if (typeof value === "string") return value;
+  if (value && typeof value === "object") {
+    const obj = value as Record<string, unknown>;
+    const pick = (k: string) =>
+      typeof obj[k] === "string" ? (obj[k] as string) : undefined;
+    return pick(locale) ?? pick("uk") ?? pick("en");
+  }
+  return undefined;
 }

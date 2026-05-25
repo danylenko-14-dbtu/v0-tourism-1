@@ -2,7 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Clock } from "lucide-react";
-import { getPostBySlug, getRecentPostSlugs } from "@/lib/blog";
+import { getPostBySlug, getRecentPostSlugs, asDisplayString } from "@/lib/blog";
 import { urlFor, type PostBodyNode, type PostBodyBlock } from "@/lib/sanity";
 import { PostAuthor } from "@/components/blog/PostAuthor";
 import { PostSidebar } from "@/components/blog/PostSidebar";
@@ -17,10 +17,6 @@ export const revalidate = 3600;
 
 const HERO_AUTHOR_ID = "post-hero-author";
 const BANNER_ID = "post-hero-banner";
-
-function asDisplayString(value: unknown) {
-  return typeof value === "string" ? value : undefined;
-}
 
 function normalizeLocale(locale: string): "uk" | "en" {
   return locale === "en" ? "en" : "uk";
@@ -82,7 +78,7 @@ export default async function BlogPostPage({ params }: Props) {
   const postForDisplay = {
     title: post.title,
     excerpt: post.excerpt,
-    categoryLabel: asDisplayString(post.categories?.[0]?.title) ?? "",
+    categoryLabel: asDisplayString(post.categories?.[0]?.title, normalizedLocale) ?? "",
     formattedDate: new Date(post.publishedAt).toLocaleDateString(
       normalizedLocale === "uk" ? "uk-UA" : "en-US",
       { year: "numeric", month: "long", day: "numeric" }
@@ -92,7 +88,7 @@ export default async function BlogPostPage({ params }: Props) {
     imageAlt: post.mainImage?.alt ?? post.title,
     author: {
       name: post.author?.name ?? "",
-      role: post.author?.role,
+      role: asDisplayString(post.author?.role, normalizedLocale),
       avatarUrl: post.author?.avatarUrl,
     },
     body: post.body ?? [],

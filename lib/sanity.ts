@@ -1,6 +1,8 @@
 import { createClient } from "@sanity/client";
 import { createImageUrlBuilder, SanityImageSource } from "@sanity/image-url";
 
+export type LocalizedString = string | { uk?: string; en?: string };
+
 export interface PostListItem {
   _id: string;
   title: string;
@@ -9,7 +11,7 @@ export interface PostListItem {
   publishedAt: string;
   categories?: Array<{
     _id: string;
-    title: string;
+    title: LocalizedString;
   }>;
   mainImage?: {
     asset: { _ref: string; _type: "reference" };
@@ -28,6 +30,41 @@ export interface PostListItem {
       width?: number;
     };
     crop?: object;
+  };
+}
+
+export interface PostBodySpan {
+  _type: "span";
+  _key: string;
+  text: string;
+  marks?: string[];
+}
+
+export interface PostBodyBlock {
+  _type: "block";
+  _key: string;
+  style?: string;
+  listItem?: "bullet" | "number";
+  markDefs?: unknown[];
+  children: PostBodySpan[];
+}
+
+export interface PostBodyImage {
+  _type: "image";
+  _key: string;
+  asset: { _type: "reference"; _ref?: string; url?: string };
+  alt?: string;
+}
+
+export type PostBodyNode = PostBodyBlock | PostBodyImage;
+
+export interface PostFull extends PostListItem {
+  body: PostBodyNode[];
+  author?: {
+    _id?: string;
+    name?: string;
+    role?: LocalizedString;
+    avatarUrl?: string;
   };
 }
 
@@ -62,41 +99,6 @@ export function buildImageUrl(
     .url();
 }
 
-export interface PostBodySpan {
-  _type: "span";
-  _key: string;
-  text: string;
-  marks?: string[];
-}
-
-export interface PostBodyBlock {
-  _type: "block";
-  _key: string;
-  style?: string;
-  listItem?: "bullet" | "number";
-  markDefs?: unknown[];
-  children: PostBodySpan[];
-}
-
-export interface PostBodyImage {
-  _type: "image";
-  _key: string;
-  asset: { _type: "reference"; _ref?: string; url?: string };
-  alt?: string;
-}
-
-export type PostBodyNode = PostBodyBlock | PostBodyImage;
-
-export interface PostFull extends PostListItem {
-  body: PostBodyNode[];
-  author?: {
-    _id?: string;
-    name?: string;
-    role?: string;
-    avatarUrl?: string;
-  };
-}
-
 export const BLOG_POSTS_TAG = "blog-posts";
 
 export const ALL_POSTS_QUERY = `
@@ -105,21 +107,16 @@ export const ALL_POSTS_QUERY = `
     _id, title, slug, excerpt, publishedAt,
     categories[]-> {
       _id,
-      "title": select(
-        defined(title[$locale]) => title[$locale],
-        defined(title.uk) => title.uk,
-        defined(title.en) => title.en,
-        title
-      )
+      title
     },
     mainImage {
       asset,
       "metadata": asset->metadata { lqip, dimensions { width, height } },
       alt,
       hotspot,
-      crop 
+      crop
     }
-  } 
+  }
 `;
 
 export const POST_BY_SLUG_QUERY = `
@@ -127,12 +124,7 @@ export const POST_BY_SLUG_QUERY = `
     _id, title, slug, excerpt, publishedAt,
     categories[]-> {
       _id,
-      "title": select(
-        defined(title[$locale]) => title[$locale],
-        defined(title.uk) => title.uk,
-        defined(title.en) => title.en,
-        title
-      )
+      title
     },
     mainImage {
       asset,
@@ -151,12 +143,7 @@ export const POST_BY_SLUG_QUERY = `
     "author": author->{
       _id,
       "name": coalesce(name, fullName),
-      "role": select(
-        defined(role[$locale]) => role[$locale],
-        defined(role.uk) => role.uk,
-        defined(role.en) => role.en,
-        role
-      ),
+      role,
       "avatarUrl": image.asset->url
     }
   }

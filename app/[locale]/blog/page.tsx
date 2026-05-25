@@ -1,11 +1,7 @@
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts, asDisplayString } from "@/lib/blog";
 import { BlogGrid } from "@/components/blog/BlogGrid";
 
 const BLOG_POSTS_LIMIT = 7;
-
-function asDisplayString(value: unknown) {
-  return typeof value === "string" ? value : undefined;
-}
 
 export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -21,7 +17,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
       title: post.title,
       href: `/${normalizedLocale}/blog/${slug}`,
       mainImage: post.mainImage,
-      categoryLabel: asDisplayString(post.categories?.[0]?.title),
+      categoryLabel: asDisplayString(post.categories?.[0]?.title, normalizedLocale),
       formattedDate: new Date(post.publishedAt).toLocaleDateString(
         normalizedLocale === "uk" ? "uk-UA" : "en-US",
         { year: "numeric", month: "long", day: "numeric" }
