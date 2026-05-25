@@ -1,11 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Clock } from "lucide-react";
 import { PostAuthor, type PostAuthorData } from "./PostAuthor";
 import { PostShareButtons } from "./PostShareButtons";
 
 interface PostSidebarProps {
   author: PostAuthorData;
+  title: string;
+  formattedDate: string;
+  readingTime: string;
   shareUrl: string;
   shareTitle: string;
   /** When this anchor scrolls out of viewport (above), the author appears above Share. */
@@ -14,6 +18,9 @@ interface PostSidebarProps {
 
 export function PostSidebar({
   author,
+  title,
+  formattedDate,
+  readingTime,
   shareUrl,
   shareTitle,
   triggerAnchorId,
@@ -58,7 +65,24 @@ export function PostSidebar({
         >
           <div className="overflow-hidden">
             <div className="pb-6">
-              <PostAuthor author={author} size="sm" />
+              <div className="space-y-4 border-b border-border/60 pb-5">
+                <div className="space-y-2">
+                  <h2 className="text-pretty text-base font-semibold leading-snug text-foreground">
+                    {title}
+                  </h2>
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
+                    <span>{formattedDate}</span>
+                    <span aria-hidden className="text-border">
+                      |
+                    </span>
+                    <span className="inline-flex items-center gap-1">
+                      <Clock className="h-3.5 w-3.5" aria-hidden />
+                      {readingTime}
+                    </span>
+                  </div>
+                </div>
+                <PostAuthor author={author} size="sm" />
+              </div>
             </div>
           </div>
         </div>

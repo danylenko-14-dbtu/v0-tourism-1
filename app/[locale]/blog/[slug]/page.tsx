@@ -166,6 +166,9 @@ export default async function BlogPostPage({ params }: Props) {
           {/* ============== RIGHT COLUMN (sticky sidebar — desktop only) ============== */}
           <PostSidebar
             author={postForDisplay.author}
+            title={postForDisplay.title}
+            formattedDate={postForDisplay.formattedDate}
+            readingTime={postForDisplay.readingTime}
             shareUrl={shareUrl}
             shareTitle={postForDisplay.title}
             triggerAnchorId={BANNER_ID}

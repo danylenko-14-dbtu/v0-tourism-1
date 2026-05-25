@@ -116,7 +116,7 @@ export function PostShareButtons({
   return (
     <div
       className={cn(
-        "flex flex-col gap-3",
+        "flex w-full flex-col gap-3",
         align === "end" ? "items-end" : "items-start",
         className
       )}
@@ -126,7 +126,7 @@ export function PostShareButtons({
       {compact ? (
         // Initial state: copy = round icon button, social icons inline next to it.
         // Total height ≈ author block, sits on the same Y axis as the author.
-        <div className="flex items-center gap-2">
+        <div className="flex w-full items-center justify-between">
           <button
             type="button"
             onClick={handleCopy}

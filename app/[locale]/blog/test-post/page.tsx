@@ -80,6 +80,9 @@ export default function TestPostPage() {
           {/* ============== RIGHT COLUMN (sticky sidebar — desktop only) ============== */}
           <PostSidebar
             author={post.author}
+            title={post.title}
+            formattedDate={post.formattedDate}
+            readingTime={post.readingTime}
             shareUrl={SHARE_URL}
             shareTitle={post.title}
             triggerAnchorId={BANNER_ID}
