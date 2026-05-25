@@ -62,6 +62,41 @@ export function buildImageUrl(
     .url();
 }
 
+export interface PostBodySpan {
+  _type: "span";
+  _key: string;
+  text: string;
+  marks?: string[];
+}
+
+export interface PostBodyBlock {
+  _type: "block";
+  _key: string;
+  style?: string;
+  listItem?: "bullet" | "number";
+  markDefs?: unknown[];
+  children: PostBodySpan[];
+}
+
+export interface PostBodyImage {
+  _type: "image";
+  _key: string;
+  asset: { _type: "reference"; _ref?: string; url?: string };
+  alt?: string;
+}
+
+export type PostBodyNode = PostBodyBlock | PostBodyImage;
+
+export interface PostFull extends PostListItem {
+  body: PostBodyNode[];
+  author?: {
+    _id?: string;
+    name?: string;
+    role?: string;
+    avatarUrl?: string;
+  };
+}
+
 export const BLOG_POSTS_TAG = "blog-posts";
 
 export const ALL_POSTS_QUERY = `
@@ -85,4 +120,51 @@ export const ALL_POSTS_QUERY = `
       crop 
     }
   } 
+`;
+
+export const POST_BY_SLUG_QUERY = `
+  *[_type == "post" && language == $locale && slug.current == $slug && !(_id in path("drafts.**"))][0] {
+    _id, title, slug, excerpt, publishedAt,
+    categories[]-> {
+      _id,
+      "title": select(
+        defined(title[$locale]) => title[$locale],
+        defined(title.uk) => title.uk,
+        defined(title.en) => title.en,
+        title
+      )
+    },
+    mainImage {
+      asset,
+      "metadata": asset->metadata { lqip, dimensions { width, height } },
+      alt,
+      hotspot,
+      crop
+    },
+    body[]{
+      ...,
+      _type == "image" => {
+        ...,
+        "asset": asset->{ _type, _ref, "url": url }
+      }
+    },
+    "author": author->{
+      _id,
+      "name": coalesce(name, fullName),
+      "role": select(
+        defined(role[$locale]) => role[$locale],
+        defined(role.uk) => role.uk,
+        defined(role.en) => role.en,
+        role
+      ),
+      "avatarUrl": image.asset->url
+    }
+  }
+`;
+
+export const RECENT_POST_SLUGS_QUERY = `
+  *[_type == "post" && defined(slug.current) && !(_id in path("drafts.**"))]
+  | order(publishedAt desc) [0...$limit] {
+    "slug": slug.current
+  }
 `;
