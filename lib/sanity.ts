@@ -1,15 +1,17 @@
 import { createClient } from "@sanity/client";
 import { createImageUrlBuilder, SanityImageSource } from "@sanity/image-url";
 
+export type LocalizedString = string | { uk?: string; en?: string };
+
 export interface PostListItem {
   _id: string;
-  title: string;
+  title: LocalizedString;
   slug?: { current?: string };
-  excerpt: string;
+  excerpt: LocalizedString;
   publishedAt: string;
   categories?: Array<{
     _id: string;
-    title: string;
+    title: LocalizedString;
   }>;
   mainImage?: {
     asset: { _ref: string; _type: "reference" };
@@ -20,7 +22,7 @@ export interface PostListItem {
         height?: number;
       };
     };
-    alt?: string;
+    alt?: LocalizedString;
     hotspot?: {
       x: number;
       y: number;
@@ -28,6 +30,41 @@ export interface PostListItem {
       width?: number;
     };
     crop?: object;
+  };
+}
+
+export interface PostBodySpan {
+  _type: "span";
+  _key: string;
+  text: string;
+  marks?: string[];
+}
+
+export interface PostBodyBlock {
+  _type: "block";
+  _key: string;
+  style?: string;
+  listItem?: "bullet" | "number";
+  markDefs?: unknown[];
+  children: PostBodySpan[];
+}
+
+export interface PostBodyImage {
+  _type: "image";
+  _key: string;
+  asset: { _type: "reference"; _ref?: string; url?: string };
+  alt?: string;
+}
+
+export type PostBodyNode = PostBodyBlock | PostBodyImage;
+
+export interface PostFull extends PostListItem {
+  body: PostBodyNode[];
+  author?: {
+    _id?: string;
+    name?: LocalizedString;
+    role?: LocalizedString;
+    avatarUrl?: string;
   };
 }
 
@@ -70,19 +107,51 @@ export const ALL_POSTS_QUERY = `
     _id, title, slug, excerpt, publishedAt,
     categories[]-> {
       _id,
-      "title": select(
-        defined(title[$locale]) => title[$locale],
-        defined(title.uk) => title.uk,
-        defined(title.en) => title.en,
-        title
-      )
+      title
     },
     mainImage {
       asset,
       "metadata": asset->metadata { lqip, dimensions { width, height } },
       alt,
       hotspot,
-      crop 
+      crop
     }
-  } 
+  }
+`;
+
+export const POST_BY_SLUG_QUERY = `
+  *[_type == "post" && language == $locale && slug.current == $slug && !(_id in path("drafts.**"))][0] {
+    _id, title, slug, excerpt, publishedAt,
+    categories[]-> {
+      _id,
+      title
+    },
+    mainImage {
+      asset,
+      "metadata": asset->metadata { lqip, dimensions { width, height } },
+      alt,
+      hotspot,
+      crop
+    },
+    body[]{
+      ...,
+      _type == "image" => {
+        ...,
+        "asset": asset->{ _type, _ref, "url": url }
+      }
+    },
+    "author": author->{
+      _id,
+      "name": coalesce(name, fullName),
+      role,
+      "avatarUrl": image.asset->url
+    }
+  }
+`;
+
+export const RECENT_POST_SLUGS_QUERY = `
+  *[_type == "post" && defined(slug.current) && !(_id in path("drafts.**"))]
+  | order(publishedAt desc) [0...$limit] {
+    "slug": slug.current
+  }
 `;

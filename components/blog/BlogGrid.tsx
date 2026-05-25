@@ -57,7 +57,7 @@ function PostImage({
   return (
     <Image
       src={src}
-      alt={mainImage?.alt ?? ""}
+      alt={typeof mainImage?.alt === "string" ? mainImage.alt : ""}
       fill
       sizes={`(max-width: 768px) 100vw, ${width}px`}
       priority={priority}
