@@ -38,11 +38,16 @@ export function PostSidebar({
 
   return (
     <aside className="hidden lg:block">
-      {/* top-20 = sticky header (h-16) + 16px breathing room */}
-      <div className="sticky top-20 flex flex-col items-end gap-6">
+      {/* top-20 = sticky header (h-16) + 16px breathing room.
+          No `gap` on the flex container — when the author block is collapsed
+          (grid-rows: 0fr) flex-gap would still leave a visible space and push
+          the share block down. Instead, the spacing lives inside the author
+          wrapper itself (pb-6) so it collapses together with the content. */}
+      <div className="sticky top-20 flex flex-col items-end">
         {/* Author appears above Share once the user scrolls past the banner.
-            Uses a CSS grid row trick so the empty state takes no space and
-            the reveal animates smoothly without layout jumps. */}
+            CSS grid-rows trick: 0fr → 1fr animates height smoothly, and
+            because padding lives inside the collapsing track the whole block
+            (content + spacing) takes zero space in the initial state. */}
         <div
           className={`grid w-full transition-[grid-template-rows,opacity] duration-300 ease-out ${
             revealed
@@ -52,7 +57,9 @@ export function PostSidebar({
           aria-hidden={!revealed}
         >
           <div className="overflow-hidden">
-            <PostAuthor author={author} size="sm" />
+            <div className="pb-6">
+              <PostAuthor author={author} size="sm" />
+            </div>
           </div>
         </div>
 
