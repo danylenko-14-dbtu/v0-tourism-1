@@ -9,13 +9,21 @@ interface PostShareButtonsProps {
   url: string;
   title: string;
   /**
-   * "stacked"  — copy-link button on top, social row below (desktop sidebar)
-   * "row"      — single horizontal row (mobile sticky bar / hero bottom)
+   * "stacked"  — desktop sidebar. Copy-link button on top, social row below.
+   *              Use `compact` to render copy as a round icon-only button on the
+   *              same line as the social icons (initial sidebar state).
+   * "row"      — single horizontal row (mobile sticky bar)
    */
   variant?: "stacked" | "row";
   label?: string;
   /** Horizontal alignment for the stacked variant. */
   align?: "start" | "end";
+  /**
+   * Stacked + compact: copy is a round icon button placed on the same row as
+   * the social icons (initial state). When false, copy spans full width and
+   * the social row uses justify-between underneath (sticky/scrolled state).
+   */
+  compact?: boolean;
   className?: string;
 }
 
@@ -28,6 +36,7 @@ export function PostShareButtons({
   variant = "stacked",
   label = "Share it!",
   align = "start",
+  compact = false,
   className,
 }: PostShareButtonsProps) {
   const [copied, setCopied] = useState(false);
@@ -114,42 +123,82 @@ export function PostShareButtons({
     >
       <p className="text-sm font-semibold text-foreground">{label}</p>
 
-      <button
-        type="button"
-        onClick={handleCopy}
-        className={cn(
-          "inline-flex items-center justify-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium transition-colors",
-          "hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-          copied && "border-emerald-500 text-emerald-600"
-        )}
-      >
-        {copied ? (
-          <>
-            <Check className="h-4 w-4" />
-            <span>Скопійовано</span>
-          </>
-        ) : (
-          <>
-            <Link2 className="h-4 w-4" />
-            <span>Копіювати посилання</span>
-          </>
-        )}
-      </button>
-
-      <div className="flex items-center gap-2">
-        {social.map(({ name, href, Icon, className: btnClass }) => (
-          <a
-            key={name}
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Поділитись у ${name}`}
-            className={cn(ICON_BTN, btnClass)}
+      {compact ? (
+        // Initial state: copy = round icon button, social icons inline next to it.
+        // Total height ≈ author block, sits on the same Y axis as the author.
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={handleCopy}
+            aria-label={copied ? "Скопійовано" : "Копіювати посилання"}
+            className={cn(
+              ICON_BTN,
+              copied
+                ? "bg-emerald-500 text-white"
+                : "bg-muted text-foreground hover:bg-muted/80"
+            )}
           >
-            <Icon className="h-4 w-4" />
-          </a>
-        ))}
-      </div>
+            {copied ? (
+              <Check className="h-4 w-4" />
+            ) : (
+              <Link2 className="h-4 w-4" />
+            )}
+          </button>
+          {social.map(({ name, href, Icon, className: btnClass }) => (
+            <a
+              key={name}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Поділитись у ${name}`}
+              className={cn(ICON_BTN, btnClass)}
+            >
+              <Icon className="h-4 w-4" />
+            </a>
+          ))}
+        </div>
+      ) : (
+        // Expanded state: copy spans full width, social row uses the same width
+        // underneath with justify-between so icons sit evenly under the button.
+        <div className="flex w-full flex-col gap-3">
+          <button
+            type="button"
+            onClick={handleCopy}
+            className={cn(
+              "inline-flex w-full items-center justify-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium transition-colors",
+              "hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+              copied && "border-emerald-500 text-emerald-600"
+            )}
+          >
+            {copied ? (
+              <>
+                <Check className="h-4 w-4" />
+                <span>Скопійовано</span>
+              </>
+            ) : (
+              <>
+                <Link2 className="h-4 w-4" />
+                <span>Копіювати посилання</span>
+              </>
+            )}
+          </button>
+
+          <div className="flex w-full items-center justify-between">
+            {social.map(({ name, href, Icon, className: btnClass }) => (
+              <a
+                key={name}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Поділитись у ${name}`}
+                className={cn(ICON_BTN, btnClass)}
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

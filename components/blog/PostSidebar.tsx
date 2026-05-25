@@ -56,14 +56,18 @@ export function PostSidebar({
           </div>
         </div>
 
-        {/* Share is always visible — anchored to the right edge of its column,
-            so it visually stays in place on the X axis as the page scrolls. */}
+        {/* Share is always visible — anchored to the right edge of its column.
+            Compact (initial): copy is round, social icons inline next to it →
+            same height as author block on the left.
+            Expanded (after scroll): copy is full-width pill, social icons sit
+            evenly under it (justify-between) at matching width. */}
         <PostShareButtons
           url={shareUrl}
           title={shareTitle}
           variant="stacked"
           label="Share it!"
           align="end"
+          compact={!revealed}
         />
       </div>
     </aside>
