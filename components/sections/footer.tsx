@@ -18,6 +18,10 @@ function isExternalHref(href?: string) {
 
 export function Footer({ dictionary, locale }: FooterProps) {
   const currentYear = new Date().getFullYear();
+  const localizeHref = (href?: string) => {
+    if (href === "/blog") return `/${locale}/blog`;
+    return href || "#";
+  };
   const socialLinks = [
     {
       href: "https://www.facebook.com/groups/2391713780998700",
@@ -55,7 +59,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
                 return (
                   <li key={index}>
                     <Link
-                      href={item.href || "#"}
+                      href={localizeHref(item.href)}
                       target={external ? "_blank" : undefined}
                       rel={external ? "noopener noreferrer" : undefined}
                       className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
@@ -78,7 +82,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
                 return (
                   <li key={index}>
                     <Link
-                      href={item.href || "#"}
+                      href={localizeHref(item.href)}
                       target={external ? "_blank" : undefined}
                       rel={external ? "noopener noreferrer" : undefined}
                       className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
@@ -101,7 +105,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
                 return (
                   <li key={index}>
                     <Link
-                      href={item.href || "#"}
+                      href={localizeHref(item.href)}
                       target={external ? "_blank" : undefined}
                       rel={external ? "noopener noreferrer" : undefined}
                       className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"

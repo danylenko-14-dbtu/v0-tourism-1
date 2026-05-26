@@ -51,9 +51,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = asDisplayString(post.title, normalizedLocale);
   const description = asDisplayString(post.excerpt, normalizedLocale);
 
-  const ogImage = post.mainImage
-    ? urlFor(post.mainImage).width(1200).height(630).fit("crop").url()
-    : undefined;
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL ?? "http://localhost:3000";
+  const ogImageUrl = new URL("/api/og", siteUrl);
+  ogImageUrl.searchParams.set("title", title ?? "");
+  ogImageUrl.searchParams.set("excerpt", description ?? "");
+  ogImageUrl.searchParams.set(
+    "category",
+    asDisplayString(post.categories?.[0]?.title, normalizedLocale) ?? ""
+  );
+  ogImageUrl.searchParams.set("author", asDisplayString(post.author?.name, normalizedLocale) ?? "");
+  ogImageUrl.searchParams.set("avatar", post.author?.avatarUrl ?? "");
+  ogImageUrl.searchParams.set(
+    "cover",
+    post.mainImage ? urlFor(post.mainImage).width(570).height(630).fit("crop").url() : ""
+  );
+  ogImageUrl.searchParams.set("date", post.publishedAt ?? "");
+  ogImageUrl.searchParams.set("locale", normalizedLocale);
 
   return {
     title,
@@ -61,7 +75,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      images: ogImage ? [{ url: ogImage, width: 1200, height: 630 }] : undefined,
+      images: [{ url: ogImageUrl.toString(), width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImageUrl.toString()],
     },
   };
 }
