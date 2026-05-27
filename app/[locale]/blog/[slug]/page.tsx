@@ -54,6 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL ?? "http://localhost:3000";
+  const postUrl = `${siteUrl}/${normalizedLocale}/blog/${slug}`;
   const ogImageUrl = new URL(`${siteUrl}/api/og`);
   ogImageUrl.searchParams.set("slug", slug);
   ogImageUrl.searchParams.set("locale", normalizedLocale);
@@ -61,9 +62,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
+    alternates: {
+      canonical: postUrl,
+    },
     openGraph: {
       title,
       description,
+      url: postUrl,
+      type: "article",
       images: [{ url: ogImageUrl.toString(), width: 1200, height: 630 }],
     },
     twitter: {
