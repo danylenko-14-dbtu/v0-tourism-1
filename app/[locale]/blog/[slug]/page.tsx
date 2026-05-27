@@ -54,20 +54,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL ?? "http://localhost:3000";
-  const ogImageUrl = new URL("/api/og", siteUrl);
-  ogImageUrl.searchParams.set("title", title ?? "");
-  ogImageUrl.searchParams.set("excerpt", description ?? "");
-  ogImageUrl.searchParams.set(
-    "category",
-    asDisplayString(post.categories?.[0]?.title, normalizedLocale) ?? ""
-  );
-  ogImageUrl.searchParams.set("author", asDisplayString(post.author?.name, normalizedLocale) ?? "");
-  ogImageUrl.searchParams.set("avatar", post.author?.avatarUrl ?? "");
-  ogImageUrl.searchParams.set(
-    "cover",
-    post.mainImage ? urlFor(post.mainImage).width(570).height(630).fit("crop").url() : ""
-  );
-  ogImageUrl.searchParams.set("date", post.publishedAt ?? "");
+  const ogImageUrl = new URL(`${siteUrl}/api/og`);
+  ogImageUrl.searchParams.set("slug", slug);
   ogImageUrl.searchParams.set("locale", normalizedLocale);
 
   return {
