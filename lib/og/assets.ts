@@ -4,7 +4,7 @@ import path from "path";
 let cache: string | null = null;
 
 export async function getLogoDataUrl(): Promise<string> {
-  if (cache) return cache;
+  if (cache !== null) return cache;
   try {
     const LOGO_FILENAME = "dbtu-logo.png";
     const buffer = await readFile(path.join(process.cwd(), "public", LOGO_FILENAME));

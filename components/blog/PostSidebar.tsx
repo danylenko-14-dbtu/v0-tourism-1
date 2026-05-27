@@ -3,7 +3,10 @@
 import { useEffect, useState } from "react";
 import { Clock } from "lucide-react";
 import { PostAuthor, type PostAuthorData } from "./PostAuthor";
-import { PostShareButtons } from "./PostShareButtons";
+import {
+  PostShareButtons,
+  type PostShareButtonLabels,
+} from "./PostShareButtons";
 
 interface PostSidebarProps {
   author: PostAuthorData;
@@ -12,6 +15,7 @@ interface PostSidebarProps {
   readingTime: string;
   shareUrl: string;
   shareTitle: string;
+  shareLabels?: Partial<PostShareButtonLabels>;
   /** When this anchor scrolls out of viewport (above), the author appears above Share. */
   triggerAnchorId: string;
 }
@@ -23,6 +27,7 @@ export function PostSidebar({
   readingTime,
   shareUrl,
   shareTitle,
+  shareLabels,
   triggerAnchorId,
 }: PostSidebarProps) {
   const [revealed, setRevealed] = useState(false);
@@ -96,7 +101,7 @@ export function PostSidebar({
           url={shareUrl}
           title={shareTitle}
           variant="stacked"
-          label="Share it!"
+          labels={shareLabels}
           align="end"
           compact={!revealed}
         />

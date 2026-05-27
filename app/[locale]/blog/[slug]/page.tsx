@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Clock } from "lucide-react";
 import { getPostBySlug, getRecentPostSlugs, asDisplayString } from "@/lib/blog";
+import { getDictionary } from "@/lib/dictionaries";
 import { urlFor, type PostBodyNode, type PostBodyBlock } from "@/lib/sanity";
 import { PostAuthor } from "@/components/blog/PostAuthor";
 import { PostSidebar } from "@/components/blog/PostSidebar";
@@ -90,6 +91,7 @@ export default async function BlogPostPage({ params }: Props) {
   const { locale, slug } = await params;
   const normalizedLocale = normalizeLocale(locale);
   const post = await getPostBySlug(normalizedLocale, slug);
+  const dictionary = await getDictionary(normalizedLocale);
 
   if (!post) notFound();
 
@@ -191,13 +193,18 @@ export default async function BlogPostPage({ params }: Props) {
             readingTime={postForDisplay.readingTime}
             shareUrl={shareUrl}
             shareTitle={postForDisplay.title}
+            shareLabels={dictionary.blog.share}
             triggerAnchorId={BANNER_ID}
           />
         </div>
       </article>
 
       {/* Always-on sticky bottom share bar — mobile/tablet only */}
-      <MobileShareBar url={shareUrl} title={postForDisplay.title} />
+      <MobileShareBar
+        url={shareUrl}
+        title={postForDisplay.title}
+        labels={dictionary.blog.share}
+      />
     </main>
   );
 }

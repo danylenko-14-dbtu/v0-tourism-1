@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Clock } from "lucide-react";
 import { MOCK_POST } from "@/mocks/mockPost";
+import { getDictionary } from "@/lib/dictionaries";
 import { PostAuthor } from "@/components/blog/PostAuthor";
 import { PostSidebar } from "@/components/blog/PostSidebar";
 import { PostBody } from "@/components/blog/PostBody";
@@ -15,7 +16,17 @@ const SHARE_URL = "https://example.com/uk/blog/test-post";
 const HERO_AUTHOR_ID = "post-hero-author";
 const BANNER_ID = "post-hero-banner";
 
-export default function TestPostPage() {
+function normalizeLocale(locale: string): "uk" | "en" {
+  return locale === "en" ? "en" : "uk";
+}
+
+export default async function TestPostPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const dictionary = await getDictionary(normalizeLocale(locale));
   const post = MOCK_POST;
 
   return (
@@ -85,13 +96,18 @@ export default function TestPostPage() {
             readingTime={post.readingTime}
             shareUrl={SHARE_URL}
             shareTitle={post.title}
+            shareLabels={dictionary.blog.share}
             triggerAnchorId={BANNER_ID}
           />
         </div>
       </article>
 
       {/* Always-on sticky bottom share bar — mobile/tablet only */}
-      <MobileShareBar url={SHARE_URL} title={post.title} />
+      <MobileShareBar
+        url={SHARE_URL}
+        title={post.title}
+        labels={dictionary.blog.share}
+      />
     </main>
   );
 }

@@ -15,7 +15,7 @@ interface PostShareButtonsProps {
    * "row"      — single horizontal row (mobile sticky bar)
    */
   variant?: "stacked" | "row";
-  label?: string;
+  labels?: Partial<PostShareButtonLabels>;
   /** Horizontal alignment for the stacked variant. */
   align?: "start" | "end";
   /**
@@ -27,6 +27,24 @@ interface PostShareButtonsProps {
   className?: string;
 }
 
+export interface PostShareButtonLabels {
+  shareLabel: string;
+  copyLabel: string;
+  copiedLabel: string;
+  shareOnLabel: string;
+  emailSubject: string;
+  emailBody: string;
+}
+
+const DEFAULT_LABELS: PostShareButtonLabels = {
+  shareLabel: "Share",
+  copyLabel: "Copy link",
+  copiedLabel: "Copied",
+  shareOnLabel: "Share on {name}",
+  emailSubject: "Check out this post",
+  emailBody: "I thought you might find this post interesting: {url}",
+};
+
 const ICON_BTN =
   "inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
@@ -34,12 +52,15 @@ export function PostShareButtons({
   url,
   title,
   variant = "stacked",
-  label = "Share it!",
+  labels,
   align = "start",
   compact = false,
   className,
 }: PostShareButtonsProps) {
   const [copied, setCopied] = useState(false);
+  const strings = { ...DEFAULT_LABELS, ...labels };
+  const getShareOnLabel = (name: string) =>
+    strings.shareOnLabel.replace("{name}", name);
 
   const handleCopy = async () => {
     try {
@@ -87,7 +108,8 @@ export function PostShareButtons({
         <button
           type="button"
           onClick={handleCopy}
-          aria-label={copied ? "Скопійовано" : "Копіювати посилання"}
+          aria-label={copied ? strings.copiedLabel : strings.copyLabel}
+          title={copied ? strings.copiedLabel : strings.copyLabel}
           className={cn(
             ICON_BTN,
             copied
@@ -103,7 +125,8 @@ export function PostShareButtons({
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Поділитись у ${name}`}
+            aria-label={getShareOnLabel(name)}
+            title={getShareOnLabel(name)}
             className={cn(ICON_BTN, btnClass)}
           >
             <Icon className="h-4 w-4" />
@@ -121,7 +144,7 @@ export function PostShareButtons({
         className
       )}
     >
-      <p className="text-sm font-semibold text-foreground">{label}</p>
+      <p className="text-sm font-semibold text-foreground">{strings.shareLabel}</p>
 
       {compact ? (
         // Initial state: copy = round icon button, social icons inline next to it.
@@ -130,7 +153,8 @@ export function PostShareButtons({
           <button
             type="button"
             onClick={handleCopy}
-            aria-label={copied ? "Скопійовано" : "Копіювати посилання"}
+            aria-label={copied ? strings.copiedLabel : strings.copyLabel}
+            title={copied ? strings.copiedLabel : strings.copyLabel}
             className={cn(
               ICON_BTN,
               copied
@@ -150,7 +174,8 @@ export function PostShareButtons({
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Поділитись у ${name}`}
+              aria-label={getShareOnLabel(name)}
+              title={getShareOnLabel(name)}
               className={cn(ICON_BTN, btnClass)}
             >
               <Icon className="h-4 w-4" />
@@ -164,6 +189,8 @@ export function PostShareButtons({
           <button
             type="button"
             onClick={handleCopy}
+            aria-label={copied ? strings.copiedLabel : strings.copyLabel}
+            title={copied ? strings.copiedLabel : strings.copyLabel}
             className={cn(
               "inline-flex w-full items-center justify-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium transition-colors",
               "hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
@@ -173,12 +200,12 @@ export function PostShareButtons({
             {copied ? (
               <>
                 <Check className="h-4 w-4" />
-                <span>Скопійовано</span>
+                <span>{strings.copiedLabel}</span>
               </>
             ) : (
               <>
                 <Link2 className="h-4 w-4" />
-                <span>Копіювати посилання</span>
+                <span>{strings.copyLabel}</span>
               </>
             )}
           </button>
@@ -190,7 +217,8 @@ export function PostShareButtons({
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Поділитись у ${name}`}
+                aria-label={getShareOnLabel(name)}
+                title={getShareOnLabel(name)}
                 className={cn(ICON_BTN, btnClass)}
               >
                 <Icon className="h-4 w-4" />
