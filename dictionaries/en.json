@@ -321,6 +321,16 @@
       }
     ]
   },
+  "blog": {
+    "share": {
+      "shareLabel": "Share it!",
+      "copyLabel": "Copy link",
+      "copiedLabel": "Copied",
+      "shareOnLabel": "Share on {name}",
+      "emailSubject": "Check out this post",
+      "emailBody": "I thought you might find this post interesting: {url}"
+    }
+  },
   "contactDialog": {
     "title": "Contact Us",
     "phoneLabel": "Phone",
@@ -360,7 +370,7 @@
         "items": [
           {
             "label": "Blog",
-            "href": ""
+            "href": "/blog"
           },
           {
             "label": "Publications",
