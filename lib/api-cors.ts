@@ -16,11 +16,12 @@ function getAllowedOrigins() {
 
 export function getCorsHeaders(req: NextRequest) {
   const requestOrigin = req.headers.get("origin");
+  const requestedHeaders =
+    req.headers.get("access-control-request-headers") ?? "Content-Type, X-Sanity-Webhook-Secret";
   const headers = new Headers({
     "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers":
-      req.headers.get("access-control-request-headers") ?? "Content-Type, X-Sanity-Webhook-Secret",
-    Vary: "Origin",
+    "Access-Control-Allow-Headers": requestedHeaders,
+    Vary: "Origin, Access-Control-Request-Headers, Access-Control-Request-Method",
   });
 
   if (requestOrigin && getAllowedOrigins().includes(requestOrigin)) {
