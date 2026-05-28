@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Clock } from "lucide-react";
 import { getPostBySlug, getRecentPostSlugs, asDisplayString } from "@/lib/blog";
 import { getDictionary } from "@/lib/dictionaries";
+import { serverEnv } from "@/lib/env";
 import { urlFor, type PostBodyNode, type PostBodyBlock } from "@/lib/sanity";
 import { PostAuthor } from "@/components/blog/PostAuthor";
 import { PostSidebar } from "@/components/blog/PostSidebar";
@@ -18,6 +19,10 @@ export const revalidate = 3600;
 
 const HERO_AUTHOR_ID = "post-hero-author";
 const BANNER_ID = "post-hero-banner";
+
+function buildPostUrl(locale: "uk" | "en", slug: string) {
+  return `${serverEnv.siteUrl.replace(/\/$/, "")}/${locale}/blog/${slug}`;
+}
 
 function normalizeLocale(locale: string): "uk" | "en" {
   return locale === "en" ? "en" : "uk";
@@ -52,10 +57,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = asDisplayString(post.title, normalizedLocale);
   const description = asDisplayString(post.excerpt, normalizedLocale);
 
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL ?? "http://localhost:3000";
-  const postUrl = `${siteUrl}/${normalizedLocale}/blog/${slug}`;
-  const ogImageUrl = new URL(`${siteUrl}/api/og`);
+  const postUrl = buildPostUrl(normalizedLocale, slug);
+  const ogImageUrl = new URL(`${serverEnv.siteUrl.replace(/\/$/, "")}/api/og`);
   ogImageUrl.searchParams.set("slug", slug);
   ogImageUrl.searchParams.set("locale", normalizedLocale);
 
@@ -89,7 +92,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   if (!post) notFound();
 
-  const shareUrl = `${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/${normalizedLocale}/blog/${slug}`;
+  const shareUrl = buildPostUrl(normalizedLocale, slug);
 
   const imageUrl = post.mainImage
     ? urlFor(post.mainImage).width(1600).height(800).fit("crop").url()
