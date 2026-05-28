@@ -1,4 +1,4 @@
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { BLOG_POSTS_TAG } from "@/lib/sanity";
 
@@ -19,7 +19,9 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    revalidateTag(BLOG_POSTS_TAG, { expire: 0 });
+    revalidateTag(BLOG_POSTS_TAG, "max");
+    revalidatePath("/uk/blog");
+    revalidatePath("/en/blog");
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown revalidation error";
     console.error("[/api/revalidate]", message);
@@ -31,7 +33,7 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({
     ok: true,
-    revalidated: [BLOG_POSTS_TAG],
+    revalidated: [BLOG_POSTS_TAG, "/uk/blog", "/en/blog"],
     revalidatedAt: new Date().toISOString(),
   });
 }
