@@ -5,6 +5,7 @@ export type LocalizedString = string | { uk?: string; en?: string };
 
 export interface PostListItem {
   _id: string;
+  _updatedAt?: string;
   title: LocalizedString;
   slug?: { current?: string };
   excerpt: LocalizedString;
@@ -104,7 +105,7 @@ export const BLOG_POSTS_TAG = "blog-posts";
 export const ALL_POSTS_QUERY = `
   *[_type == "post" && language == $locale && !(_id in path("drafts.**"))]
   | order(publishedAt desc) [0...$limit] {
-    _id, title, slug, excerpt, publishedAt,
+    _id, _updatedAt, title, slug, excerpt, publishedAt,
     categories[]-> {
       _id,
       title
@@ -121,7 +122,7 @@ export const ALL_POSTS_QUERY = `
 
 export const POST_BY_SLUG_QUERY = `
   *[_type == "post" && language == $locale && slug.current == $slug && !(_id in path("drafts.**"))][0] {
-    _id, title, slug, excerpt, publishedAt,
+    _id, _updatedAt, title, slug, excerpt, publishedAt,
     categories[]-> {
       _id,
       title

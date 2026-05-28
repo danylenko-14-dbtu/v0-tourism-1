@@ -49,7 +49,7 @@ export async function GET(req: NextRequest) {
       width: 1200,
       height: 630,
       fonts: [{ name: "Inter", data: fontData, weight: 700, style: "normal" }],
-      headers: { "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400" },
+      headers: { "Cache-Control": "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400" },
     }
   );
 }

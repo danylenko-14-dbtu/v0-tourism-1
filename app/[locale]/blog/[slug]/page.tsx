@@ -61,6 +61,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogImageUrl = new URL(`${serverEnv.siteUrl.replace(/\/$/, "")}/api/og`);
   ogImageUrl.searchParams.set("slug", slug);
   ogImageUrl.searchParams.set("locale", normalizedLocale);
+  if (post._updatedAt) {
+    ogImageUrl.searchParams.set("v", post._updatedAt);
+  }
 
   return {
     title,
