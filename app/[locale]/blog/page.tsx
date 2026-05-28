@@ -1,8 +1,6 @@
 import { getAllPosts, asDisplayString } from "@/lib/blog";
 import { BlogGrid } from "@/components/blog/BlogGrid";
 
-export const revalidate = 3600;
-
 const BLOG_POSTS_LIMIT = 7;
 
 export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
