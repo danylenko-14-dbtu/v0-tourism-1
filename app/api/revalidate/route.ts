@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    revalidateTag(BLOG_POSTS_TAG, "max");
+    revalidateTag(BLOG_POSTS_TAG, { expire: 0 });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown revalidation error";
     console.error("[/api/revalidate]", message);
