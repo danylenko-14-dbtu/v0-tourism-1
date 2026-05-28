@@ -20,8 +20,6 @@ export async function POST(req: NextRequest) {
 
   try {
     revalidateTag(BLOG_POSTS_TAG, "max");
-    revalidatePath("/uk/blog");
-    revalidatePath("/en/blog");
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown revalidation error";
     console.error("[/api/revalidate]", message);
