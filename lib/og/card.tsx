@@ -19,13 +19,26 @@ interface OgCardProps extends OgParams {
   logoDataUrl: string;
 }
 
+function textLength(value: string) {
+  return [...value].length;
+}
+
+function truncateText(value: string, maxLength: number) {
+  const chars = [...value.trim()];
+  return chars.length > maxLength ? `${chars.slice(0, maxLength).join("").trimEnd()}...` : value;
+}
+
 export function OgCard({ logoDataUrl, ...params }: OgCardProps) {
   const { title, excerpt, author, avatar, cover, category, date, locale } = params;
 
   const formattedDate = formatDate(date, locale);
   const brandName = locale === "en" ? "State Biotechnological University" : "Кафедра туризму ДБТУ";
-  const titleFontSize = title.length > 55 ? 46 : title.length > 35 ? 52 : 58;
-  const showExcerpt = !!excerpt && title.length < 45;
+  const titleSize = textLength(title);
+  const excerptLimit = titleSize > 55 ? 92 : 120;
+  const displayExcerpt = truncateText(excerpt, excerptLimit);
+  const showExcerpt = displayExcerpt.length > 0;
+  const titleFontSize = titleSize > 55 ? 48 : titleSize > 35 ? 54 : 60;
+  const excerptFontSize = titleSize > 55 ? 18 : 19;
 
   return (
     <div
@@ -47,18 +60,18 @@ export function OgCard({ logoDataUrl, ...params }: OgCardProps) {
           justifyContent: "space-between",
           width: "610px",
           height: "100%",
-          padding: "52px 56px",
+          padding: "48px 52px",
         }}
       >
         {/* Logo + department name */}
-        <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
           {logoDataUrl && (
             <img
               src={logoDataUrl}
-              style={{ width: "44px", height: "44px", borderRadius: "50%", objectFit: "contain" }}
+              style={{ width: "48px", height: "48px", borderRadius: "50%", objectFit: "contain" }}
             />
           )}
-          <span style={{ fontSize: "16px", color: COLORS.textMuted, letterSpacing: "0.04em" }}>
+          <span style={{ fontSize: "17px", color: COLORS.textMuted, letterSpacing: "0.04em" }}>
             {brandName}
           </span>
         </div>
@@ -86,15 +99,21 @@ export function OgCard({ logoDataUrl, ...params }: OgCardProps) {
               fontWeight: 700,
               color: COLORS.text,
               lineHeight: 1.18,
-              letterSpacing: "-0.02em",
+              letterSpacing: 0,
             }}
           >
             {title}
           </div>
 
           {showExcerpt && (
-            <div style={{ fontSize: "19px", color: COLORS.textMuted, lineHeight: 1.4 }}>
-              {excerpt}
+            <div
+              style={{
+                fontSize: `${excerptFontSize}px`,
+                color: COLORS.textMuted,
+                lineHeight: 1.35,
+              }}
+            >
+              {displayExcerpt}
             </div>
           )}
         </div>
@@ -104,13 +123,13 @@ export function OgCard({ logoDataUrl, ...params }: OgCardProps) {
           <div style={{ width: "48px", height: "2px", backgroundColor: COLORS.divider }} />
 
           {author && (
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "13px" }}>
               {avatar ? (
                 <img
                   src={avatar}
                   style={{
-                    width: "46px",
-                    height: "46px",
+                    width: "50px",
+                    height: "50px",
                     borderRadius: "50%",
                     objectFit: "cover",
                     border: `2px solid ${COLORS.badgeBorder}`,
@@ -120,27 +139,27 @@ export function OgCard({ logoDataUrl, ...params }: OgCardProps) {
                 <div
                   style={{
                     display: "flex",
-                    width: "46px",
-                    height: "46px",
+                    width: "50px",
+                    height: "50px",
                     borderRadius: "50%",
                     backgroundColor: COLORS.accent,
                     alignItems: "center",
                     justifyContent: "center",
                   }}
                 >
-                  <span style={{ color: "#fff", fontSize: "20px", fontWeight: 700 }}>
+                  <span style={{ color: "#fff", fontSize: "21px", fontWeight: 700 }}>
                     {[...author][0]}
                   </span>
                 </div>
               )}
-              <span style={{ fontSize: "18px", color: COLORS.text, fontWeight: 500 }}>
+              <span style={{ fontSize: "20px", color: COLORS.text, fontWeight: 500 }}>
                 {author}
               </span>
             </div>
           )}
 
           {formattedDate && (
-            <span style={{ fontSize: "15px", color: COLORS.textLight }}>{formattedDate}</span>
+            <span style={{ fontSize: "16px", color: COLORS.textLight }}>{formattedDate}</span>
           )}
         </div>
       </div>
