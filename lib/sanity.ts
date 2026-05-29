@@ -99,7 +99,11 @@ export function buildImageUrl(
     .url();
 }
 
-export const BLOG_POSTS_TAG = "blog-posts";
+export const BLOG_POSTS_LIST_TAG = "blog-posts-list";
+
+export function getBlogPostTag(locale: string, slug: string) {
+  return `blog-post:${locale}:${slug}`;
+}
 
 export const ALL_POSTS_QUERY = `
   *[_type == "post" && language == $locale && !(_id in path("drafts.**"))]

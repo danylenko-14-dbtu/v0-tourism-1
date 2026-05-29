@@ -15,8 +15,6 @@ interface Props {
   params: Promise<{ locale: string; slug: string }>;
 }
 
-export const revalidate = 3600;
-
 const HERO_AUTHOR_ID = "post-hero-author";
 const BANNER_ID = "post-hero-banner";
 
