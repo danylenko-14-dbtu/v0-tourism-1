@@ -53,7 +53,7 @@ export function OgCard({ logoDataUrl, ...params }: OgCardProps) {
           flexDirection: "column",
           width: "610px",
           height: "100%",
-          padding: "32px 52px 38px",
+          padding: "30px 52px 42px",
         }}
       >
         {/* Logo + department name */}
@@ -70,7 +70,7 @@ export function OgCard({ logoDataUrl, ...params }: OgCardProps) {
         </div>
 
         {/* Badge + title + excerpt */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "26px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "16px" }}>
           <div
             style={{
               display: "flex",
