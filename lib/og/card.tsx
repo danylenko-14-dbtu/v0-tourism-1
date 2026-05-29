@@ -23,22 +23,16 @@ function textLength(value: string) {
   return [...value].length;
 }
 
-function truncateText(value: string, maxLength: number) {
-  const chars = [...value];
-  return chars.length > maxLength ? chars.slice(0, maxLength).join("").trimEnd() + "…" : value;
-}
-
 export function OgCard({ logoDataUrl, ...params }: OgCardProps) {
   const { title, excerpt, author, avatar, cover, category, date, locale } = params;
 
   const formattedDate = formatDate(date, locale);
   const brandName = locale === "en" ? "State Biotechnological University" : "Кафедра туризму ДБТУ";
   const titleSize = textLength(title);
-  const excerptLimit = titleSize > 55 ? 92 : 120;
-  const displayExcerpt = truncateText(excerpt, excerptLimit);
-  const showExcerpt = displayExcerpt.length > 0;
-  const titleFontSize = titleSize > 55 ? 48 : titleSize > 35 ? 54 : 60;
-  const excerptFontSize = titleSize > 55 ? 18 : 19;
+  const showExcerpt = excerpt.trim().length > 0;
+  const titleFontSize = titleSize > 55 ? 44 : titleSize > 35 ? 52 : 60;
+  const excerptFontSize = 18;
+  const excerptLineHeight = 1.3;
 
   return (
     <div
@@ -57,10 +51,9 @@ export function OgCard({ logoDataUrl, ...params }: OgCardProps) {
         style={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
           width: "610px",
           height: "100%",
-          padding: "48px 52px",
+          padding: "32px 52px 38px",
         }}
       >
         {/* Logo + department name */}
@@ -77,7 +70,7 @@ export function OgCard({ logoDataUrl, ...params }: OgCardProps) {
         </div>
 
         {/* Badge + title + excerpt */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "26px" }}>
           <div
             style={{
               display: "flex",
@@ -110,16 +103,20 @@ export function OgCard({ logoDataUrl, ...params }: OgCardProps) {
               style={{
                 fontSize: `${excerptFontSize}px`,
                 color: COLORS.textMuted,
-                lineHeight: 1.35,
+                lineHeight: excerptLineHeight,
+                maxHeight: `${excerptFontSize * excerptLineHeight * 3}px`,
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                lineClamp: 3,
               }}
             >
-              {displayExcerpt}
+              {excerpt}
             </div>
           )}
         </div>
 
         {/* Author + date */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "auto" }}>
           <div style={{ width: "48px", height: "2px", backgroundColor: COLORS.divider }} />
 
           {author && (
