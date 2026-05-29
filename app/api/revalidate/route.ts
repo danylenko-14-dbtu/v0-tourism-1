@@ -1,9 +1,22 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { getCorsHeaders } from "@/lib/api-cors";
-import { BLOG_POSTS_TAG } from "@/lib/sanity";
+import { BLOG_POSTS_LIST_TAG, getBlogPostTag } from "@/lib/sanity";
 
 export const dynamic = "force-dynamic";
+
+function readSlug(value: unknown): string | undefined {
+  if (typeof value === "string") return value;
+  if (value && typeof value === "object") {
+    const current = (value as { current?: unknown }).current;
+    if (typeof current === "string") return current;
+  }
+  return undefined;
+}
+
+function readLocale(value: unknown): "uk" | "en" | undefined {
+  return value === "uk" || value === "en" ? value : undefined;
+}
 
 export async function POST(req: NextRequest) {
   const corsHeaders = getCorsHeaders(req);
@@ -23,8 +36,28 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401, headers: corsHeaders });
   }
 
+  const payload = await req.json().catch(() => null);
+  const searchParams = req.nextUrl.searchParams;
+  const slug = readSlug(payload?.slug) ?? readSlug(searchParams.get("slug"));
+  const payloadLocale =
+    readLocale(payload?.language ?? payload?.locale) ?? readLocale(searchParams.get("locale"));
+  const postLocales = payloadLocale ? [payloadLocale] : (["uk", "en"] as const);
+  const revalidated = [BLOG_POSTS_LIST_TAG, "/uk/blog", "/en/blog"];
+
   try {
-    revalidateTag(BLOG_POSTS_TAG, "max");
+    revalidateTag(BLOG_POSTS_LIST_TAG, "max");
+    revalidatePath("/uk/blog");
+    revalidatePath("/en/blog");
+
+    if (slug) {
+      for (const locale of postLocales) {
+        const tag = getBlogPostTag(locale, slug);
+        const path = `/${locale}/blog/${slug}`;
+        revalidateTag(tag, "max");
+        revalidatePath(path);
+        revalidated.push(tag, path);
+      }
+    }
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown revalidation error";
     console.error("[/api/revalidate]", message);
@@ -37,7 +70,7 @@ export async function POST(req: NextRequest) {
   return NextResponse.json(
     {
       ok: true,
-      revalidated: [BLOG_POSTS_TAG, "/uk/blog", "/en/blog"],
+      revalidated,
       revalidatedAt: new Date().toISOString(),
     },
     { headers: corsHeaders }

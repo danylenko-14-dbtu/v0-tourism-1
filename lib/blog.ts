@@ -3,7 +3,8 @@ import {
   ALL_POSTS_QUERY,
   POST_BY_SLUG_QUERY,
   RECENT_POST_SLUGS_QUERY,
-  BLOG_POSTS_TAG,
+  BLOG_POSTS_LIST_TAG,
+  getBlogPostTag,
   type PostListItem,
   type PostFull,
 } from "./sanity";
@@ -19,7 +20,7 @@ export async function getAllPosts(
   return sanityClient.fetch(
     ALL_POSTS_QUERY,
     { locale, limit },
-    { next: { tags: [BLOG_POSTS_TAG] } }
+    { cache: "force-cache", next: { tags: [BLOG_POSTS_LIST_TAG] } }
   );
 }
 
@@ -30,7 +31,7 @@ export async function getPostBySlug(
   return sanityClient.fetch(
     POST_BY_SLUG_QUERY,
     { locale, slug },
-    { next: { tags: [BLOG_POSTS_TAG] } }
+    { cache: "force-cache", next: { tags: [getBlogPostTag(locale, slug)] } }
   );
 }
 
@@ -38,7 +39,7 @@ export async function getRecentPostSlugs(limit = 20): Promise<string[]> {
   const result = await sanityClient.fetch<Array<{ slug: string }>>(
     RECENT_POST_SLUGS_QUERY,
     { limit },
-    { next: { tags: [BLOG_POSTS_TAG] } }
+    { cache: "force-cache", next: { tags: [BLOG_POSTS_LIST_TAG] } }
   );
   return result.map((r) => r.slug).filter(Boolean);
 }
