@@ -24,8 +24,8 @@ function textLength(value: string) {
 }
 
 function truncateText(value: string, maxLength: number) {
-  const chars = [...value.trim()];
-  return chars.length > maxLength ? `${chars.slice(0, maxLength).join("").trimEnd()}...` : value;
+  const chars = [...value];
+  return chars.length > maxLength ? chars.slice(0, maxLength).join("").trimEnd() + "…" : value;
 }
 
 export function OgCard({ logoDataUrl, ...params }: OgCardProps) {
