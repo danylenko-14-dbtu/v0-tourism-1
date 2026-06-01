@@ -62,7 +62,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
                       href={localizeHref(item.href)}
                       target={external ? "_blank" : undefined}
                       rel={external ? "noopener noreferrer" : undefined}
-                      className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
+                      className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-link-hover focus-visible:text-link-hover focus-visible:underline"
                     >
                       {item.label}
                     </Link>
@@ -85,7 +85,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
                       href={localizeHref(item.href)}
                       target={external ? "_blank" : undefined}
                       rel={external ? "noopener noreferrer" : undefined}
-                      className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
+                      className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-link-hover focus-visible:text-link-hover focus-visible:underline"
                     >
                       {item.label}
                     </Link>
@@ -108,7 +108,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
                       href={localizeHref(item.href)}
                       target={external ? "_blank" : undefined}
                       rel={external ? "noopener noreferrer" : undefined}
-                      className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
+                      className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-link-hover focus-visible:text-link-hover focus-visible:underline"
                     >
                       {item.label}
                     </Link>
@@ -130,7 +130,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
                 rel="noopener noreferrer"
                 href={item.href}
                 aria-label={item.label}
-                className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
+                className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-link-hover focus-visible:text-link-hover focus-visible:underline"
               >
                 <Icon className="h-5 w-5" />
               </Link>

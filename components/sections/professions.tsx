@@ -35,7 +35,7 @@ export function Professions({ dictionary }: ProfessionsProps) {
                 className="group border-border/50 bg-background/50 transition-all duration-300 hover:border-border hover:shadow-md"
               >
                 <CardHeader>
-                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-muted transition-colors group-hover:bg-foreground group-hover:text-background">
+                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-muted transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                     <Icon className="h-6 w-6" />
                   </div>
                   <CardTitle className="text-lg">{feature.title}</CardTitle>

@@ -96,7 +96,7 @@ export function GraduatesWork({ dictionary }: GraduatesWorkProps) {
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 {/* Icon */}
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-muted transition-colors group-hover:bg-foreground group-hover:text-background">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-muted transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </div>
 

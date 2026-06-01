@@ -103,7 +103,7 @@ export function ProgramFacts({ dictionary }: ProgramFactsProps) {
                   'focus-visible-ring relative rounded-full px-8 py-2.5 text-sm font-medium transition-all duration-300',
                   activeTab === tab
                     ? 'bg-background text-foreground shadow-sm ring-1 ring-border/50'
-                    : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground focus-visible:bg-muted/50 focus-visible:text-foreground',
+                    : 'text-muted-foreground hover:bg-muted/50 hover:text-link-hover focus-visible:bg-muted/50 focus-visible:text-link-hover',
                 )}
                 aria-selected={activeTab === tab}
                 aria-controls="program-tabpanel"

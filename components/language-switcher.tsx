@@ -28,7 +28,7 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
             "focus-visible-ring rounded-full px-3 py-1 text-sm font-medium transition-all duration-200",
             locale === currentLocale
               ? "bg-background text-foreground shadow-sm"
-              : "text-muted-foreground hover:text-foreground focus-visible:bg-background focus-visible:text-foreground focus-visible:shadow-sm"
+              : "text-muted-foreground hover:text-link-hover focus-visible:bg-background focus-visible:text-link-hover focus-visible:shadow-sm"
           )}
         >
           {localeNames[locale]}

@@ -10,6 +10,8 @@
   --brand-on-primary: #ffffff;
   --brand-on-secondary: #ffffff;
   --brand-primary-soft: color-mix(in oklab, var(--brand-primary) 10%, white);
+  --heading-foreground: var(--brand-primary);
+  --link-hover-foreground: var(--primary);
   --background: oklch(1 0 0);
   --foreground: var(--brand-static-black);
   --card: oklch(1 0 0);
@@ -21,7 +23,7 @@
   --secondary: var(--brand-secondary);
   --secondary-foreground: var(--brand-on-secondary);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: var(--secondary);
   --accent: var(--brand-primary-soft);
   --accent-foreground: var(--brand-primary);
   --destructive: oklch(0.577 0.245 27.325);
@@ -69,6 +71,8 @@
   --ring: oklch(0.439 0 0);
   --focus-ring: oklch(1 0 0);
   --focus-ring-inverted: oklch(0.205 0 0);
+  --heading-foreground: var(--foreground);
+  --link-hover-foreground: var(--foreground);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -100,6 +104,8 @@
   --color-brand-primary: var(--brand-primary);
   --color-brand-secondary: var(--brand-secondary);
   --color-static-black: var(--brand-static-black);
+  --color-heading: var(--heading-foreground);
+  --color-link-hover: var(--link-hover-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
@@ -138,6 +144,14 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+:root:not(.dark) :is(h1, h2, h3) {
+  color: var(--heading-foreground) !important;
+}
+
+.dark :is(h1, h2, h3) {
+  color: var(--foreground) !important;
 }
 
 @layer utilities {
