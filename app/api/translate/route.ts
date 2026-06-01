@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
 
     const result = await translateAndSaveEN(documentId, slug);
     return NextResponse.json({ ok: true, ...result }, { headers: corsHeaders });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("[/api/translate]", err);
     return NextResponse.json({ error: "Internal error" }, { status: 500, headers: corsHeaders });
   }

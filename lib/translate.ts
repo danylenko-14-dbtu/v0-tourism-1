@@ -24,6 +24,18 @@ type TextEntry = {
   text: string;
 };
 
+type SanitySpan = {
+  _type?: string;
+  text?: string;
+};
+
+type SanityBlock = {
+  _type?: string;
+  children?: SanitySpan[];
+  alt?: string;
+  [key: string]: unknown;
+};
+
 type TranslationResult = {
   title: string;
   excerpt: string;
@@ -31,12 +43,12 @@ type TranslationResult = {
   texts: Array<{ id: number; translated: string }>;
 };
 
-function extractTexts(blocks: any[]): TextEntry[] {
+function extractTexts(blocks: SanityBlock[]): TextEntry[] {
   const entries: TextEntry[] = [];
 
   blocks?.forEach((block, blockIdx) => {
     if (block._type === "block" && block.children) {
-      block.children.forEach((child: any, childIdx: number) => {
+      block.children.forEach((child, childIdx) => {
         if (child._type === "span" && child.text?.trim()) {
           entries.push({ blockIdx, childIdx, field: "span", text: child.text });
         }
@@ -51,27 +63,40 @@ function extractTexts(blocks: any[]): TextEntry[] {
 }
 
 function applyTranslations(
-  blocks: any[],
+  blocks: SanityBlock[],
   entries: TextEntry[],
   translated: Map<number, string>
-): any[] {
-  const result = JSON.parse(JSON.stringify(blocks));
+): SanityBlock[] {
+  const result = structuredClone(blocks);
 
   entries.forEach((entry, i) => {
     const text = translated.get(i);
     if (!text) return;
     if (entry.field === "span") {
-      result[entry.blockIdx].children[entry.childIdx!].text = text;
+      const childIdx = entry.childIdx;
+      if (childIdx === null) return;
+      const child = result[entry.blockIdx]?.children?.[childIdx];
+      if (child) {
+        child.text = text;
+      }
     }
     if (entry.field === "imageAlt") {
-      result[entry.blockIdx].alt = text;
+      const block = result[entry.blockIdx];
+      if (block) {
+        block.alt = text;
+      }
     }
   });
 
   return result;
 }
 
-async function callOpenAI(title: string, excerpt: string, mainImageAlt: string, blocks: any[]) {
+async function callOpenAI(
+  title: string,
+  excerpt: string,
+  mainImageAlt: string,
+  blocks: SanityBlock[]
+) {
   const entries = extractTexts(blocks);
 
   const response = await openai.chat.completions.create({

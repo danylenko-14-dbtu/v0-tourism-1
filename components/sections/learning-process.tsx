@@ -22,12 +22,11 @@ const icons = [BookOpen, Briefcase, GraduationCap, FileCheck]
 
 export function LearningProcess({ dictionary }: LearningProcessProps) {
   const { learningProcess } = dictionary
-  const [visibleStages, setVisibleStages] = useState<boolean[]>([])
+  const [visibleStages, setVisibleStages] = useState<Set<number>>(() => new Set())
   const stageRefs = useRef<(HTMLDivElement | null)[]>([])
+  const visibleStageCount = Math.min(visibleStages.size, learningProcess.stages.length)
 
   useEffect(() => {
-    setVisibleStages(new Array(learningProcess.stages.length).fill(false))
-
     const observers = stageRefs.current.map((ref, index) => {
       if (!ref) return null
 
@@ -35,8 +34,8 @@ export function LearningProcess({ dictionary }: LearningProcessProps) {
         ([entry]) => {
           if (entry.isIntersecting) {
             setVisibleStages((prev) => {
-              const newState = [...prev]
-              newState[index] = true
+              const newState = new Set(prev)
+              newState.add(index)
               return newState
             })
             observer.disconnect()
@@ -79,7 +78,7 @@ export function LearningProcess({ dictionary }: LearningProcessProps) {
             <div 
               className="h-full bg-primary transition-all duration-1000 ease-out"
               style={{ 
-                width: `${(visibleStages.filter(Boolean).length / learningProcess.stages.length) * 100}%` 
+                width: `${(visibleStageCount / learningProcess.stages.length) * 100}%` 
               }}
             />
           </div>
@@ -89,7 +88,7 @@ export function LearningProcess({ dictionary }: LearningProcessProps) {
             <div 
               className="w-full bg-primary transition-all duration-1000 ease-out"
               style={{ 
-                height: `${(visibleStages.filter(Boolean).length / learningProcess.stages.length) * 100}%` 
+                height: `${(visibleStageCount / learningProcess.stages.length) * 100}%` 
               }}
             />
           </div>
@@ -98,7 +97,7 @@ export function LearningProcess({ dictionary }: LearningProcessProps) {
           <div className="md:flex md:justify-between relative">
             {learningProcess.stages.map((stage, index) => {
               const Icon = icons[index] || BookOpen
-              const isVisible = visibleStages[index]
+              const isVisible = visibleStages.has(index)
 
               return (
                 <div

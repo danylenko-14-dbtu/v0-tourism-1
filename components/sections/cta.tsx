@@ -30,7 +30,7 @@ export function CTA({ dictionary, locale }: CTAProps) {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <EnrollButton
               label={dictionary.cta.buttonPrimary}
-              className="focus-visible-ring-inverted bg-secondary text-secondary-foreground shadow-none hover:bg-secondary/80 focus-visible:bg-secondary/80"
+              className="focus-visible-ring-inverted bg-primary text-primary-foreground shadow-none hover:bg-primary/90 focus-visible:bg-primary/90"
             />
             <Button
               size="lg"

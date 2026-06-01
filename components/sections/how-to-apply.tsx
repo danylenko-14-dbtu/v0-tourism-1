@@ -24,12 +24,11 @@ const icons = [ClipboardList, UserPlus, FileText, CheckCircle]
 
 export function HowToApply({ dictionary }: HowToApplyProps) {
   const { howToApply } = dictionary
-  const [visibleStages, setVisibleStages] = useState<boolean[]>([])
+  const [visibleStages, setVisibleStages] = useState<Set<number>>(() => new Set())
   const stageRefs = useRef<(HTMLDivElement | null)[]>([])
+  const visibleStageCount = Math.min(visibleStages.size, howToApply.stages.length)
 
   useEffect(() => {
-    setVisibleStages(new Array(howToApply.stages.length).fill(false))
-
     const observers = stageRefs.current.map((ref, index) => {
       if (!ref) return null
 
@@ -37,8 +36,8 @@ export function HowToApply({ dictionary }: HowToApplyProps) {
         ([entry]) => {
           if (entry.isIntersecting) {
             setVisibleStages((prev) => {
-              const newState = [...prev]
-              newState[index] = true
+              const newState = new Set(prev)
+              newState.add(index)
               return newState
             })
             observer.disconnect()
@@ -81,7 +80,7 @@ export function HowToApply({ dictionary }: HowToApplyProps) {
             <div 
               className="h-full bg-primary transition-all duration-1000 ease-out"
               style={{ 
-                width: `${(visibleStages.filter(Boolean).length / howToApply.stages.length) * 100}%` 
+                width: `${(visibleStageCount / howToApply.stages.length) * 100}%` 
               }}
             />
           </div>
@@ -91,7 +90,7 @@ export function HowToApply({ dictionary }: HowToApplyProps) {
             <div 
               className="w-full bg-primary transition-all duration-1000 ease-out"
               style={{ 
-                height: `${(visibleStages.filter(Boolean).length / howToApply.stages.length) * 100}%` 
+                height: `${(visibleStageCount / howToApply.stages.length) * 100}%` 
               }}
             />
           </div>
@@ -100,7 +99,7 @@ export function HowToApply({ dictionary }: HowToApplyProps) {
           <div className="md:flex md:justify-between relative">
             {howToApply.stages.map((stage, index) => {
               const Icon = icons[index] || ClipboardList
-              const isVisible = visibleStages[index]
+              const isVisible = visibleStages.has(index)
 
               return (
                 <div
