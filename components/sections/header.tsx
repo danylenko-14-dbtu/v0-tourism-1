@@ -21,7 +21,7 @@ export function Header({ locale, dictionary }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
-      <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <BrandLogo
           href={`/${locale}`}
           label={dictionary.brand.name}
@@ -35,7 +35,7 @@ export function Header({ locale, dictionary }: HeaderProps) {
             <ScrollLink
               key={item.href}
               href={item.href}
-              className="focus-visible-ring rounded-md px-2 py-1 text-[0.95rem] font-medium text-muted-foreground transition-colors hover:text-link-hover focus-visible:bg-muted/50 focus-visible:text-link-hover focus-visible:underline"
+              className="focus-visible-ring rounded-md px-2 py-1 text-sm font-medium text-muted-foreground transition-colors hover:text-link-hover focus-visible:bg-muted/50 focus-visible:text-link-hover focus-visible:underline"
             >
               {item.label}
             </ScrollLink>

@@ -10,6 +10,9 @@
   --brand-on-primary: #ffffff;
   --brand-on-secondary: #ffffff;
   --brand-primary-soft: color-mix(in oklab, var(--brand-primary) 10%, white);
+  --footer-background: #003f88;
+  --footer-foreground: #ffffff;
+  --footer-link-hover: oklch(0.708 0 0);
   --heading-foreground: var(--brand-primary);
   --link-hover-foreground: var(--primary);
   --background: oklch(1 0 0);
@@ -104,6 +107,9 @@
   --color-brand-primary: var(--brand-primary);
   --color-brand-secondary: var(--brand-secondary);
   --color-static-black: var(--brand-static-black);
+  --color-footer: var(--footer-background);
+  --color-footer-foreground: var(--footer-foreground);
+  --color-footer-link-hover: var(--footer-link-hover);
   --color-heading: var(--heading-foreground);
   --color-link-hover: var(--link-hover-foreground);
   --color-muted: var(--muted);

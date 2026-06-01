@@ -22,22 +22,14 @@ export function BrandLogo({
 }: BrandLogoProps) {
   const renderLabel = () => {
     if (variant === "split") {
-      const [first, ...rest] = label.split(" ");
-      return (
-        <span className={`flex flex-col ${textClassName ?? ""}`}>
-          <span className="text-xl leading-tight font-bold tracking-wider">{first}</span>
-          {rest.length > 0 && (
-            <span className="text-base leading-tight font-semibold">{rest.join(" ")}</span>
-          )}
-        </span>
-      );
+      return <span className={`text-base font-semibold leading-none ${textClassName ?? ""}`}>{label}</span>;
     }
     return <span className={textClassName}>{label}</span>;
   };
 
   return (
     <HomeLogoLink href={href} className={className}>
-      <span title={title} className="relative flex h-12 w-12 shrink-0 overflow-hidden rounded-xl">
+      <span title={title} className="relative flex h-[42px] w-[42px] shrink-0 overflow-hidden rounded-lg">
         <Image
           src="/dbtu-logo.png"
           alt={label}

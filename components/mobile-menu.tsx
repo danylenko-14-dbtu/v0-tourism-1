@@ -68,7 +68,7 @@ export function MobileMenu({ navItems, locale }: MobileMenuProps) {
 
       {open && (
         <div
-          className="fixed inset-x-0 bottom-0 top-16 z-40 bg-background/60 backdrop-blur-sm"
+          className="fixed inset-x-0 bottom-0 top-14 z-40 bg-background/60 backdrop-blur-sm"
           onClick={() => setOpen(false)}
           aria-hidden="true"
         />
@@ -79,7 +79,7 @@ export function MobileMenu({ navItems, locale }: MobileMenuProps) {
         role="navigation"
         className={cn(
           'absolute left-0 right-0 top-full z-50 overflow-hidden border-b border-border/50 bg-background shadow-lg transition-all duration-300 md:hidden',
-          open ? 'max-h-[calc(100vh-4rem)]' : 'max-h-0 border-b-0'
+          open ? 'max-h-[calc(100vh-3.5rem)]' : 'max-h-0 border-b-0'
         )}
       >
         <nav className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4">
