@@ -1,7 +1,8 @@
 import { BrandLogo } from "@/components/brand-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { ScrollLink } from "@/components/scroll-link";
+import { HeaderContactButton } from "@/components/header-contact-button";
+import { HeaderNav, type HeaderNavItem } from "@/components/header-nav";
 import { MobileMenu } from "@/components/mobile-menu";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries";
@@ -12,15 +13,18 @@ interface HeaderProps {
 }
 
 export function Header({ locale, dictionary }: HeaderProps) {
-  const navItems = [
-    { href: "#professions", label: dictionary.nav.professions },
-    { href: "#program-facts", label: dictionary.nav.program },
-    { href: "#application", label: dictionary.nav.application },
-    { href: "#contact", label: dictionary.nav.contact },
+  const isEnglish = locale === "en";
+  const localeRoot = `/${locale}`;
+  const navItems: HeaderNavItem[] = [
+    { href: localeRoot, label: isEnglish ? "Home" : "Головна", exact: true },
+    { href: `${localeRoot}/about-us`, label: isEnglish ? "About Us" : "Про нас" },
+    { href: `${localeRoot}/program`, label: isEnglish ? "Program" : "Програма" },
+    { href: `${localeRoot}/blog`, label: isEnglish ? "Blog" : "Блог" },
   ];
+  const contactLabel = isEnglish ? "Contact Us" : "Зв'язатись";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
+    <header className="fixed inset-x-0 bottom-0 top-auto z-50 w-full border-t border-border/50 bg-background/90 backdrop-blur-md md:sticky md:bottom-auto md:top-0 md:border-b md:border-t-0 md:bg-background/80">
       <div className="relative mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <BrandLogo
           href={`/${locale}`}
@@ -30,23 +34,16 @@ export function Header({ locale, dictionary }: HeaderProps) {
           variant="split"
         />
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
-            <ScrollLink
-              key={item.href}
-              href={item.href}
-              className="focus-visible-ring rounded-md px-2 py-1 text-sm font-medium text-muted-foreground transition-colors hover:text-link-hover focus-visible:bg-muted/50 focus-visible:text-link-hover focus-visible:underline"
-            >
-              {item.label}
-            </ScrollLink>
-          ))}
-        </nav>
+        <HeaderNav items={navItems} />
 
-        <div className="flex items-center gap-3">
-          <div className="hidden sm:block">
-            <LanguageSwitcher currentLocale={locale} />
+        <div className="flex items-center gap-3 md:gap-6">
+          <div className="hidden md:block">
+            <HeaderContactButton label={contactLabel} />
           </div>
-          <ThemeToggle />
+          <div className="hidden items-center gap-3 md:flex">
+            <LanguageSwitcher currentLocale={locale} />
+            <ThemeToggle />
+          </div>
           <MobileMenu navItems={navItems} locale={locale} />
         </div>
       </div>
