@@ -4,7 +4,7 @@ import { locales, type Locale } from '@/lib/i18n'
 import { Hero } from '@/components/sections/hero'
 import { Professions } from '@/components/sections/professions'
 import { LearningProcess } from '@/components/sections/learning-process'
-import { GraduatesWork } from '@/components/sections/graduates-work'
+import { Graduates } from '@/components/sections/graduates'
 import { ProgramFacts } from '@/components/sections/program-facts'
 import { HowToApply } from '@/components/sections/how-to-apply'
 import { About } from '@/components/sections/about'
@@ -31,11 +31,8 @@ export default async function HomePage({ params }: PageProps) {
       <Hero dictionary={dictionary} locale={typedLocale} />
       <Professions dictionary={dictionary} />
       <LearningProcess dictionary={dictionary} />
-      <GraduatesWork dictionary={dictionary} />
-      <ProgramFacts dictionary={dictionary} />
+      <Graduates dictionary={dictionary} />
       <HowToApply dictionary={dictionary} />
-      <About dictionary={dictionary} />
-      <Pricing dictionary={dictionary} />
       <Partners dictionary={dictionary} />
       <CTA dictionary={dictionary} locale={typedLocale} />
     </main>
