@@ -33,6 +33,7 @@ export function LanguageSwitcher({ currentLocale, variant = "dropdown" }: Langua
           <Link
             key={locale}
             href={getLocalizedPath(locale)}
+            aria-current={locale === currentLocale ? "page" : undefined}
             className={cn(
               "focus-visible-ring rounded-full px-3 py-1 text-sm font-medium transition-all duration-200",
               locale === currentLocale
