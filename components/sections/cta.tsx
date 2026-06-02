@@ -21,7 +21,7 @@ export function CTA({ dictionary, locale }: CTAProps) {
     >
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-3xl bg-primary px-8 py-16 text-center text-primary-foreground sm:px-16 sm:py-24">
-          <h2 id="contact-title" className="!text-primary-foreground text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 id="contact-title" className="text-primary-foreground text-balance text-3xl font-bold tracking-tight sm:text-4xl">
             {dictionary.cta.title}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-pretty text-lg opacity-80">

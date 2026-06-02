@@ -63,7 +63,7 @@ export function LearningProcess({ dictionary }: LearningProcessProps) {
       <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 id="learning-process-title" className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
+          <h2 id="learning-process-title" className="text-3xl md:text-4xl font-bold tracking-tight text-heading mb-4">
             {learningProcess.title}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -134,7 +134,7 @@ export function LearningProcess({ dictionary }: LearningProcessProps) {
                     <span className="inline-block text-xs font-medium text-primary mb-1 md:mb-2">
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                    <h3 className="text-lg font-semibold text-heading mb-2">
                       {stage.title}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed max-w-48">

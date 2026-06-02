@@ -32,8 +32,8 @@ export function Footer({ dictionary, locale }: FooterProps) {
   ];
 
   return (
-    <footer className="border-t border-primary/70">
-      <div className="bg-primary text-footer-foreground">
+    <footer className="border-t border-primary/70 dark:border-border">
+      <div className="bg-[var(--footer-top-background)] text-footer-foreground">
         <div className="mx-auto max-w-6xl px-4 pt-16 pb-6 sm:px-6 lg:px-8">
           <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
             {/* Brand */}
@@ -52,7 +52,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
 
             {/* Study links */}
             <div>
-              <h3 className="!text-footer-foreground text-sm font-semibold">
+              <h3 className="text-footer-foreground text-sm font-semibold">
                 {dictionary.footer.links.study.title}
               </h3>
               <ul className="mt-4 space-y-3">
@@ -77,7 +77,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
 
             {/* Department links */}
             <div>
-              <h3 className="!text-footer-foreground text-sm font-semibold">
+              <h3 className="text-footer-foreground text-sm font-semibold">
                 {dictionary.footer.links.department.title}
               </h3>
               <ul className="mt-4 space-y-3">
@@ -102,7 +102,7 @@ export function Footer({ dictionary, locale }: FooterProps) {
 
             {/* Legal links */}
             <div>
-              <h3 className="!text-footer-foreground text-sm font-semibold">
+              <h3 className="text-footer-foreground text-sm font-semibold">
                 {dictionary.footer.links.legal.title}
               </h3>
               <ul className="mt-4 space-y-3">

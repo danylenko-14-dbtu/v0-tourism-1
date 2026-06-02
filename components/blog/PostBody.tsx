@@ -55,7 +55,7 @@ function renderBlock(block: BlockNode) {
       return (
         <h1
           key={block._key}
-          className="mt-10 mb-4 scroll-mt-24 text-3xl font-bold tracking-tight text-foreground md:text-4xl"
+          className="mt-10 mb-4 scroll-mt-24 text-3xl font-bold tracking-tight text-heading md:text-4xl"
         >
           {inner}
         </h1>
@@ -64,7 +64,7 @@ function renderBlock(block: BlockNode) {
       return (
         <h2
           key={block._key}
-          className="mt-12 mb-4 scroll-mt-24 text-2xl font-bold tracking-tight text-foreground md:text-3xl"
+          className="mt-12 mb-4 scroll-mt-24 text-2xl font-bold tracking-tight text-heading md:text-3xl"
         >
           {inner}
         </h2>
@@ -73,7 +73,7 @@ function renderBlock(block: BlockNode) {
       return (
         <h3
           key={block._key}
-          className="mt-8 mb-3 scroll-mt-24 text-xl font-semibold tracking-tight text-foreground md:text-2xl"
+          className="mt-8 mb-3 scroll-mt-24 text-xl font-semibold tracking-tight text-heading md:text-2xl"
         >
           {inner}
         </h3>

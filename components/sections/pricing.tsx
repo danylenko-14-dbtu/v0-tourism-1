@@ -24,7 +24,7 @@ export function Pricing({ dictionary }: PricingProps) {
     >
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 id="pricing-title" className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 id="pricing-title" className="text-3xl font-bold tracking-tight text-heading sm:text-4xl">
             {dictionary.pricing.title}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">{dictionary.pricing.subtitle}</p>
@@ -43,7 +43,7 @@ export function Pricing({ dictionary }: PricingProps) {
                 )}
               >
                 <CardHeader className="text-center pb-4">
-                  <CardTitle className="text-xl leading-tight">{plan.name}</CardTitle>
+                  <CardTitle className="text-xl leading-tight text-heading">{plan.name}</CardTitle>
                   <CardDescription className="mt-2 min-h-[16px] text-xs font-medium text-muted-foreground">
                     {plan.description}
                   </CardDescription>

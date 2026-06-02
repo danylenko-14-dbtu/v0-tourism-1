@@ -78,7 +78,7 @@ export function ProgramFacts({ dictionary }: ProgramFactsProps) {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          <h2 id="program-facts-title" className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">
+          <h2 id="program-facts-title" className="text-3xl font-bold tracking-tight sm:text-4xl text-heading">
             {programFacts.title}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground mx-auto max-w-2xl">

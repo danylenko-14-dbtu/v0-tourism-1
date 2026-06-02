@@ -131,7 +131,7 @@ export default async function BlogPostPage({ params }: Props) {
           )}
 
           {/* Title */}
-          <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-foreground text-balance md:text-4xl lg:text-5xl">
+          <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-heading text-balance md:text-4xl lg:text-5xl">
             {postForDisplay.title}
           </h1>
 

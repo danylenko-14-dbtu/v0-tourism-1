@@ -19,6 +19,7 @@ export function HeaderContactButton({ label, className }: HeaderContactButtonPro
       size="sm"
       className={cn(
         'rounded-full border-primary bg-transparent px-3 text-primary hover:bg-primary hover:text-primary-foreground focus-visible:bg-primary focus-visible:text-primary-foreground lg:px-4',
+        'dark:border-muted-foreground/40 dark:text-muted-foreground dark:hover:border-foreground dark:hover:bg-transparent dark:hover:text-foreground dark:focus-visible:bg-transparent dark:focus-visible:text-foreground',
         className,
       )}
       aria-label={label}
