@@ -32,117 +32,126 @@ export function Footer({ dictionary, locale }: FooterProps) {
   ];
 
   return (
-    <footer className="border-t border-border/50 bg-muted/30">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <BrandLogo
-              title={dictionary.brand.university}
-              href={`/${locale}`}
-              label={dictionary.brand.name}
-              className="focus-visible-ring flex items-center gap-3"
-              textClassName="text-lg font-semibold leading-none"
-            />
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              {dictionary.footer.description}
-            </p>
+    <footer className="border-t border-primary/70 dark:border-border">
+      <div className="bg-[var(--footer-top-background)] text-footer-foreground">
+        <div className="mx-auto max-w-6xl px-4 pt-16 pb-6 sm:px-6 lg:px-8">
+          <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Brand */}
+            <div className="lg:col-span-1">
+              <BrandLogo
+                title={dictionary.brand.university}
+                href={`/${locale}`}
+                label={dictionary.brand.name}
+                className="focus-visible-ring-inverted flex items-center gap-3"
+                textClassName="text-lg font-semibold leading-none text-footer-foreground"
+              />
+              <p className="mt-4 text-sm leading-relaxed text-footer-foreground/90">
+                {dictionary.footer.description}
+              </p>
+            </div>
+
+            {/* Study links */}
+            <div>
+              <h3 className="text-footer-foreground text-sm font-semibold">
+                {dictionary.footer.links.study.title}
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {dictionary.footer.links.study.items.map((item, index) => {
+                  const external = isExternalHref(item.href);
+
+                  return (
+                    <li key={index}>
+                      <Link
+                        href={localizeHref(item.href)}
+                        target={external ? "_blank" : undefined}
+                        rel={external ? "noopener noreferrer" : undefined}
+                        className="focus-visible-ring-inverted inline-flex rounded-md px-2 py-1 text-sm text-footer-foreground/90 transition-colors hover:text-footer-link-hover focus-visible:text-footer-link-hover focus-visible:underline"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            {/* Department links */}
+            <div>
+              <h3 className="text-footer-foreground text-sm font-semibold">
+                {dictionary.footer.links.department.title}
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {dictionary.footer.links.department.items.map((item, index) => {
+                  const external = isExternalHref(item.href);
+
+                  return (
+                    <li key={index}>
+                      <Link
+                        href={localizeHref(item.href)}
+                        target={external ? "_blank" : undefined}
+                        rel={external ? "noopener noreferrer" : undefined}
+                        className="focus-visible-ring-inverted inline-flex rounded-md px-2 py-1 text-sm text-footer-foreground/90 transition-colors hover:text-footer-link-hover focus-visible:text-footer-link-hover focus-visible:underline"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            {/* Legal links */}
+            <div>
+              <h3 className="text-footer-foreground text-sm font-semibold">
+                {dictionary.footer.links.legal.title}
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {dictionary.footer.links.legal.items.map((item, index) => {
+                  const external = isExternalHref(item.href);
+
+                  return (
+                    <li key={index}>
+                      <Link
+                        href={localizeHref(item.href)}
+                        target={external ? "_blank" : undefined}
+                        rel={external ? "noopener noreferrer" : undefined}
+                        className="focus-visible-ring-inverted inline-flex rounded-md px-2 py-1 text-sm text-footer-foreground/90 transition-colors hover:text-footer-link-hover focus-visible:text-footer-link-hover focus-visible:underline"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
 
-          {/* Study links */}
-          <div>
-            <h3 className="text-sm font-semibold">{dictionary.footer.links.study.title}</h3>
-            <ul className="mt-4 space-y-3">
-              {dictionary.footer.links.study.items.map((item, index) => {
-                const external = isExternalHref(item.href);
+          <div className="w-full flex flex-wrap items-center gap-2 justify-center mt-8">
+            {socialLinks.map((item) => {
+              const Icon = item.icon;
 
-                return (
-                  <li key={index}>
-                    <Link
-                      href={localizeHref(item.href)}
-                      target={external ? "_blank" : undefined}
-                      rel={external ? "noopener noreferrer" : undefined}
-                      className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          {/* Department links */}
-          <div>
-            <h3 className="text-sm font-semibold">{dictionary.footer.links.department.title}</h3>
-            <ul className="mt-4 space-y-3">
-              {dictionary.footer.links.department.items.map((item, index) => {
-                const external = isExternalHref(item.href);
-
-                return (
-                  <li key={index}>
-                    <Link
-                      href={localizeHref(item.href)}
-                      target={external ? "_blank" : undefined}
-                      rel={external ? "noopener noreferrer" : undefined}
-                      className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          {/* Legal links */}
-          <div>
-            <h3 className="text-sm font-semibold">{dictionary.footer.links.legal.title}</h3>
-            <ul className="mt-4 space-y-3">
-              {dictionary.footer.links.legal.items.map((item, index) => {
-                const external = isExternalHref(item.href);
-
-                return (
-                  <li key={index}>
-                    <Link
-                      href={localizeHref(item.href)}
-                      target={external ? "_blank" : undefined}
-                      rel={external ? "noopener noreferrer" : undefined}
-                      className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
+              return (
+                <Link
+                  key={item.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={item.href}
+                  aria-label={item.label}
+                  className="focus-visible-ring-inverted inline-flex rounded-md px-2 py-1 text-sm text-footer-foreground/90 transition-colors hover:text-footer-link-hover focus-visible:text-footer-link-hover focus-visible:underline"
+                >
+                  <Icon className="h-5 w-5" />
+                </Link>
+              );
+            })}
+            <div className="text-sm text-footer-foreground/90">
+              <MapPin className="inline" /> <span>{dictionary.footer.address}</span>
+            </div>
           </div>
         </div>
-
-        <div className="w-full flex flex-wrap items-center gap-2 justify-center mt-8 mb-8">
-          {socialLinks.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <Link
-                key={item.label}
-                target="_blank"
-                rel="noopener noreferrer"
-                href={item.href}
-                aria-label={item.label}
-                className="focus-visible-ring inline-flex rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:underline"
-              >
-                <Icon className="h-5 w-5" />
-              </Link>
-            );
-          })}
-          <div className="text-sm text-muted-foreground">
-            <MapPin className="inline" /> <span>{dictionary.footer.address}</span>
-          </div>
-        </div>
-
-        <div className=" border-t border-border/50 pt-8 text-center">
-          <p className="text-sm text-muted-foreground">
+      </div>
+      <div className="bg-footer text-footer-foreground">
+        <div className="mx-auto max-w-6xl px-4 pt-6 pb-16 text-center sm:px-6 lg:px-8">
+          <p className="text-sm text-footer-foreground/90">
             &copy; {currentYear} {dictionary.brand.department} {dictionary.footer.copyright}.
           </p>
         </div>

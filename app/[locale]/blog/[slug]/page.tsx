@@ -120,7 +120,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <main className="bg-background">
-      <article className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+      <article className="mx-auto max-w-6xl px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-28 lg:px-8 lg:py-16">
         {/* ================== HERO (full content width) ================== */}
         <header className="max-w-4xl">
           {/* Category */}
@@ -131,7 +131,7 @@ export default async function BlogPostPage({ params }: Props) {
           )}
 
           {/* Title */}
-          <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-foreground text-balance md:text-4xl lg:text-5xl">
+          <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-heading text-balance md:text-4xl lg:text-5xl">
             {postForDisplay.title}
           </h1>
 

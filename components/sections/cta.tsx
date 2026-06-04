@@ -20,8 +20,8 @@ export function CTA({ dictionary, locale }: CTAProps) {
       className="scroll-mt-16"
     >
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-foreground px-8 py-16 text-center text-background sm:px-16 sm:py-24">
-          <h2 id="contact-title" className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+        <div className="relative overflow-hidden rounded-3xl bg-primary px-8 py-16 text-center text-primary-foreground sm:px-16 sm:py-24">
+          <h2 id="contact-title" className="text-primary-foreground text-balance text-3xl font-bold tracking-tight sm:text-4xl">
             {dictionary.cta.title}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-pretty text-lg opacity-80">
@@ -30,7 +30,7 @@ export function CTA({ dictionary, locale }: CTAProps) {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <EnrollButton
               label={dictionary.cta.buttonPrimary}
-              className="focus-visible-ring-inverted bg-secondary text-secondary-foreground shadow-none hover:bg-secondary/80 focus-visible:bg-secondary/80"
+              className="focus-visible-ring-inverted bg-white text-static-black shadow-none hover:bg-white/90 focus-visible:bg-white/90 dark:bg-secondary dark:text-secondary-foreground dark:hover:bg-secondary/80 dark:focus-visible:bg-secondary/80"
             />
             <Button
               size="lg"

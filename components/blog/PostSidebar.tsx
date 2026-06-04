@@ -72,7 +72,7 @@ export function PostSidebar({
             <div className="pb-6">
               <div className="space-y-4 border-b border-border/60 pb-5">
                 <div className="space-y-2">
-                  <h2 className="text-pretty text-base font-semibold leading-snug text-foreground">
+                  <h2 className="text-pretty text-base font-semibold leading-snug text-heading">
                     {title}
                   </h2>
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">

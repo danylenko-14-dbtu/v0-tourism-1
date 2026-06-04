@@ -1,16 +1,26 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { ScrollLink } from '@/components/scroll-link'
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer'
+import { HeaderContactButton } from '@/components/header-contact-button'
 import { LanguageSwitcher } from '@/components/language-switcher'
-import { cn } from '@/lib/utils'
+import { ThemeToggle } from '@/components/theme-toggle'
 import type { Locale } from '@/lib/i18n'
+import { cn } from '@/lib/utils'
 
 interface NavItem {
   href: string
   label: string
+  exact?: boolean
 }
 
 interface MobileMenuProps {
@@ -18,86 +28,61 @@ interface MobileMenuProps {
   locale: Locale
 }
 
+function isActivePath(pathname: string, item: NavItem) {
+  if (item.exact) {
+    return pathname === item.href || pathname === `${item.href}/`
+  }
+
+  return pathname === item.href || pathname.startsWith(`${item.href}/`)
+}
+
 export function MobileMenu({ navItems, locale }: MobileMenuProps) {
-  const [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setOpen(false)
-      }
-    }
-
-    document.addEventListener('keydown', handleEscape)
-    return () => document.removeEventListener('keydown', handleEscape)
-  }, [])
-
-  useEffect(() => {
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = open ? 'hidden' : previousOverflow
-
-    return () => {
-      document.body.style.overflow = previousOverflow
-    }
-  }, [open])
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setOpen(false)
-      }
-    }
-
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  const pathname = usePathname()
+  const contactLabel = locale === 'en' ? 'Contact Us' : 'Запитати'
 
   return (
-    <>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="md:hidden"
-        onClick={() => setOpen((value) => !value)}
-        aria-expanded={open}
-        aria-controls="mobile-nav"
-        aria-label={open ? 'Close menu' : 'Open menu'}
-      >
-        {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-      </Button>
+    <Drawer noBodyStyles>
+      <DrawerTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden"
+          aria-label="Open menu"
+        >
+          <Menu className="h-5 w-5" />
+        </Button>
+      </DrawerTrigger>
+      <DrawerContent className="md:hidden">
+        <DrawerTitle className="sr-only">
+          {locale === 'en' ? 'Mobile navigation' : 'Мобільна навігація'}
+        </DrawerTitle>
+        <nav className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-5">
+          {navItems.map((item) => {
+            const active = isActivePath(pathname, item)
 
-      {open && (
-        <div
-          className="fixed inset-x-0 bottom-0 top-16 z-40 bg-background/60 backdrop-blur-sm"
-          onClick={() => setOpen(false)}
-          aria-hidden="true"
-        />
-      )}
-
-      <div
-        id="mobile-nav"
-        role="navigation"
-        className={cn(
-          'absolute left-0 right-0 top-full z-50 overflow-hidden border-b border-border/50 bg-background shadow-lg transition-all duration-300 md:hidden',
-          open ? 'max-h-[calc(100vh-4rem)]' : 'max-h-0 border-b-0'
-        )}
-      >
-        <nav className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4">
-          {navItems.map((item) => (
-            <ScrollLink
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="focus-visible-ring rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:text-foreground"
-            >
-              {item.label}
-            </ScrollLink>
-          ))}
-          <div className="pt-2 sm:hidden">
-            <LanguageSwitcher currentLocale={locale} />
+            return (
+              <DrawerClose key={item.href} asChild>
+                <Link
+                  href={item.href}
+                  className={cn(
+                    'focus-visible-ring rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-link-hover focus-visible:bg-muted focus-visible:text-link-hover',
+                    active ? 'text-primary' : 'text-muted-foreground',
+                  )}
+                >
+                  {item.label}
+                </Link>
+              </DrawerClose>
+            )
+          })}
+          <div className="mt-2">
+            <HeaderContactButton label={contactLabel} className="w-full" />
+          </div>
+          <div className="mt-2 flex items-center justify-between border-t border-border/50 pt-4">
+            <LanguageSwitcher currentLocale={locale} variant="segmented" />
+            <ThemeToggle />
           </div>
         </nav>
-      </div>
-    </>
+      </DrawerContent>
+    </Drawer>
   )
 }

@@ -89,7 +89,7 @@ function HeroCard({ post }: { post: PostForDisplay }) {
         <div className="flex flex-col justify-between gap-8 p-6 md:p-10">
           <div className="flex flex-col gap-4">
             <CategoryLabel label={post.categoryLabel} />
-            <h2 className="text-2xl font-semibold leading-tight tracking-tight text-foreground text-balance md:text-3xl lg:text-4xl group-hover:underline underline-offset-4">
+            <h2 className="text-2xl font-semibold leading-tight tracking-tight text-heading text-balance md:text-3xl lg:text-4xl group-hover:underline underline-offset-4">
               {post.title}
             </h2>
             {post.excerpt && (
@@ -127,7 +127,7 @@ function HorizontalCard({
         <div className="flex flex-col justify-between gap-6 p-5 md:p-6">
           <div className="flex flex-col gap-3">
             <CategoryLabel label={post.categoryLabel} />
-            <h3 className="text-lg font-semibold leading-snug tracking-tight text-foreground text-balance md:text-xl group-hover:underline underline-offset-4">
+            <h3 className="text-lg font-semibold leading-snug tracking-tight text-heading text-balance md:text-xl group-hover:underline underline-offset-4">
               {post.title}
             </h3>
           </div>
@@ -156,7 +156,7 @@ function VerticalCard({ post }: { post: PostForDisplay }) {
         <div className="flex flex-1 flex-col justify-between gap-6 p-5 md:p-6">
           <div className="flex flex-col gap-3">
             <CategoryLabel label={post.categoryLabel} />
-            <h3 className="text-lg font-semibold leading-snug tracking-tight text-foreground text-balance group-hover:underline underline-offset-4">
+            <h3 className="text-lg font-semibold leading-snug tracking-tight text-heading text-balance group-hover:underline underline-offset-4">
               {post.title}
             </h3>
           </div>
@@ -188,7 +188,7 @@ function TabletVerticalCard({ post }: { post: PostForDisplay }) {
         <div className="flex flex-col justify-between gap-4 p-5">
           <div className="flex flex-col gap-3">
             <CategoryLabel label={post.categoryLabel} />
-            <h3 className="text-lg font-semibold leading-snug tracking-tight text-foreground text-balance group-hover:underline underline-offset-4">
+            <h3 className="text-lg font-semibold leading-snug tracking-tight text-heading text-balance group-hover:underline underline-offset-4">
               {post.title}
             </h3>
           </div>
@@ -220,7 +220,7 @@ function TabletMiniCard({ post }: { post: PostForDisplay }) {
         <div className="col-span-2 flex flex-col justify-between gap-3 p-4">
           <div className="flex flex-col gap-2">
             <CategoryLabel label={post.categoryLabel} />
-            <h3 className="text-base font-semibold leading-snug tracking-tight text-foreground text-balance group-hover:underline underline-offset-4">
+            <h3 className="text-base font-semibold leading-snug tracking-tight text-heading text-balance group-hover:underline underline-offset-4">
               {post.title}
             </h3>
           </div>
@@ -251,7 +251,7 @@ function MobileCompactCard({
         </div>
         <div className="flex min-w-0 flex-1 flex-col gap-2">
           <CategoryLabel label={post.categoryLabel} />
-          <h3 className="text-sm font-semibold leading-snug tracking-tight text-foreground text-balance group-hover:underline underline-offset-4">
+          <h3 className="text-sm font-semibold leading-snug tracking-tight text-heading text-balance group-hover:underline underline-offset-4">
             {post.title}
           </h3>
           <p className="text-xs text-muted-foreground">{post.formattedDate}</p>
@@ -281,7 +281,7 @@ function MobileFeaturedCard({
         </div>
         <div className="flex flex-col gap-3 p-5">
           <CategoryLabel label={post.categoryLabel} />
-          <h3 className="text-xl font-semibold leading-tight tracking-tight text-foreground text-balance group-hover:underline underline-offset-4">
+          <h3 className="text-xl font-semibold leading-tight tracking-tight text-heading text-balance group-hover:underline underline-offset-4">
             {post.title}
           </h3>
           <p className="text-sm text-muted-foreground">{post.formattedDate}</p>
@@ -299,7 +299,7 @@ export function BlogGrid({ posts, locale }: BlogGridProps) {
     return (
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-border/50 bg-muted/30 px-6 py-20 text-center">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">{empty.title}</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-heading">{empty.title}</h2>
           <p className="max-w-md text-base text-muted-foreground">{empty.description}</p>
         </div>
       </div>

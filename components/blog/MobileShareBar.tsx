@@ -10,14 +10,13 @@ interface MobileShareBarProps {
 }
 
 /**
- * Mobile/tablet sticky share bar. Always pinned to the bottom of the viewport
- * on screens below `lg`, so users can share a post from anywhere on the page —
- * including before they start scrolling.
+ * Mobile/tablet sticky share bar. Pinned to the top on screens below `lg`,
+ * so it does not compete with the mobile bottom header.
  */
 export function MobileShareBar({ url, title, labels }: MobileShareBarProps) {
   return (
     <div
-      className="fixed bottom-0 left-0 z-40 w-full border-t border-border/60 bg-background/85 backdrop-blur-md shadow-[0_-4px_16px_rgba(0,0,0,0.06)] lg:hidden"
+      className="fixed left-0 top-0 z-40 w-full border-b border-border/60 bg-background/85 backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.06)] lg:hidden"
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
         <span className="text-sm font-semibold text-foreground">

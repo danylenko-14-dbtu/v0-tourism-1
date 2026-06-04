@@ -18,7 +18,7 @@ export function Professions({ dictionary }: ProfessionsProps) {
     >
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 id="professions-title" className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 id="professions-title" className="text-3xl font-bold tracking-tight text-heading sm:text-4xl">
             {dictionary.professions.title}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
@@ -35,10 +35,10 @@ export function Professions({ dictionary }: ProfessionsProps) {
                 className="group border-border/50 bg-background/50 transition-all duration-300 hover:border-border hover:shadow-md"
               >
                 <CardHeader>
-                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-muted transition-colors group-hover:bg-foreground group-hover:text-background">
+                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-muted transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                     <Icon className="h-6 w-6" />
                   </div>
-                  <CardTitle className="text-lg">{feature.title}</CardTitle>
+                  <CardTitle className="text-lg text-heading">{feature.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-base">

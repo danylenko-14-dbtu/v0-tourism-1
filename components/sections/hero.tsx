@@ -36,7 +36,7 @@ export function Hero({ dictionary, locale }: HeroProps) {
       {/* Content Preservation Layer (z-20) */}
       <div className="relative z-20 mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className="text-balance text-4xl font-bold  sm:text-5xl lg:text-6xl text-foreground animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 [text-shadow:_0_1px_3px_rgb(0_0_0_/_0.2)]">
+          <h1 className="text-footer dark:text-foreground text-balance text-4xl font-bold tracking-wider sm:text-5xl lg:text-6xl animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 [text-shadow:_0_1px_3px_rgb(0_0_0_/_0.2)]">
             {dictionary.hero.title}
           </h1>
 
@@ -45,7 +45,10 @@ export function Hero({ dictionary, locale }: HeroProps) {
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
-            <EnrollButton label={dictionary.hero.cta} />
+            <EnrollButton
+              label={dictionary.hero.cta}
+              className="bg-footer text-footer-foreground shadow-footer/20 hover:bg-footer/90 focus-visible:bg-footer/90 dark:bg-primary dark:text-primary-foreground dark:shadow-primary/20 dark:hover:bg-primary/90 dark:focus-visible:bg-primary/90"
+            />
             <Button
               asChild
               variant="outline"

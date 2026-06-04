@@ -29,12 +29,10 @@ const icons = [Plane, Building2, Hotel, Globe2, Briefcase, Landmark]
 
 export function GraduatesWork({ dictionary }: GraduatesWorkProps) {
   const { graduatesWork } = dictionary
-  const [visibleItems, setVisibleItems] = useState<boolean[]>([])
+  const [visibleItems, setVisibleItems] = useState<Set<number>>(() => new Set())
   const itemRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
-    setVisibleItems(new Array(graduatesWork.categories.length).fill(false))
-
     const observers = itemRefs.current.map((ref, index) => {
       if (!ref) return null
 
@@ -42,8 +40,8 @@ export function GraduatesWork({ dictionary }: GraduatesWorkProps) {
         ([entry]) => {
           if (entry.isIntersecting) {
             setVisibleItems((prev) => {
-              const newState = [...prev]
-              newState[index] = true
+              const newState = new Set(prev)
+              newState.add(index)
               return newState
             })
             observer.disconnect()
@@ -71,7 +69,7 @@ export function GraduatesWork({ dictionary }: GraduatesWorkProps) {
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 id="graduates-title" className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 id="graduates-title" className="text-3xl font-bold tracking-tight text-heading sm:text-4xl">
             {graduatesWork.title}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
@@ -83,7 +81,7 @@ export function GraduatesWork({ dictionary }: GraduatesWorkProps) {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {graduatesWork.categories.map((category, index) => {
             const Icon = icons[index % icons.length]
-            const isVisible = visibleItems[index]
+            const isVisible = visibleItems.has(index)
 
             return (
               <div
@@ -98,13 +96,13 @@ export function GraduatesWork({ dictionary }: GraduatesWorkProps) {
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 {/* Icon */}
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-muted transition-colors group-hover:bg-foreground group-hover:text-background">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-muted transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </div>
 
                 {/* Content */}
                 <div className="min-w-0">
-                  <h3 className="font-semibold text-foreground leading-tight">
+                  <h3 className="font-semibold text-heading leading-tight">
                     {category.title}
                   </h3>
                   <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">

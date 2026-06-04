@@ -24,12 +24,11 @@ const icons = [ClipboardList, UserPlus, FileText, CheckCircle]
 
 export function HowToApply({ dictionary }: HowToApplyProps) {
   const { howToApply } = dictionary
-  const [visibleStages, setVisibleStages] = useState<boolean[]>([])
+  const [visibleStages, setVisibleStages] = useState<Set<number>>(() => new Set())
   const stageRefs = useRef<(HTMLDivElement | null)[]>([])
+  const visibleStageCount = Math.min(visibleStages.size, howToApply.stages.length)
 
   useEffect(() => {
-    setVisibleStages(new Array(howToApply.stages.length).fill(false))
-
     const observers = stageRefs.current.map((ref, index) => {
       if (!ref) return null
 
@@ -37,8 +36,8 @@ export function HowToApply({ dictionary }: HowToApplyProps) {
         ([entry]) => {
           if (entry.isIntersecting) {
             setVisibleStages((prev) => {
-              const newState = [...prev]
-              newState[index] = true
+              const newState = new Set(prev)
+              newState.add(index)
               return newState
             })
             observer.disconnect()
@@ -66,7 +65,7 @@ export function HowToApply({ dictionary }: HowToApplyProps) {
       <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 id="application-title" className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
+          <h2 id="application-title" className="text-3xl md:text-4xl font-bold tracking-tight text-heading mb-4">
             {howToApply.title}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -81,7 +80,7 @@ export function HowToApply({ dictionary }: HowToApplyProps) {
             <div 
               className="h-full bg-primary transition-all duration-1000 ease-out"
               style={{ 
-                width: `${(visibleStages.filter(Boolean).length / howToApply.stages.length) * 100}%` 
+                width: `${(visibleStageCount / howToApply.stages.length) * 100}%` 
               }}
             />
           </div>
@@ -91,7 +90,7 @@ export function HowToApply({ dictionary }: HowToApplyProps) {
             <div 
               className="w-full bg-primary transition-all duration-1000 ease-out"
               style={{ 
-                height: `${(visibleStages.filter(Boolean).length / howToApply.stages.length) * 100}%` 
+                height: `${(visibleStageCount / howToApply.stages.length) * 100}%` 
               }}
             />
           </div>
@@ -100,7 +99,7 @@ export function HowToApply({ dictionary }: HowToApplyProps) {
           <div className="md:flex md:justify-between relative">
             {howToApply.stages.map((stage, index) => {
               const Icon = icons[index] || ClipboardList
-              const isVisible = visibleStages[index]
+              const isVisible = visibleStages.has(index)
 
               return (
                 <div
@@ -137,7 +136,7 @@ export function HowToApply({ dictionary }: HowToApplyProps) {
                     <span className="inline-block text-xs font-medium text-primary mb-1 md:mb-2">
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                    <h3 className="text-lg font-semibold text-heading mb-2">
                       {stage.title}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed max-w-48">
