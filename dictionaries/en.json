@@ -214,6 +214,52 @@
       }
     ]
   },
+  "aboutBanner": {
+    "imageAlt": "Main building of the State Biotechnological University",
+    "title": "The Department of Tourism at the State Biotech invites applicants to the “Tourism and Recreation” program"
+  },
+  "welcomeNote": {
+    "title": "Learning with real support",
+    "short": "Our friendly, experienced team cares about a comfortable learning experience for every student.",
+    "medium": "Our friendly, experienced team knows how to make learning comfortable. We support every student — from the first class to graduation.",
+    "full": "Our friendly, experienced team knows how to make learning truly comfortable. We pay attention to every student and are ready to help at any stage — from the first class to the thesis defense. Here you will be heard, guided, and supported in unlocking your potential."
+  },
+  "testimonials": {
+    "title": "What our teachers say",
+    "subtitle": "The department team — about the learning atmosphere and their craft",
+    "items": [
+      {
+        "name": "Halina Omelchenko",
+        "role": "Head of the Department",
+        "avatar": "/staff/staff-photo-1.jpg",
+        "content": "We build the department like a family: every student feels supported and has room to grow. My goal is for you to remember these years with warmth and gratitude."
+      },
+      {
+        "name": "Volodymyr Merchansky",
+        "role": "Associate Professor",
+        "avatar": "/staff/staff-photo-2.jpg",
+        "content": "I love it when students ask questions. A genuine understanding of the profession — and confidence in your own abilities — is born from open dialogue."
+      },
+      {
+        "name": "Victoria Khudaverdieva",
+        "role": "Associate Professor",
+        "avatar": "/staff/staff-photo-3.jpg",
+        "content": "Tourism is, above all, about people and experiences. We teach students to see opportunities where others notice only a route on a map."
+      },
+      {
+        "name": "Liliya Kharchevnikova",
+        "role": "Associate Professor",
+        "avatar": "/staff/staff-photo-4.jpg",
+        "content": "Every class for me is a small journey. I want students to leave it inspired and ready to try something new."
+      },
+      {
+        "name": "Valerii Danylenko",
+        "role": "Associate Professor",
+        "avatar": "/staff/staff-photo-5.jpg",
+        "content": "Modern tourism is about technology, data, and analytics. We give students tools that are relevant on the market today, not tomorrow."
+      }
+    ]
+  },
   "pricing": {
     "title": "Tuition Fees",
     "subtitle": "Affordable contract-based study at our institution",
