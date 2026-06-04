@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import {
   Building2,
   Briefcase,
@@ -10,67 +10,68 @@ import {
   Landmark,
   Plane,
   type LucideIcon,
-} from "lucide-react"
+} from "lucide-react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
+} from "@/components/ui/accordion";
 
 interface Category {
-  title: string
-  description: string
+  title: string;
+  description: string;
 }
 
 interface GraduatesProps {
   dictionary: {
     graduatesWork: {
-      title: string
-      subtitle: string
-      categories: Category[]
-    }
-  }
+      title: string;
+      subtitle: string;
+      categories: Category[];
+    };
+  };
 }
 
-const icons = [Plane, Building2, Hotel, Globe2, Briefcase, Landmark]
+const icons = [Plane, Building2, Hotel, Globe2, Briefcase, Landmark];
 
 export function Graduates({ dictionary }: GraduatesProps) {
-  const { graduatesWork } = dictionary
-  const featuredIndex = graduatesWork.categories.length > 1 ? graduatesWork.categories.length - 2 : 0
-  const featuredCategory = graduatesWork.categories[featuredIndex]
+  const { graduatesWork } = dictionary;
+  const featuredIndex =
+    graduatesWork.categories.length > 1 ? graduatesWork.categories.length - 2 : 0;
+  const featuredCategory = graduatesWork.categories[featuredIndex];
   const sideCategories = graduatesWork.categories
     .map((category, index) => ({ category, index }))
-    .filter((item) => item.index !== featuredIndex)
-  const [visibleItems, setVisibleItems] = useState<Set<number>>(() => new Set())
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([])
+    .filter((item) => item.index !== featuredIndex);
+  const [visibleItems, setVisibleItems] = useState<Set<number>>(() => new Set());
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const observers = itemRefs.current.map((ref, index) => {
-      if (!ref) return null
+      if (!ref) return null;
 
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
             setVisibleItems((prev) => {
-              const nextState = new Set(prev)
-              nextState.add(index)
-              return nextState
-            })
-            observer.disconnect()
+              const nextState = new Set(prev);
+              nextState.add(index);
+              return nextState;
+            });
+            observer.disconnect();
           }
         },
         { threshold: 0.15, rootMargin: "0px 0px -30px 0px" }
-      )
+      );
 
-      observer.observe(ref)
-      return observer
-    })
+      observer.observe(ref);
+      return observer;
+    });
 
     return () => {
-      observers.forEach((observer) => observer?.disconnect())
-    }
-  }, [graduatesWork.categories.length])
+      observers.forEach((observer) => observer?.disconnect());
+    };
+  }, [graduatesWork.categories.length]);
 
   return (
     <section
@@ -81,12 +82,13 @@ export function Graduates({ dictionary }: GraduatesProps) {
     >
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="mx-auto mb-14 max-w-2xl text-center">
-          <h2 id="graduates-title" className="text-3xl font-bold tracking-tight text-heading sm:text-4xl">
+          <h2
+            id="graduates-title"
+            className="text-3xl font-bold tracking-tight text-heading sm:text-4xl"
+          >
             {graduatesWork.title}
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            {graduatesWork.subtitle}
-          </p>
+          <p className="mt-4 text-lg text-muted-foreground">{graduatesWork.subtitle}</p>
         </div>
 
         <div className="grid items-start gap-8 lg:grid-cols-2 lg:gap-10">
@@ -110,7 +112,7 @@ export function Graduates({ dictionary }: GraduatesProps) {
                   index={featuredIndex}
                   visible={visibleItems.has(featuredIndex)}
                   refCallback={(el) => {
-                    itemRefs.current[featuredIndex] = el
+                    itemRefs.current[featuredIndex] = el;
                   }}
                 />
               </Accordion>
@@ -119,7 +121,7 @@ export function Graduates({ dictionary }: GraduatesProps) {
 
           <Accordion type="single" defaultValue="graduate-0" collapsible className="grid gap-3">
             {sideCategories.map(({ category, index }) => {
-              const Icon = icons[index % icons.length]
+              const Icon = icons[index % icons.length];
 
               return (
                 <GraduateAccordionCard
@@ -129,24 +131,24 @@ export function Graduates({ dictionary }: GraduatesProps) {
                   index={index}
                   visible={visibleItems.has(index)}
                   refCallback={(el) => {
-                    itemRefs.current[index] = el
+                    itemRefs.current[index] = el;
                   }}
                 />
-              )
+              );
             })}
           </Accordion>
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 interface GraduateAccordionCardProps {
-  category: Category
-  icon: LucideIcon
-  index: number
-  visible: boolean
-  refCallback: (el: HTMLDivElement | null) => void
+  category: Category;
+  icon: LucideIcon;
+  index: number;
+  visible: boolean;
+  refCallback: (el: HTMLDivElement | null) => void;
 }
 
 function GraduateAccordionCard({
@@ -168,12 +170,12 @@ function GraduateAccordionCard({
       <AccordionItem
         value={`graduate-${index}`}
         className="
-          group overflow-hidden rounded-lg border-0 bg-background shadow-sm ring-1 ring-border/60
+          group rounded-lg border-0 bg-background shadow-sm ring-1 ring-border/60
           transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:ring-primary/25
           data-[state=open]:ring-primary/30
         "
       >
-        <AccordionTrigger className="items-center px-5 py-4 text-left hover:no-underline sm:px-6 sm:py-4">
+        <AccordionTrigger className="focus-visible-ring items-center rounded-lg px-5 py-4 text-left hover:no-underline focus-visible:bg-muted/50 focus-visible:text-link-hover focus-visible:ring-0 sm:px-6 sm:py-4">
           <span className="flex min-w-0 items-center gap-4 sm:gap-5">
             <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-300 group-hover:scale-105">
               <Icon className="h-5 w-5" aria-hidden="true" />
@@ -189,5 +191,5 @@ function GraduateAccordionCard({
         </AccordionContent>
       </AccordionItem>
     </div>
-  )
+  );
 }
