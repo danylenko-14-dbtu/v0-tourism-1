@@ -38,7 +38,7 @@ function isActivePath(pathname: string, item: NavItem) {
 
 export function MobileMenu({ navItems, locale }: MobileMenuProps) {
   const pathname = usePathname()
-  const contactLabel = locale === 'en' ? 'Contact Us' : "Зв'язатись"
+  const contactLabel = locale === 'en' ? 'Contact Us' : 'Запитати'
 
   return (
     <Drawer noBodyStyles>

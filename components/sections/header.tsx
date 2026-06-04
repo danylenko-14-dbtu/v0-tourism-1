@@ -21,7 +21,7 @@ export function Header({ locale, dictionary }: HeaderProps) {
     { href: `${localeRoot}/program`, label: isEnglish ? "Program" : "Програма" },
     { href: `${localeRoot}/blog`, label: isEnglish ? "Blog" : "Блог" },
   ];
-  const contactLabel = isEnglish ? "Contact Us" : "Зв'язатись";
+  const contactLabel = isEnglish ? "Contact Us" : "Запитати";
 
   return (
     <header className="fixed inset-x-0 bottom-0 top-auto z-50 w-full border-t border-border/50 bg-background/90 backdrop-blur-md md:sticky md:bottom-auto md:top-0 md:border-b md:border-t-0 md:bg-background/80">
