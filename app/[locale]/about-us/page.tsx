@@ -1,7 +1,10 @@
 import { notFound } from 'next/navigation'
+import { AboutIntroText } from '@/components/sections/about-intro-text'
+import { AboutPageHero } from '@/components/sections/about-page-hero'
 import { About } from '@/components/sections/about'
 import { CTA } from '@/components/sections/cta'
 import { Partners } from '@/components/sections/partners'
+import { TestimonialsCarousel } from '@/components/sections/testimonials-carousel'
 import { getDictionary } from '@/lib/dictionaries'
 import { locales, type Locale } from '@/lib/i18n'
 
@@ -21,6 +24,18 @@ export default async function AboutUsPage({ params }: PageProps) {
 
   return (
     <main className="flex-1">
+      <AboutPageHero title={dictionary.aboutPage.hero.title} />
+      <AboutIntroText
+        eyebrow={dictionary.aboutPage.intro.eyebrow}
+        title={dictionary.aboutPage.intro.title}
+        paragraphs={dictionary.aboutPage.intro.paragraphs}
+      />
+      <TestimonialsCarousel
+        eyebrow={dictionary.aboutPage.teacherComments.eyebrow}
+        title={dictionary.aboutPage.teacherComments.title}
+        subtitle={dictionary.aboutPage.teacherComments.subtitle}
+        items={dictionary.aboutPage.teacherComments.items}
+      />
       <About dictionary={dictionary} />
       <Partners dictionary={dictionary} />
       <CTA dictionary={dictionary} locale={typedLocale} />
