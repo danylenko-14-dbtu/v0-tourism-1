@@ -273,6 +273,34 @@
           "content": "Every student comes with their own pace, experience, and questions. Our task is to create a space where they can learn calmly, try new roles, and gradually become more confident professionals."
         }
       ]
+    },
+    "contact": {
+      "eyebrow": "Department Contacts",
+      "title": "Get in touch",
+      "subtitle": "We are here to answer questions about admission, cooperation, and website technical support.",
+      "addressLabel": "Address",
+      "departmentEmailLabel": "Department email",
+      "departmentEmail": "tourism.dbtu@gmail.com",
+      "phoneLabel": "Phone",
+      "emailLabel": "Email",
+      "mapLabel": "SBTU Department of Tourism",
+      "admissions": {
+        "label": "Admission inquiries",
+        "name": "Halina Omelchenko",
+        "avatar": "/staff/staff-photo-1.jpg"
+      },
+      "cooperation": {
+        "label": "Cooperation inquiries",
+        "name": "Volodymyr Merchansky",
+        "email": "seomvv@btu.kharkov.ua",
+        "avatar": "/staff/staff-photo-2.jpg"
+      },
+      "support": {
+        "label": "Technical support",
+        "name": "Valerii Danylenko",
+        "email": "danylenko.14@btu.kharkov.ua",
+        "avatar": "/staff/staff-photo-5.jpg"
+      }
     }
   },
   "pricing": {
@@ -403,7 +431,8 @@
   "footer": {
     "description": "Tourism Department of the State Biotechnology University — training specialists who shape the future of tourism industry.",
     "copyright": "| J3/242 Tourism and Recreation",
-    "address": "City of Kharkiv, Klochkivska Street, 333, 61051, Ukraine",
+    "address": "City of Kharkiv, Alchevskykh Street, 44, 61002, Ukraine",
+    "secondaryAddress": "City of Kharkiv, Klochkivska Street, 333, 61051, Ukraine",
     "links": {
       "study": {
         "title": "Study",

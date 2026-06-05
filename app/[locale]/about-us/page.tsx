@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { AboutIntroText } from '@/components/sections/about-intro-text'
 import { AboutPageHero } from '@/components/sections/about-page-hero'
 import { About } from '@/components/sections/about'
+import { AboutContact } from '@/components/sections/about-contact'
 import { CTA } from '@/components/sections/cta'
 import { Partners } from '@/components/sections/partners'
 import { TestimonialsCarousel } from '@/components/sections/testimonials-carousel'
@@ -37,6 +38,7 @@ export default async function AboutUsPage({ params }: PageProps) {
         items={dictionary.aboutPage.teacherComments.items}
       />
       <About dictionary={dictionary} />
+      <AboutContact dictionary={dictionary} />
       <Partners dictionary={dictionary} />
       <CTA dictionary={dictionary} locale={typedLocale} />
     </main>
