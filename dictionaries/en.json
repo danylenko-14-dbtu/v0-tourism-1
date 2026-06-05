@@ -216,7 +216,7 @@
   },
   "aboutPage": {
     "hero": {
-      "title": "The Department of Tourism at State Biotech invites applicants to study Tourism and Recreation."
+      "title": "The Department of Tourism at State Biotech invites applicants to study"
     },
     "intro": {
       "eyebrow": "Comfortable Learning",
@@ -230,7 +230,7 @@
     "teacherComments": {
       "eyebrow": "Faculty Comments",
       "title": "How we think about comfortable learning",
-      "subtitle": "Short reflections from faculty members on the department's approach to students, practice, and professional growth.",
+      "subtitle": "Our thoughts on the department's approach to students, practice, and professional growth.",
       "items": [
         {
           "author": {
@@ -254,7 +254,7 @@
             "role": "Associate Professor",
             "avatar": "/staff/staff-photo-3.jpg"
           },
-          "content": "Every student comes with their own pace, experience, and questions. Our task is to create a space where they can learn calmly, try new roles, and gradually become more confident professionals."
+          "content": "Good learning happens when a student sees meaning in what they do. We help connect disciplines with future work, practice, and each student's personal goals."
         },
         {
           "author": {
@@ -270,7 +270,7 @@
             "role": "Associate Professor",
             "avatar": "/staff/staff-photo-5.jpg"
           },
-          "content": "Good learning happens when a student sees meaning in what they do. We help connect disciplines with future work, practice, and each student's personal goals."
+          "content": "Every student comes with their own pace, experience, and questions. Our task is to create a space where they can learn calmly, try new roles, and gradually become more confident professionals."
         }
       ]
     }

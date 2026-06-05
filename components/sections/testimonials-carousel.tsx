@@ -33,7 +33,6 @@ interface TestimonialsCarouselProps {
 }
 
 export function TestimonialsCarousel({
-  eyebrow,
   title,
   subtitle,
   items,
@@ -53,22 +52,19 @@ export function TestimonialsCarousel({
       } else {
         api.scrollTo(0)
       }
-    }, 6500)
+    }, 10000)
 
     return () => window.clearInterval(interval)
   }, [api, isPaused, items.length])
 
   return (
     <section className="border-b border-border/50 bg-muted/30">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-        <div className="mb-8 max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-primary">
-            {eyebrow}
-          </p>
-          <h2 className="mt-3 text-2xl font-bold tracking-tight text-heading sm:text-3xl">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <div className="mx-auto mb-8 max-w-2xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-heading sm:text-4xl">
             {title}
           </h2>
-          <p className="mt-4 text-sm leading-7 text-muted-foreground sm:text-base">
+          <p className="mt-4 text-lg text-muted-foreground">
             {subtitle}
           </p>
         </div>
@@ -87,12 +83,12 @@ export function TestimonialsCarousel({
               <CarouselItem key={item.author.name} className="md:basis-1/2 lg:basis-1/3">
                 <article className="flex h-full flex-col rounded-md border border-border/60 bg-background p-5 shadow-sm">
                   <Quote className="h-5 w-5 text-primary" aria-hidden="true" />
-                  <p className="mt-4 text-sm leading-7 text-muted-foreground">
+                  <p className="mb-6 mt-4 text-sm leading-7 text-muted-foreground">
                     {item.content}
                   </p>
-                  <div className="mt-6 flex items-center gap-3 border-t border-border/50 pt-4">
+                  <div className="mt-auto flex items-center gap-3 border-t border-border/50 pt-4">
                     <Avatar className="h-11 w-11">
-                      <AvatarImage src={item.author.avatar} alt={item.author.name} />
+                      <AvatarImage src={item.author.avatar} alt={item.author.name} className="object-cover object-[center_30%]" />
                       <AvatarFallback>{getInitials(item.author.name)}</AvatarFallback>
                     </Avatar>
                     <div className="min-w-0">

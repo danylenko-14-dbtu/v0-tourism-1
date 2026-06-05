@@ -24,7 +24,7 @@ export default async function AboutUsPage({ params }: PageProps) {
 
   return (
     <main className="flex-1">
-      <AboutPageHero title={dictionary.aboutPage.hero.title} />
+      <AboutPageHero title={dictionary.aboutPage.hero.title} ctaLabel={dictionary.hero.cta} />
       <AboutIntroText
         eyebrow={dictionary.aboutPage.intro.eyebrow}
         title={dictionary.aboutPage.intro.title}
