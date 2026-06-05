@@ -23,6 +23,13 @@
     "cta": "Enroll",
     "ctaSecondary": "Learn More"
   },
+  "homeBlog": {
+    "title": "Latest Articles",
+    "subtitle": "Department stories about studying, tourism, recreation, and opportunities for students.",
+    "allPostsLabel": "All posts",
+    "previousLabel": "Previous posts",
+    "nextLabel": "Next posts"
+  },
   "professions": {
     "title": "Professions",
     "subtitle": "Professions that shape the modern tourism business",
@@ -280,8 +287,8 @@
       "items": [
         {
           "author": {
-            "name": "Maria",
-            "role": "Graduate",
+            "name": "David",
+            "role": "Student",
             "avatar": "/students/student-1.jpg",
             "fallback": "icon"
           },
@@ -289,8 +296,8 @@
         },
         {
           "author": {
-            "name": "Andrii",
-            "role": "Graduate",
+            "name": "Valeriia",
+            "role": "Student",
             "avatar": "/students/student-2.jpg",
             "fallback": "icon"
           },
@@ -298,7 +305,7 @@
         },
         {
           "author": {
-            "name": "Olena",
+            "name": "Daria",
             "role": "Graduate",
             "avatar": "/students/student-3.jpg",
             "fallback": "icon"
@@ -307,7 +314,7 @@
         },
         {
           "author": {
-            "name": "Dmytro",
+            "name": "Sofia",
             "role": "Graduate",
             "avatar": "/students/student-4.jpg",
             "fallback": "icon"
@@ -316,7 +323,7 @@
         },
         {
           "author": {
-            "name": "Iryna",
+            "name": "Anhelina",
             "role": "Student",
             "avatar": "/students/student-5.jpg",
             "fallback": "icon"
@@ -325,7 +332,7 @@
         },
         {
           "author": {
-            "name": "Maksym",
+            "name": "Valeriia",
             "role": "Student",
             "avatar": "/students/student-6.jpg",
             "fallback": "icon"
@@ -334,8 +341,8 @@
         },
         {
           "author": {
-            "name": "Sofia",
-            "role": "Student",
+            "name": "Vladyslav",
+            "role": "Graduate",
             "avatar": "/students/student-7.jpg",
             "fallback": "icon"
           },

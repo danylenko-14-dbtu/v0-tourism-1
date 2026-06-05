@@ -83,7 +83,7 @@ export function TestimonialsCarousel({
         >
           <CarouselContent>
             {items.map((item) => (
-              <CarouselItem key={item.author.name} className="md:basis-1/2 lg:basis-1/3">
+              <CarouselItem key={`${item.author.avatar}-${item.author.name}`} className="md:basis-1/2 lg:basis-1/3">
                 <article
                   className={cn(
                     "mx-px flex h-full flex-col rounded-md border border-border/60 p-5 shadow-sm",

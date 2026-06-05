@@ -23,6 +23,13 @@
     "cta": "Вступити",
     "ctaSecondary": "Дізнатися більше"
   },
+  "homeBlog": {
+    "title": "Останні публікації",
+    "subtitle": "Матеріали кафедри про навчання, туризм, рекреацію та можливості для студентів.",
+    "allPostsLabel": "Усі дописи",
+    "previousLabel": "Попередні дописи",
+    "nextLabel": "Наступні дописи"
+  },
   "professions": {
     "title": "Професії",
     "subtitle": "Спеціалісти, які формують сучасний туристичний бізнес.",
@@ -280,8 +287,8 @@
       "items": [
         {
           "author": {
-            "name": "Марія",
-            "role": "Випускниця",
+            "name": "Давід",
+            "role": "Студент",
             "avatar": "/students/student-1.jpg",
             "fallback": "icon"
           },
@@ -289,8 +296,8 @@
         },
         {
           "author": {
-            "name": "Андрій",
-            "role": "Випускник",
+            "name": "Валерія",
+            "role": "Студентка",
             "avatar": "/students/student-2.jpg",
             "fallback": "icon"
           },
@@ -298,7 +305,7 @@
         },
         {
           "author": {
-            "name": "Олена",
+            "name": "Дар'я",
             "role": "Випускниця",
             "avatar": "/students/student-3.jpg",
             "fallback": "icon"
@@ -307,8 +314,8 @@
         },
         {
           "author": {
-            "name": "Дмитро",
-            "role": "Випускник",
+            "name": "Софія",
+            "role": "Випускниця",
             "avatar": "/students/student-4.jpg",
             "fallback": "icon"
           },
@@ -316,7 +323,7 @@
         },
         {
           "author": {
-            "name": "Ірина",
+            "name": "Ангеліна",
             "role": "Студентка",
             "avatar": "/students/student-5.jpg",
             "fallback": "icon"
@@ -325,8 +332,8 @@
         },
         {
           "author": {
-            "name": "Максим",
-            "role": "Студент",
+            "name": "Валерія",
+            "role": "Студентка",
             "avatar": "/students/student-6.jpg",
             "fallback": "icon"
           },
@@ -334,8 +341,8 @@
         },
         {
           "author": {
-            "name": "Софія",
-            "role": "Студентка",
+            "name": "Владислав",
+            "role": "Випускник",
             "avatar": "/students/student-7.jpg",
             "fallback": "icon"
           },

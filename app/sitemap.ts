@@ -6,14 +6,14 @@ import { getAllPosts } from "@/lib/blog";
 const { siteUrl } = serverEnv;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticPages = ["", "/faq", "/blog"];
+  const staticPages = ["", "/about-us", "/program", "/blog", "/contacts", "/faq"];
 
   const staticPageEntries = locales.flatMap((locale) =>
     staticPages.map((page) => ({
       url: `${siteUrl}/${locale}${page}`,
       lastModified: new Date(),
       changeFrequency: page === "/blog" ? ("weekly" as const) : ("monthly" as const),
-      priority: page === "" ? 1 : 0.8,
+      priority: getStaticPagePriority(page),
     }))
   );
 
@@ -51,4 +51,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   });
 
   return [...staticPageEntries, ...ukPostEntries, ...enPostEntries];
+}
+
+function getStaticPagePriority(page: string) {
+  if (page === "") return 1;
+  if (page === "/contacts") return 0.9;
+  if (page === "/program") return 0.9;
+  return 0.8;
 }
