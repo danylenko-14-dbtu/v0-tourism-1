@@ -83,7 +83,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   return (
     <ContactDialogProvider>
-      <div id="top" className="flex min-h-screen flex-col pb-14 md:pb-0">
+      <div id="top" className="flex min-h-screen flex-col pb-14 lg:pb-0">
         <Header locale={typedLocale} dictionary={dictionary} />
         {children}
         <Footer dictionary={dictionary} locale={typedLocale} />

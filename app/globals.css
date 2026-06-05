@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "leaflet/dist/leaflet.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -158,6 +159,25 @@
 }
 
 @layer utilities {
+  .about-contact-map-marker {
+    display: block;
+    width: 32px;
+    height: 32px;
+    border: 3px solid white;
+    border-radius: 9999px;
+    background: var(--brand-primary);
+    box-shadow:
+      0 0 0 8px color-mix(in oklab, var(--brand-primary) 20%, transparent),
+      0 12px 24px rgb(0 0 0 / 0.2);
+  }
+
+  .about-contact-map .leaflet-container,
+  .about-contact-map .leaflet-pane,
+  .about-contact-map .leaflet-top,
+  .about-contact-map .leaflet-bottom {
+    z-index: 0;
+  }
+
   .focus-visible-ring,
   .focus-visible-ring-inverted {
     outline: 2px solid transparent;
@@ -198,6 +218,12 @@
   }
   to {
     transform: translateY(0);
+  }
+}
+
+@keyframes map-skeleton {
+  100% {
+    transform: translateX(100%);
   }
 }
 

@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import { FaTelegram, FaViber } from "react-icons/fa6";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useContactDialog } from "@/hooks/use-contact-dialog";
@@ -37,6 +43,10 @@ export function ContactDialog({ dictionary }: ContactDialogProps) {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>{dictionary.contactDialog.title}</DialogTitle>
+          <DialogDescription className="sr-only">
+            {dictionary.contactDialog.phoneLabel}: {phoneNumber.display}.{" "}
+            {dictionary.contactDialog.viber}. {dictionary.contactDialog.telegram}.
+          </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6">
@@ -45,7 +55,17 @@ export function ContactDialog({ dictionary }: ContactDialogProps) {
             <label className="text-sm font-medium text-foreground/70">
               {dictionary.contactDialog.phoneLabel}
             </label>
-            <div className="flex gap-2">
+            <div className="flex gap-2 sm:hidden">
+              <Button asChild variant="outline" className="flex-1">
+                <a href={phoneNumber.telHref}>
+                  {phoneNumber.display}
+                </a>
+              </Button>
+              <Button type="button" variant="outline" onClick={handleCopy} className="px-4">
+                {copied ? dictionary.contactDialog.copied : dictionary.contactDialog.copy}
+              </Button>
+            </div>
+            <div className="hidden gap-2 sm:flex">
               <Input type="tel" value={phoneNumber.display} readOnly className="flex-1 bg-muted" />
               <Button type="button" variant="outline" onClick={handleCopy} className="px-4">
                 {copied ? dictionary.contactDialog.copied : dictionary.contactDialog.copy}

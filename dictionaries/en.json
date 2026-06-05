@@ -12,7 +12,9 @@
     "professions": "Professions",
     "program": "Program",
     "application": "Application",
-    "contact": "Contact"
+    "contact": "Contact",
+    "contactButton": "Ask a question",
+    "contactButtonShort": "Ask"
   },
   "hero": {
     "badge": "New version available",
@@ -214,6 +216,92 @@
       }
     ]
   },
+  "aboutPage": {
+    "hero": {
+      "title": "The Department of Tourism at State Biotech invites applicants to study"
+    },
+    "intro": {
+      "title": "A friendly team supporting every student",
+      "paragraphs": [
+        "Our friendly and experienced team knows how to organize learning so that every student feels supported, oriented, and confident in their next step.",
+        "We combine academic standards with a humane approach: we explain complex topics clearly, help students adapt to the university rhythm, and support individual educational interests.",
+        "At the Department of Tourism, it is important not only to share knowledge, but also to create an environment where students feel comfortable asking questions, trying professional roles, and building their own path in tourism and recreation."
+      ]
+    },
+    "teacherComments": {
+      "title": "How we think about comfortable learning",
+      "subtitle": "Our thoughts on the department's approach to students, practice, and professional growth.",
+      "items": [
+        {
+          "author": {
+            "name": "Halina Omelchenko",
+            "role": "Head of the Department, Associate Professor",
+            "avatar": "/staff/staff-photo-1.jpg"
+          },
+          "content": "For us, comfortable learning begins with trust. A student should know that there is a team nearby that can help them navigate complex questions and choose a practical path for development."
+        },
+        {
+          "author": {
+            "name": "Volodymyr Merchansky",
+            "role": "Associate Professor",
+            "avatar": "/staff/staff-photo-2.jpg"
+          },
+          "content": "Tourism is best learned through real examples, discussion, and practical tasks. We want students to see how classroom topics connect with real decisions in the profession."
+        },
+        {
+          "author": {
+            "name": "Victoria Khudaverdieva",
+            "role": "Associate Professor",
+            "avatar": "/staff/staff-photo-3.jpg"
+          },
+          "content": "Good learning happens when a student sees meaning in what they do. We help connect disciplines with future work, practice, and each student's personal goals."
+        },
+        {
+          "author": {
+            "name": "Liliya Kharchevnikova",
+            "role": "Associate Professor",
+            "avatar": "/staff/staff-photo-4.jpg"
+          },
+          "content": "We pay attention not only to theory, but also to communication, service thinking, and working with people. These skills help future tourism specialists stay flexible and in demand."
+        },
+        {
+          "author": {
+            "name": "Valerii Danylenko",
+            "role": "Associate Professor",
+            "avatar": "/staff/staff-photo-5.jpg"
+          },
+          "content": "Every student comes with their own pace, experience, and questions. Our task is to create a space where they can learn calmly, try new roles, and gradually become more confident professionals."
+        }
+      ]
+    },
+    "contact": {
+      "title": "Get in touch",
+      "subtitle": "We are here to answer questions about admission, cooperation, and website technical support.",
+      "addressLabel": "Address",
+      "departmentEmailLabel": "Department email",
+      "departmentEmail": "tourism.dbtu@gmail.com",
+      "phoneLabel": "Phone",
+      "emailLabel": "Email",
+      "mapLabel": "SBTU Department of Tourism",
+      "admissions": {
+        "label": "Admission inquiries",
+        "name": "Halina Omelchenko",
+        "avatar": "/staff/staff-photo-1.jpg"
+      },
+      "cooperation": {
+        "label": "Cooperation inquiries",
+        "name": "Volodymyr Merchansky",
+        "email": "seomvv@btu.kharkov.ua",
+        "avatar": "/staff/staff-photo-2.jpg"
+      },
+      "support": {
+        "label": "Technical support",
+        "name": "Valerii Danylenko",
+        "email": "danylenko.14@btu.kharkov.ua",
+        "avatar": "/staff/staff-photo-5.jpg"
+      }
+    }
+  },
   "pricing": {
     "title": "Tuition Fees",
     "subtitle": "Affordable contract-based study at our institution",
@@ -342,7 +430,8 @@
   "footer": {
     "description": "Tourism Department of the State Biotechnology University — training specialists who shape the future of tourism industry.",
     "copyright": "| J3/242 Tourism and Recreation",
-    "address": "City of Kharkiv, Klochkivska Street, 333, 61051, Ukraine",
+    "address": "City of Kharkiv, Alchevskykh Street, 44, 61002, Ukraine",
+    "secondaryAddress": "City of Kharkiv, Klochkivska Street, 333, 61051, Ukraine",
     "links": {
       "study": {
         "title": "Study",
