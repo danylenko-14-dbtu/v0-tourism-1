@@ -6,7 +6,7 @@ import { Professions } from "@/components/sections/professions";
 import { LearningProcess } from "@/components/sections/learning-process";
 import { Graduates } from "@/components/sections/graduates";
 import { HowToApply } from "@/components/sections/how-to-apply";
-import { Partners } from "@/components/sections/partners";
+import { TestimonialsCarousel } from "@/components/sections/testimonials-carousel";
 import { CTA } from "@/components/sections/cta";
 
 interface PageProps {
@@ -29,8 +29,13 @@ export default async function HomePage({ params }: PageProps) {
       <Professions dictionary={dictionary} />
       <LearningProcess dictionary={dictionary} />
       <Graduates dictionary={dictionary} />
+      <TestimonialsCarousel
+        title={dictionary.aboutPage.studentComments.title}
+        subtitle={dictionary.aboutPage.studentComments.subtitle}
+        items={dictionary.aboutPage.studentComments.items}
+        variant="plain"
+      />
       <HowToApply dictionary={dictionary} />
-      <Partners dictionary={dictionary} />
       <CTA dictionary={dictionary} locale={typedLocale} />
     </main>
   );

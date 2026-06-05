@@ -13,8 +13,8 @@
     "program": "Program",
     "application": "Application",
     "contact": "Contact",
-    "contactButton": "Ask a question",
-    "contactButtonShort": "Ask"
+    "contactButton": "Contact Us",
+    "contactButtonShort": "Contact Us"
   },
   "hero": {
     "badge": "New version available",
@@ -271,6 +271,75 @@
             "avatar": "/staff/staff-photo-5.jpg"
           },
           "content": "Every student comes with their own pace, experience, and questions. Our task is to create a space where they can learn calmly, try new roles, and gradually become more confident professionals."
+        }
+      ]
+    },
+    "studentComments": {
+      "title": "What our students say",
+      "subtitle": "Short impressions about studying, practice, and support at the department.",
+      "items": [
+        {
+          "author": {
+            "name": "Maria",
+            "role": "Graduate",
+            "avatar": "/students/student-1.jpg",
+            "fallback": "icon"
+          },
+          "content": "I liked that teachers explained things calmly and clearly. If something was difficult, it was okay to ask again without stress."
+        },
+        {
+          "author": {
+            "name": "Andrii",
+            "role": "Graduate",
+            "avatar": "/students/student-2.jpg",
+            "fallback": "icon"
+          },
+          "content": "After studying here, I understood much better how tourism works from the inside. Practical tasks and real examples helped a lot."
+        },
+        {
+          "author": {
+            "name": "Olena",
+            "role": "Graduate",
+            "avatar": "/students/student-3.jpg",
+            "fallback": "icon"
+          },
+          "content": "I started without much experience, but gradually got into it. It feels normal here to learn, ask questions, and make mistakes."
+        },
+        {
+          "author": {
+            "name": "Dmytro",
+            "role": "Graduate",
+            "avatar": "/students/student-4.jpg",
+            "fallback": "icon"
+          },
+          "content": "I remember the classes where we had to think like trip organizers. It was not just theory, but things you can imagine using at work."
+        },
+        {
+          "author": {
+            "name": "Iryna",
+            "role": "Student",
+            "avatar": "/students/student-5.jpg",
+            "fallback": "icon"
+          },
+          "content": "I feel comfortable because I can study at my own pace. The teachers stay in touch, and that really helps when there is a lot to learn."
+        },
+        {
+          "author": {
+            "name": "Maksym",
+            "role": "Student",
+            "avatar": "/students/student-6.jpg",
+            "fallback": "icon"
+          },
+          "content": "I like that we often discuss real examples in class. It makes it easier to understand where this knowledge can be useful."
+        },
+        {
+          "author": {
+            "name": "Sofia",
+            "role": "Student",
+            "avatar": "/students/student-7.jpg",
+            "fallback": "icon"
+          },
+          "content": "For me, it matters that the atmosphere is not tense. I feel like I am seen not just as a name on a list, but as a person."
         }
       ]
     },
