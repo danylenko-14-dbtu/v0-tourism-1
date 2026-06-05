@@ -18,6 +18,7 @@ export interface HeaderNavItem {
 
 interface HeaderNavProps {
   items: HeaderNavItem[]
+  className?: string
 }
 
 function isActivePath(pathname: string, item: HeaderNavItem) {
@@ -28,11 +29,11 @@ function isActivePath(pathname: string, item: HeaderNavItem) {
   return pathname === item.href || pathname.startsWith(`${item.href}/`)
 }
 
-export function HeaderNav({ items }: HeaderNavProps) {
+export function HeaderNav({ items, className }: HeaderNavProps) {
   const pathname = usePathname()
 
   return (
-    <NavigationMenu viewport={false} className="hidden md:flex">
+    <NavigationMenu viewport={false} className={className ?? 'hidden md:flex'}>
       <NavigationMenuList className="gap-3">
         {items.map((item) => {
           const active = isActivePath(pathname, item)

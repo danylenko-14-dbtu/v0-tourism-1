@@ -12,7 +12,9 @@
     "professions": "Professions",
     "program": "Program",
     "application": "Application",
-    "contact": "Contact"
+    "contact": "Contact",
+    "contactButton": "Ask a question",
+    "contactButtonShort": "Ask"
   },
   "hero": {
     "badge": "New version available",
@@ -219,7 +221,6 @@
       "title": "The Department of Tourism at State Biotech invites applicants to study"
     },
     "intro": {
-      "eyebrow": "Comfortable Learning",
       "title": "A friendly team supporting every student",
       "paragraphs": [
         "Our friendly and experienced team knows how to organize learning so that every student feels supported, oriented, and confident in their next step.",
@@ -228,7 +229,6 @@
       ]
     },
     "teacherComments": {
-      "eyebrow": "Faculty Comments",
       "title": "How we think about comfortable learning",
       "subtitle": "Our thoughts on the department's approach to students, practice, and professional growth.",
       "items": [
@@ -275,7 +275,6 @@
       ]
     },
     "contact": {
-      "eyebrow": "Department Contacts",
       "title": "Get in touch",
       "subtitle": "We are here to answer questions about admission, cooperation, and website technical support.",
       "addressLabel": "Address",

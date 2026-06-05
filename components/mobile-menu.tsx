@@ -27,6 +27,7 @@ interface NavItem {
 interface MobileMenuProps {
   navItems: NavItem[]
   locale: Locale
+  contactLabel: string
 }
 
 function isActivePath(pathname: string, item: NavItem) {
@@ -37,9 +38,8 @@ function isActivePath(pathname: string, item: NavItem) {
   return pathname === item.href || pathname.startsWith(`${item.href}/`)
 }
 
-export function MobileMenu({ navItems, locale }: MobileMenuProps) {
+export function MobileMenu({ navItems, locale, contactLabel }: MobileMenuProps) {
   const pathname = usePathname()
-  const contactLabel = locale === 'en' ? 'Ask a question' : 'Задати питання'
 
   return (
     <Drawer noBodyStyles>

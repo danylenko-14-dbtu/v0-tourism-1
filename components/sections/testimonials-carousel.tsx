@@ -26,7 +26,6 @@ export interface TestimonialItem {
 }
 
 interface TestimonialsCarouselProps {
-  eyebrow: string
   title: string
   subtitle: string
   items: TestimonialItem[]

@@ -1,5 +1,4 @@
 interface AboutIntroTextProps {
-  eyebrow: string
   title: string
   paragraphs: string[]
 }
