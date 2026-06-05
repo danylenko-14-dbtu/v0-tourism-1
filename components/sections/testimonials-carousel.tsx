@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Quote } from "lucide-react"
+import { cn } from "@/lib/utils"
 import {
   Avatar,
   AvatarFallback,
@@ -21,6 +22,7 @@ export interface TestimonialItem {
     name: string
     role: string
     avatar: string
+    fallback?: string
   }
   content: string
 }
@@ -29,12 +31,14 @@ interface TestimonialsCarouselProps {
   title: string
   subtitle: string
   items: TestimonialItem[]
+  variant?: "muted" | "plain"
 }
 
 export function TestimonialsCarousel({
   title,
   subtitle,
   items,
+  variant = "muted",
 }: TestimonialsCarouselProps) {
   const [api, setApi] = useState<CarouselApi>()
   const [isPaused, setIsPaused] = useState(false)
@@ -57,7 +61,7 @@ export function TestimonialsCarousel({
   }, [api, isPaused, items.length])
 
   return (
-    <section className="border-b border-border/50 bg-muted/30">
+    <section className={variant === "plain" ? "border-y border-border/50 bg-background" : "border-y border-border/50 bg-muted/30"}>
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div className="mx-auto mb-8 max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-heading sm:text-4xl">
@@ -79,8 +83,13 @@ export function TestimonialsCarousel({
         >
           <CarouselContent>
             {items.map((item) => (
-              <CarouselItem key={item.author.name} className="md:basis-1/2 lg:basis-1/3">
-                <article className="flex h-full flex-col rounded-md border border-border/60 bg-background p-5 shadow-sm">
+              <CarouselItem key={`${item.author.avatar}-${item.author.name}`} className="md:basis-1/2 lg:basis-1/3">
+                <article
+                  className={cn(
+                    "mx-px flex h-full flex-col rounded-md border border-border/60 p-5 shadow-sm",
+                    variant === "plain" ? "bg-muted/30" : "bg-background",
+                  )}
+                >
                   <Quote className="h-5 w-5 text-primary" aria-hidden="true" />
                   <p className="mb-6 mt-4 text-sm leading-7 text-muted-foreground">
                     {item.content}
@@ -88,7 +97,13 @@ export function TestimonialsCarousel({
                   <div className="mt-auto flex items-center gap-3 border-t border-border/50 pt-4">
                     <Avatar className="h-11 w-11">
                       <AvatarImage src={item.author.avatar} alt={item.author.name} className="object-cover object-[center_30%]" />
-                      <AvatarFallback>{getInitials(item.author.name)}</AvatarFallback>
+                      <AvatarFallback className="bg-muted text-muted-foreground">
+                        {item.author.fallback === "icon" ? (
+                          <PersonFallbackIcon className="h-6 w-6 text-muted-foreground/50" />
+                        ) : (
+                          getInitials(item.author.name)
+                        )}
+                      </AvatarFallback>
                     </Avatar>
                     <div className="min-w-0">
                       <p className="truncate text-sm font-semibold text-heading">
@@ -108,6 +123,27 @@ export function TestimonialsCarousel({
         </Carousel>
       </div>
     </section>
+  )
+}
+
+function PersonFallbackIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </svg>
   )
 }
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ContactDialog } from "@/components/contact-dialog";
+import { ScrollToTopButton } from "@/components/scroll-to-top-button";
 import { Footer } from "@/components/sections/footer";
 import { Header } from "@/components/sections/header";
 import { ContactDialogProvider } from "@/hooks/use-contact-dialog";
@@ -87,6 +88,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         <Header locale={typedLocale} dictionary={dictionary} />
         {children}
         <Footer dictionary={dictionary} locale={typedLocale} />
+        <ScrollToTopButton label={typedLocale === "en" ? "Back to top" : "Вгору сторінки"} />
         <ContactDialog dictionary={dictionary} />
       </div>
     </ContactDialogProvider>
