@@ -8,9 +8,14 @@ import { TiMessages } from 'react-icons/ti'
 interface HeaderContactButtonProps {
   label: string
   className?: string
+  showLabelOnMobile?: boolean
 }
 
-export function HeaderContactButton({ label, className }: HeaderContactButtonProps) {
+export function HeaderContactButton({
+  label,
+  className,
+  showLabelOnMobile = false,
+}: HeaderContactButtonProps) {
   const { onOpen } = useContactDialog()
 
   return (
@@ -26,7 +31,10 @@ export function HeaderContactButton({ label, className }: HeaderContactButtonPro
       onClick={onOpen}
     >
       <TiMessages className="h-5 w-5 lg:hidden" aria-hidden />
-      <span className="hidden lg:inline">{label}</span>
+      <span className={showLabelOnMobile ? 'inline lg:hidden' : 'hidden lg:inline'}>
+        {label}
+      </span>
+      {showLabelOnMobile ? <span className="hidden lg:inline">{label}</span> : null}
     </Button>
   )
 }

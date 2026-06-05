@@ -8,6 +8,7 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
+  DrawerDescription,
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
@@ -38,7 +39,7 @@ function isActivePath(pathname: string, item: NavItem) {
 
 export function MobileMenu({ navItems, locale }: MobileMenuProps) {
   const pathname = usePathname()
-  const contactLabel = locale === 'en' ? 'Contact Us' : 'Запитати'
+  const contactLabel = locale === 'en' ? 'Ask a question' : 'Задати питання'
 
   return (
     <Drawer noBodyStyles>
@@ -48,6 +49,7 @@ export function MobileMenu({ navItems, locale }: MobileMenuProps) {
           size="icon"
           className="md:hidden"
           aria-label="Open menu"
+          onClick={(event) => event.currentTarget.blur()}
         >
           <Menu className="h-5 w-5" />
         </Button>
@@ -56,6 +58,11 @@ export function MobileMenu({ navItems, locale }: MobileMenuProps) {
         <DrawerTitle className="sr-only">
           {locale === 'en' ? 'Mobile navigation' : 'Мобільна навігація'}
         </DrawerTitle>
+        <DrawerDescription className="sr-only">
+          {locale === 'en'
+            ? 'Site navigation, contact button, language switcher, and theme settings.'
+            : 'Навігація сайтом, кнопка звʼязку, перемикач мови та налаштування теми.'}
+        </DrawerDescription>
         <nav className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-5">
           {navItems.map((item) => {
             const active = isActivePath(pathname, item)
@@ -75,7 +82,11 @@ export function MobileMenu({ navItems, locale }: MobileMenuProps) {
             )
           })}
           <div className="mt-2">
-            <HeaderContactButton label={contactLabel} className="w-full" />
+            <HeaderContactButton
+              label={contactLabel}
+              showLabelOnMobile
+              className="w-full justify-center gap-2"
+            />
           </div>
           <div className="mt-2 flex items-center justify-between border-t border-border/50 pt-4">
             <LanguageSwitcher currentLocale={locale} variant="segmented" />
