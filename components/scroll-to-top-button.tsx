@@ -29,6 +29,9 @@ export function ScrollToTopButton({ label }: ScrollToTopButtonProps) {
       size="icon"
       variant="outline"
       aria-label={label}
+      aria-hidden={!isVisible}
+      disabled={!isVisible}
+      tabIndex={isVisible ? 0 : -1}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       className={cn(
         "fixed right-4 z-40 h-10 w-10 rounded-full border-border/70 bg-background/90 text-heading shadow-md backdrop-blur transition-all hover:border-primary/50 hover:text-link-hover focus-visible:opacity-100",
