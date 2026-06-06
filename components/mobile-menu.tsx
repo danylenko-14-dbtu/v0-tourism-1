@@ -3,6 +3,7 @@
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   Drawer,
@@ -40,9 +41,10 @@ function isActivePath(pathname: string, item: NavItem) {
 
 export function MobileMenu({ navItems, locale, contactLabel }: MobileMenuProps) {
   const pathname = usePathname()
+  const [open, setOpen] = useState(false)
 
   return (
-    <Drawer noBodyStyles>
+    <Drawer open={open} onOpenChange={setOpen} modal={false} noBodyStyles>
       <DrawerTrigger asChild>
         <Button
           variant="ghost"
