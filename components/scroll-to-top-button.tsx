@@ -23,6 +23,10 @@ export function ScrollToTopButton({ label }: ScrollToTopButtonProps) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+  }
+
   return (
     <Button
       type="button"
@@ -30,9 +34,8 @@ export function ScrollToTopButton({ label }: ScrollToTopButtonProps) {
       variant="outline"
       aria-label={label}
       aria-hidden={!isVisible}
-      disabled={!isVisible}
       tabIndex={isVisible ? 0 : -1}
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      onClick={scrollToTop}
       className={cn(
         "fixed right-4 z-40 h-10 w-10 rounded-full border-border/70 bg-background/90 text-heading shadow-md backdrop-blur transition-all hover:border-primary/50 hover:text-link-hover focus-visible:opacity-100",
         "bottom-20 md:bottom-20 lg:bottom-6",
