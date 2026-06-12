@@ -7,8 +7,8 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
-import { AboutContactMap } from "./about-contact-map"
-import { ContactPhoneButton } from "./contact-phone-button"
+import { AboutContactMap } from "@/components/about/about-contact-map"
+import { ContactPhoneButton } from "@/components/contact/contact-phone-button"
 
 interface AboutContactProps {
   dictionary: Dictionary

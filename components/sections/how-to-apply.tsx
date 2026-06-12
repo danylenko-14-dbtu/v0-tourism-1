@@ -2,7 +2,7 @@
 
 import { ClipboardList, UserPlus, FileText, CheckCircle } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
-import { EnrollButton } from "@/components/sections/enroll-button"
+import { EnrollButton } from "@/components/enroll-button"
 
 interface Stage {
   title: string
