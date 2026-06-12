@@ -1,5 +1,5 @@
 import type { Dictionary } from "@/lib/dictionaries";
-import { PartnerLogo } from "@/components/sections/partner-logo";
+import { PartnerLogo } from "@/components/partners/partner-logo";
 import styles from "@/styles/marquee.module.css";
 
 interface PartnersProps {
