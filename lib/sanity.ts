@@ -40,12 +40,19 @@ export interface PostBodySpan {
   marks?: string[];
 }
 
+export interface PostBodyLinkMark {
+  _type: "link";
+  _key: string;
+  href?: string;
+  blank?: boolean;
+}
+
 export interface PostBodyBlock {
   _type: "block";
   _key: string;
   style?: string;
   listItem?: "bullet" | "number";
-  markDefs?: unknown[];
+  markDefs?: PostBodyLinkMark[];
   children: PostBodySpan[];
 }
 
