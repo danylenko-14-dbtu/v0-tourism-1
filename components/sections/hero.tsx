@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { EnrollButton } from "@/components/sections/enroll-button";
+import { EnrollButton } from "@/components/enroll-button";
 import type { Dictionary } from "@/lib/dictionaries";
 import type { Locale } from "@/lib/i18n";
 import Link from "next/link";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { EnrollButton } from "@/components/sections/enroll-button";
+import { EnrollButton } from "@/components/enroll-button";
 
 interface AboutPageHeroProps {
   title: string;

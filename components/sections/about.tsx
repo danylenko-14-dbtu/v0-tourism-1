@@ -1,5 +1,5 @@
 import type { Dictionary } from '@/lib/dictionaries'
-import { TeamCard } from './team-card'
+import { TeamCard } from '@/components/about/team-card'
 
 interface AboutProps {
   dictionary: Dictionary
