@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Fragment } from "react";
+import type { ReactNode } from "react";
 
 /* ------------------------------- Types -------------------------------- */
 
@@ -10,12 +11,19 @@ interface Span {
   marks?: string[];
 }
 
+interface LinkMarkDef {
+  _type: "link";
+  _key: string;
+  href?: string;
+  blank?: boolean;
+}
+
 interface BlockNode {
   _type: "block";
   _key: string;
   style?: string;
   listItem?: "bullet" | "number";
-  markDefs?: unknown[];
+  markDefs?: LinkMarkDef[];
   children: Span[];
 }
 
@@ -34,21 +42,68 @@ interface PostBodyProps {
 
 /* ----------------------------- Renderers ------------------------------ */
 
-function renderSpans(children: Span[]) {
+function isSafeHref(href: string) {
+  return (
+    (href.startsWith("/") && !href.startsWith("//")) ||
+    href.startsWith("#") ||
+    href.startsWith("http://") ||
+    href.startsWith("https://") ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:")
+  );
+}
+
+function isExternalHref(href: string) {
+  return href.startsWith("http://") || href.startsWith("https://");
+}
+
+function renderLink(content: ReactNode, mark: LinkMarkDef, key: string) {
+  const href = mark.href?.trim();
+  if (!href || !isSafeHref(href)) {
+    return <Fragment key={key}>{content}</Fragment>;
+  }
+
+  const opensInNewTab = mark.blank || isExternalHref(href);
+
+  return (
+    <a
+      key={key}
+      href={href}
+      target={opensInNewTab ? "_blank" : undefined}
+      rel={opensInNewTab ? "noopener noreferrer" : undefined}
+      className="font-medium text-chart-3 underline decoration-chart-3/35 decoration-2 underline-offset-4 transition-colors hover:text-chart-4 hover:decoration-chart-4 focus-visible-ring rounded-sm"
+    >
+      {content}
+    </a>
+  );
+}
+
+function renderSpans(children: Span[], markDefs: LinkMarkDef[] = []) {
+  const marksByKey = new Map(markDefs.map((mark) => [mark._key, mark]));
+
   return children.map((span) => {
+    let content: ReactNode = span.text;
+
     if (span.marks?.includes("strong")) {
-      return (
-        <strong key={span._key} className="font-semibold text-foreground">
-          {span.text}
-        </strong>
+      content = (
+        <strong className="font-semibold text-foreground">{content}</strong>
       );
     }
-    return <Fragment key={span._key}>{span.text}</Fragment>;
+
+    const linkMark = span.marks
+      ?.map((markKey) => marksByKey.get(markKey))
+      .find((mark): mark is LinkMarkDef => mark?._type === "link");
+
+    if (linkMark) {
+      return renderLink(content, linkMark, span._key);
+    }
+
+    return <Fragment key={span._key}>{content}</Fragment>;
   });
 }
 
 function renderBlock(block: BlockNode) {
-  const inner = renderSpans(block.children);
+  const inner = renderSpans(block.children, block.markDefs);
 
   switch (block.style) {
     case "h1":
@@ -145,7 +200,9 @@ export function PostBody({ blocks }: PostBodyProps) {
               className="my-5 list-disc space-y-2 pl-6 text-base leading-relaxed text-foreground/90 md:text-lg marker:text-chart-3"
             >
               {node.items.map((item) => (
-                <li key={item._key}>{renderSpans(item.children)}</li>
+                <li key={item._key}>
+                  {renderSpans(item.children, item.markDefs)}
+                </li>
               ))}
             </ul>
           );
@@ -165,11 +222,6 @@ export function PostBody({ blocks }: PostBodyProps) {
                   className="object-cover"
                 />
               </div>
-              {node.alt && (
-                <figcaption className="mt-3 text-center text-sm text-muted-foreground">
-                  {node.alt}
-                </figcaption>
-              )}
             </figure>
           );
         }
