@@ -44,7 +44,7 @@ interface PostBodyProps {
 
 function isSafeHref(href: string) {
   return (
-    href.startsWith("/") ||
+    (href.startsWith("/") && !href.startsWith("//")) ||
     href.startsWith("#") ||
     href.startsWith("http://") ||
     href.startsWith("https://") ||
@@ -63,7 +63,7 @@ function renderLink(content: ReactNode, mark: LinkMarkDef, key: string) {
     return <Fragment key={key}>{content}</Fragment>;
   }
 
-  const opensInNewTab = mark.blank ?? isExternalHref(href);
+  const opensInNewTab = mark.blank || isExternalHref(href);
 
   return (
     <a
